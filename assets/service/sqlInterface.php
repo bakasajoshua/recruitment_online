@@ -23,7 +23,7 @@
 				//$res = 3;
 			    $res = "Error: {$e->faultstring}";
 			}
-			print_r($res);die;
+			// print_r($res);die;
 		}else if($action == "GETVACANCIES"){
 			$client = new SoapClient($webServiceUrl);
 			try {
@@ -33,7 +33,7 @@
 			    $res = "Error: {$e->faultstring}";
 			}
 			$resp = (array)$res;
-			print_r($resp);die();
+			// print_r($resp);die();
 			$response = $resp["getAllVacanciesResult"];
 			echo $response;
 		}else if($action == "VIEWVACANCYDETAILS"){

@@ -86,7 +86,7 @@ class MX_Controller
 		$result = curl_exec($curl);
 		// Close request to clear up some resources
 		curl_close($curl);
-		print_r($result);die;
+		// print_r($result);die;
 		return $result;
 	}
 
