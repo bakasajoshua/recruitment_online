@@ -21,21 +21,36 @@
 			<div class="row">
 				<div class="col-md-5">
 					<div id="login-form-wrapper" class="no-animated">
-						<form id="login-form" action="#" method="post">
-							<center><p style="color:#ffffff;" id="alertTag"></p></center>
+						<form id="login-form" action="#" method="post">							
+							<div  id="alertTag">
+							
+							</div>
 							<?php 
 								if(isset($_GET['m'])){
 									if($_GET['m'] == 1){
 							?>
-										<center><p style="color:#ffffff;" >Please login to view this page.</p></center>
+										<div class="alert alert-danger" id="getAlert">
+											<center>
+												<strong>Please login to view this page.</strong> <br/>
+											</center>
+										</div>
 							<?php
 									}else if($_GET['m'] == 2){
 							?>	
-										<center><p style="color:#ffffff;" >You have successfully logged out.</p></center>
+									<div class="alert alert-success" id="getAlert">
+										<center>
+											<strong>Please login to view this page.</strong> <br/>
+										</center>
+									</div>
 							<?php
 									}else{}
 								}
 							?>
+							<script type="text/javascript">
+								setTimeout(function(){
+									$("#getAlert").hide();
+								},10000);
+							</script>
 							<div class="form-group">
 								<input class="form-control" type="text" name="the_user_login" id="user_login" placeholder="Email Address" required="required" />
 							</div><!-- /.form-group -->

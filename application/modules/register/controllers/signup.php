@@ -13,7 +13,7 @@ class Signup extends MX_Controller {
 		$this->load->view('template/template_v.php',$data);
 	}
 
-	public function saveuser(){
+	public function saveuser(){		
 		$register_name = $_POST['register_name'];
 		$register_email = $_POST['register_email'];
 		$register_password = $_POST['register_password'];

@@ -3,7 +3,7 @@
 		<div class="col-md-3">
 			<div class="logo-wrapper ">
 				<a href="<?php echo base_url('home/myAccount'); ?>" class="header-logo" title="Kippra Recruitment Portal">
-					<img src="http://zury.co.ke/kippra/wp-content/uploads/2016/12/kippra.png" alt="Kippra Recruitment Portal" />
+					<img src="<?php echo base_url('assets/images/kippralogo.png'); ?>" alt="Kippra Recruitment Portal" />
 				</a>							
 			</div><!-- /.logo-wrapper -->
 		</div><!-- /.col-md-3 -->

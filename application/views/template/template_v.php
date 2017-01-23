@@ -18,6 +18,15 @@
 				background: none !important;
 				padding: 0 !important;
 			}
+	        .overlay{
+	          position: absolute;
+	          top: 0;
+	          left: 0;
+	          width: 100%;
+	          height: 1000em;
+	          z-index: 10;
+	          background-color: rgba(0,0,0,0.5); /*dim the background*/
+	        }
 		</style>
 		<!-- Font -->
 		<link rel='stylesheet' id='nunito-font-css'  href='<?php echo base_url('assets/googleFont/nunito.css'); ?>' type='text/css' media='all' />
@@ -36,6 +45,10 @@
 		<link rel='stylesheet' id='default-responsive-css'  href='<?php echo base_url('assets/basics/style-responsive.css'); ?>' type='text/css' media='all' />
 		<!-- Default Style -->
 
+		<!--Datatables -->
+		<link href="<?php echo base_url('assets/datatables/media/css/dataTables.jqueryui.css'); ?>" rel="stylesheet" type="text/css">
+		<link href="<?php echo base_url('assets/datatables/media/css/jquery-ui.css'); ?>" rel="stylesheet" type="text/css">
+		<!--Datatables -->
 
 		<!-- jQUery v1.11.2-->
 		<script src="<?php echo base_url('assets/basics/jquery.min.js'); ?>"></script>
@@ -43,11 +56,15 @@
 
 		<!-- Custom Scripts -->
 		<script type="text/javascript" src="<?php echo base_url('assets/customScripts/uploadResume.js'); ?>"></script>
+		<script type="text/javascript" src="<?php echo base_url('assets/customScripts/viewVacancy.js'); ?>"></script>
 		<!-- Custom Scripts -->
 		<style type="text/css" id="application-status-color"></style>
 	</head>
 
 	<body class="page page-id-105 page-template page-template-page-templates page-template-template-login page-template-page-templatestemplate-login-php jobboard">
+		<div class="overlay">
+            <img src="<?php echo base_url('assets/images/ring-alt.gif');?>" style=" display:block;margin:auto; padding-top: 25%;">
+        </div>
 		<!-- Content View-->
 		<?php $this->load->view($content_view); ?>
 		<!-- Content View-->
@@ -56,5 +73,36 @@
 		<script src="<?php echo base_url('assets/multistepForm/validate.js'); ?>"></script>
 		<!-- Validate JS -->	
 		<script type="text/javascript" src="<?php echo base_url("assets/bootstrap/bootstrap.min.js"); ?>"></script>
+
+		<!--Datatables-->
+		<script src="<?php echo base_url('assets/datatables/media/js/jquery.dataTables.min.js'); ?> " type="text/javascript"></script>
+		<script src="<?php echo base_url('assets/datatables/media/js/dataTables.bootstrap.js'); ?>" type="text/javascript"></script>
+		<script src="<?php echo base_url('assets/datatables/media/js/dataTables.jqueryui.min.js'); ?> " type="text/javascript"></script>
+		<!--Datatables-->
+		<script type="text/javascript">
+			$("#vacanciesTable").dataTable();
+			$loginStatus = '<?php echo $this->session->userdata('logged_in') ?>'; 
+			$(".overlay").hide();
+			
+			window.validatePassword = function($password){
+				var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+				var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+				$response = '';
+				if(strongRegex.test($password) == false){//check if the password meets strong password standards
+					if(mediumRegex.test($password) == false){//check if password meets medium password standards
+						//this password is too week
+						$response = 1;
+						//console.log("//this password is too week");
+					}else{
+						//this password passes the medium password standard
+						$response = 0;
+					}
+				}else{
+					//this password is OK
+					$response = 0;
+				}
+				return $response;
+			}
+		</script>
 	</body>
 </html>

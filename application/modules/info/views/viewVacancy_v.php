@@ -2,6 +2,9 @@
 	<header id="header">
 		<!-- loads the avatar section -->
 		<?php
+			$vacancyDetails = (array)$vacancyDetails;
+			$vacancyDetails = json_decode($vacancyDetails[0]);
+
 			if($this->session->userdata('logged_in') == 1){
 		?>
 			<?php $this->load->view('template/avatar_v'); ?>
@@ -16,38 +19,13 @@
 		<div class="container">
 			<h1 class="job-detail-title">
 				Job Detail
+				<input type="hidden" id="jobADID" value="<?php echo $vacancyDetails[0]->adID; ?>" ></span>
 			</h1>
-			<div class="company-job-detail clearfix">
-				<div class="company-logo">
-					<a href="http://zury.co.ke/kippra/company/codecanyon/"></a>			
-				</div><!-- /.company-logo -->
-				<div class="company-details">
-					<span class="company-website">
-						<i class="fa fa-fw fa-chain"></i>
-						<a href="" target="_blank">Website</a>
-					</span><!-- /.company-website -->
-					<span class="company-twitter">
-						<i class="fa fa-fw fa-twitter"></i>
-						<a href="http://www.twitter.com" target="_blank">Twitter</a>
-					</span><!-- /.company-twitter -->
-					<span class="company-facebook">
-						<i class="fa fa-fw fa-facebook"></i>
-						<a href="http://www.facebook.com" target="_blank">Facebook</a>
-					</span><!-- /.company-facebook -->
-					<span class="company-google-plus">
-						<i class="fa fa-fw fa-google-plus"></i>
-						<a href="http://www.googleplus.com" target="_blank">Google+</a>
-					</span><!-- /.company-google-plus -->
-				</div><!-- /.company-details -->
-			</div><!-- /.company-job-detail -->
-
+			<center><p id="alertTag"></p></center>
 			<div class="the-job-details clearfix">
 				<div class="the-job-title">
 					<h3>
 						<?php
-							$vacancyDetails = (array)$vacancyDetails;
-
-							$vacancyDetails = json_decode($vacancyDetails[0]);
 							echo($vacancyDetails[0]->jobTitle);
 						?>
 					</h3>
@@ -69,7 +47,7 @@
 					?>				
 				</div><!-- /.the-job-type -->
 				<div class="the-job-button">
-					<button class="btn btn-apply-job " type="submit" value="1" data-toggle="modal" data-target="#apply-job-modal">Apply</button>
+					<button class="btn btn-apply-job " type="submit" value="1" data-toggle="modal" id="ApplyForPosition">Apply</button>
 				</div><!-- /.the-job-button -->
 			</div><!-- /.the-job-details -->
 
@@ -114,46 +92,51 @@
 		<article>
 			<!-- Competencies Requiered -->
 			<?php
-				$vacancyAdditionalInfo = (array)$vacancyAdditionalInfo;
-				$vacancyAdditionalInfo = json_decode($vacancyAdditionalInfo[0]);
+				$vacancyCompetencyDetails = (array)$vacancyCompetencyDetails;
+				$vacancyCompetencyDetails = json_decode($vacancyCompetencyDetails[0]);
 
 				$Competencies = "<p><strong> Competencies Required</strong><br/><br/>";
-				foreach ($vacancyAdditionalInfo as $key => $value) {
-					if($value->JCDDesc == ""){
-						$Competencies .= "• None <br/>";
-						break;
-					}else{
-						$Competencies .= "• ".$value->JCDDesc."<br/>";
+				if(sizeof($vacancyCompetencyDetails) == 0){
+					$Competencies .= "• None <br/>";			
+				}else{
+					foreach ($vacancyCompetencyDetails as $key => $value) {
+						$description = $value->description;
+						$Competencies .= "• ".$description."<br/>";
 					}
 				}
-				echo $Competencies;
+				echo $Competencies;				
 			?>
 			<!-- Competencies Requiered -->
 
 			<!-- Performance Requiered -->
 			<?php
+				$vacancyPerformanceDetails = (array)$vacancyPerformanceDetails;
+				$vacancyPerformanceDetails = json_decode($vacancyPerformanceDetails[0]);
 				$Performance = "<p><strong> Performance Qualities Required</strong> <br/><br/>";
-				foreach ($vacancyAdditionalInfo as $key => $value) {
-					if($value->JPDDesc == ""){
-						$Performance .= "• None <br/>";
-						break;
-					}else{
-						$Performance .= "• ".$value->JPDDesc."<br/>";
+				if(sizeof($vacancyPerformanceDetails) == 0){
+					$Performance .= "• None <br/>";				
+				}else{
+					foreach ($vacancyPerformanceDetails as $key => $value) {
+						$description = $value->description;
+						$Performance .= "• ".$description."<br/>";
 					}
 				}
-				echo $Performance;
+				echo $Performance;				
 			?>
 			<!-- Performance Requiered -->
 
 			<!-- Qualifications Requiered -->
 			<?php
+				$vacancyQualificationDetails = (array)$vacancyQualificationDetails;
+				$vacancyQualificationDetails = json_decode($vacancyQualificationDetails[0]);
+
 				$Qualifications = "<p><strong> Qualifications Required </strong><br/><br/>";
-				foreach ($vacancyAdditionalInfo as $key => $value) {
-					if($value->JQDDesc == ""){
-						$Qualifications .= "• None <br/>";
-						break;
-					}else{
-						$Qualifications .= "• ".$value->JQDDesc."<br/>";
+				if(sizeof($vacancyQualificationDetails) == 0){
+					$Qualifications .= "• None <br/>";					
+				}else{
+					foreach ($vacancyQualificationDetails as $key => $value) {
+						$description = $value->description;
+						$Qualifications .= "• ".$description."<br/>";
 					}
 				}
 				echo $Qualifications;
@@ -162,13 +145,15 @@
 
 			<!-- Skills Requiered -->
 			<?php
+				$vacancySkillsDescription = (array)$vacancySkillsDescription;
+				$vacancySkillsDescription = json_decode($vacancySkillsDescription[0]);
 				$Skills = "<p><strong> Skills Required </strong><br/><br/>";
-				foreach ($vacancyAdditionalInfo as $key => $value) {
-					if($value->JSDDesc == ""){
-						$Skills .= "• None <br/>";
-						break;
-					}else{
-						$Skills .= "• ".$value->JSDDesc."<br/>";
+				if(sizeof($vacancySkillsDescription) == 0){
+					$Skills .= "• None <br/>";					
+				}else{
+					foreach ($vacancySkillsDescription as $key => $value) {
+						$description = $value->description;
+						$Skills .= "• ".$description."<br/>";
 					}
 				}
 				echo $Skills;
@@ -193,7 +178,7 @@
 				<div class="modal-body">
 					<div class="alert alert-warning" role="alert">
 						You need to create resume first to apply this job. Click 
-						<a href="http://zury.co.ke/kippra/job/web-analyst/">Here</a> to add new resume.				
+						<a href="<?php echo base_url('login'); ?>">Here</a> to add new resume.				
 					</div>
 				</div><!-- /.modal-body -->
 
@@ -209,3 +194,7 @@
 		</div><!-- /#footer-text -->
 	</footer><!-- /#footer -->
 </div><!-- /#wrapper -->
+
+<script type="text/javascript">
+	$makeApplicationURL = '<?php echo base_url('info/viewVacancy/makeJobApplication'); ?>';
+</script>

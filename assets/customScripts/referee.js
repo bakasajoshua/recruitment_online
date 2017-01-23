@@ -4,7 +4,7 @@ $(document).ready(function(){
     $newRow = "";
     var fieldHTML =  {row :function(f){
     		$newRow = '<div style="margin-left:3em; display:inline-block; width:30%;">';
-    			$newRow += '<i class="fa fa-times" aria-hidden="true" id="removeReferee" style="float:right;"></i>';
+    			$newRow += '<i class="fa fa-times" aria-hidden="true" id="removeReferee" style="float:right; cursor: pointer;"></i>';
     			$newRow += '<div class="col-md-12">';
     				$newRow += '<div class="form-group">';
     					$newRow += '<p>First Name</p>';
@@ -28,6 +28,8 @@ $(document).ready(function(){
 		return $newRow;
     }};
 
+    $("#refereeListContainer").hide();
+
 	$('#addReferee').click(function(e){ //Once add button is clicked
     	e.preventDefault();
     	$numberOfEmptyFields = 0;
@@ -39,20 +41,27 @@ $(document).ready(function(){
 	    	}
 		})
 		//check if current input fields have been filled before proceeding
-		if($numberOfEmptyFields > 0){
-			$("#personalDetailsFormAlert").html("Please fill in all the fields before adding another row.");
+		if($numberOfEmptyFields > 0){			
+			$message = "<center>";
+				$message += "<strong>Error.</strong> <br/> Please fill in all the fields before adding another row.";
+			$message += "</center>";
+			showAlert('alert alert-danger','alert alert-success',$message);
 		}else{
     		if(x < maxField){ //Check maximum number of input fields
 	            x++; //Increment field counter
-	            $(".field_wrapper").append(fieldHTML.row(x)); // Add field html
+	            $(".field_wrapperReferees").append(fieldHTML.row(x)); // Add field html
 	        }else{
-	        	$("#personalDetailsFormAlert").html("You have reached the maximum number of referees.");
+	        	$message = "<center>";
+					$message += "<strong>Error.</strong> <br/> You have reached the maximum number of referees(3).";
+				$message += "</center>";
+    			showAlert('alert alert-danger','alert alert-success',$message);
 	        }
 		}
     });
 
-    $('.field_wrapper').on('click', '#removeReferee', function(e){ //Once remove button is clicked
+    $('.field_wrapperReferees').on('click', '#removeReferee', function(e){ //Once remove button is clicked
         e.preventDefault();
+        console.log();
         $(this).parent('div').remove(); //Remove field html
         x--; //Decrement field counter
     });
@@ -77,15 +86,83 @@ $(document).ready(function(){
 			},function(data, status){
 				console.log(data);
 				if(data == "Inserted"){
-					$("#personalDetailsFormAlert").html("Successfully saved your referee details.");
+					$message = "<center>";
+						$message += "<strong>Error.</strong> <br/> Successfully saved your referee details.";
+					$message += "</center>";
+	    			showAlert('alert alert-success','alert alert-danger',$message);
+
 					widget.show();
 					widget.not(':eq('+(current++)+')').hide();
 					setProgress(current);
 					hideButtons(current);
-				}else{
-					$("#personalDetailsFormAlert").html("An error occurred while saving your referee details.");
+				}else{					
+					$message = "<center>";
+						$message += "<strong>Error.</strong> <br/> An error occurred while saving your referee details.";
+					$message += "</center>";
+	    			showAlert('alert alert-danger','alert alert-success',$message);
 				}
 			}
 		);
+	}
+
+	window.getRefereeDetails = function(current){
+		$.post($getRefereeDetailsFromDBURL,{}, function(data, status){
+			$data = JSON.parse(data);
+			$status = $data['status'];
+
+			if($status == 1){
+				$msg = $data['message'];
+				if(placeInvocked === "onPageLoad"){
+				}else{
+					$message = "<center>";
+						$message += "<strong>Error.</strong> <br/> "+$msg;
+					$message += "</center>";
+	    			showAlert('alert alert-danger','alert alert-success',$message);
+				}
+				//savePersonalDetails(current);
+				//console.log("save to DB");
+			}else if($status == 0){
+				$message = $data['message'];
+				$dataReturned = $data['data'];
+				console.log("data was returned redirect to next page");
+				//set values in the input fields for personal details
+				displayRefereeDetailsTable($dataReturned);
+				
+			}else{}			
+		});		
+	}
+
+	window.displayRefereeDetailsTable = function($dataReturned){
+		for($i = 0; $i < $dataReturned.length; $i++){
+			$name = $dataReturned[$i]['fname']+" "+$dataReturned[$i]['lname'];
+			$email = $dataReturned[$i]['email'];
+			$institution = $dataReturned[$i]['organization'];
+			$position = $dataReturned[$i]['designation'];
+			$mobile = $dataReturned[$i]['mobileNo'];
+			$refereesEmail = $dataReturned[$i]['refereesEmail'];
+			
+			$tableRow = '<tr>';
+			$tableRow += '<td>'+$name+'</td>';
+			$tableRow += '<td>'+$institution+'</td>';
+			$tableRow += '<td>'+$position+'</td>';
+			$tableRow += '<td>'+$mobile+'</td>';
+			$tableRow += '<td>'+$refereesEmail+'</td>';
+			$tableRow += '</tr>';
+
+			$("#refereeList").append($tableRow);
+			$("#refereeListContainer").show();
+			$("#refereesForm").hide();
+		}
+	}
+
+	window.showAlert = function($classToShow,$classToHide,$message){
+		$("#personalDetailsFormAlert").removeClass($classToHide);
+		$("#personalDetailsFormAlert").addClass($classToShow)
+		$("#personalDetailsFormAlert").html($message);
+		$("#personalDetailsFormAlert").show();
+		setTimeout(function(){
+			$(".overlay").hide();
+			$("#personalDetailsFormAlert").hide();
+		},6000);//give the registration function time to complete before hiding the overlay
 	}
 });

@@ -2,6 +2,9 @@ $(document).ready(function(){
 	var maxField = 5; //Input fields increment limitation
 	var x = 1; //Initial field counter is 1
     $newRow = "";
+
+    $("#employmentListContainer").hide();
+
     var fieldHTML =  {row :function(f){
     	//Employment Institution
     	$newRow = '<div>';
@@ -46,7 +49,7 @@ $(document).ready(function(){
 					$newRow += '</div>';
 				$newRow += '</div>';
 			$newRow += '</div>';
-			$newRow += '<i class="fa fa-times" aria-hidden="true" id="removeEmploymentHistory" style="display: inline-block; padding-top:3em;"></i>';
+			$newRow += '<i class="fa fa-times" aria-hidden="true" id="removeEmploymentHistory" style="display: inline-block; padding-top:3em; cursor:pointer;"></i>';
 		$newRow += '</div>';//closes the first DIV under institution
 		//Years Under employment
 
@@ -65,8 +68,11 @@ $(document).ready(function(){
 		})
 		//check if current input fields have been filled before proceeding
 
-		if($numberOfEmptyFields > 0){
-			$("#personalDetailsFormAlert").html("Please fill in all the fields before adding another row.");
+		if($numberOfEmptyFields > 0){			
+			$message = "<center>";
+				$message += "<strong>Error.</strong> <br/> Please fill in all the fields before adding another row.";
+			$message += "</center>";
+			showAlert('alert alert-danger','alert alert-success',$message);
 		}else{
     		if(x < maxField){ //Check maximum number of input fields
 	            x++; //Increment field counter
@@ -102,15 +108,82 @@ $(document).ready(function(){
 			},function(data, status){
 				console.log(data);
 				if(data == "Inserted"){
-					$("#personalDetailsFormAlert").html("Successfully saved your employment details.");
+					$message = "<center>";
+						$message += "<strong>Success.</strong> <br/> Successfully saved your employment details.";
+					$message += "</center>";
+	    			showAlert('alert alert-success','alert alert-danger',$message);
+
 					widget.show();
 					widget.not(':eq('+(current++)+')').hide();
 					setProgress(current);
 					hideButtons(current);
-				}else{
-					$("#personalDetailsFormAlert").html("Error occurred while saving");
+				}else{					
+					$message = "<center>";
+						$message += "<strong>Error.</strong> <br/> An error occurred while saving your employment details.";
+					$message += "</center>";
+	    			showAlert('alert alert-danger','alert alert-success',$message);
 				}
 			}
 		);
+	}
+
+	window.getEmploymentHistoryDetailsFromDb = function(current,placeInvocked){
+		$.post($getEmploymentHistoryDetailsFromDBURL,{}, function(data, status){
+			$data = JSON.parse(data);
+			$status = $data['status'];
+
+			if($status == 1){//no employment history details havev been saved so far
+				$msg = $data['message'];
+				if(placeInvocked === "onPageLoad"){
+				}else{					
+					$message = "<center>";
+						$message += "<strong>Error.</strong> <br/> "+$msg;
+					$message += "</center>";
+	    			showAlert('alert alert-danger','alert alert-success',$message);
+				}
+			}else if($status ==0){//some employment history has been saved therefore list it
+				$message = $data['message'];
+				$dataReturned = $data['data'];
+				
+				$("#editEmploymentnDetailsBtn").show();
+				console.log("data was returned redirect to next page");
+				//set values in the input fields for personal details
+				displayEmploymentHistoryTable($dataReturned);
+			}else{}
+		});
+	}
+
+	window.displayEmploymentHistoryTable = function($dataReturned){
+		// console.log($dataReturned+" displayEmploymentHistoryTable");
+		$table = "";
+		for($i = 0; $i < $dataReturned.length; $i++){
+			$email = $dataReturned[$i]['email'];
+			$institution = $dataReturned[$i]['institution'];
+			$position = $dataReturned[$i]['position'];
+			$responsibilities = $dataReturned[$i]['responsibilities'];
+			$yearsCompleted = $dataReturned[$i]['yearsCompleted'];
+
+			$table = "<tr>"
+			$table += "<td>"+$institution+"</td>";
+			$table += "<td>"+$position+"</td>";
+			$table += "<td>"+$responsibilities+"</td>";
+			$table += "<td>"+$yearsCompleted+"</td>";
+			$table += "</tr>";
+			$("#employmentForm").hide();
+
+			$("#employmentList").append($table);
+			$("#employmentListContainer").show();			
+		}
+	}
+
+	window.showAlert = function($classToShow,$classToHide,$message){
+		$("#personalDetailsFormAlert").removeClass($classToHide);
+		$("#personalDetailsFormAlert").addClass($classToShow)
+		$("#personalDetailsFormAlert").html($message);
+		$("#personalDetailsFormAlert").show();
+		setTimeout(function(){
+			$(".overlay").hide();
+			$("#personalDetailsFormAlert").hide();
+		},6000);//give the registration function time to complete before hiding the overlay
 	}
 })

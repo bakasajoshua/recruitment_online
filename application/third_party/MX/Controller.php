@@ -108,6 +108,90 @@ class MX_Controller
 		return $result;
 	}
 
+	public function getPersonalDetails($userEmail){
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		    CURLOPT_RETURNTRANSFER => 1,
+		    CURLOPT_URL => sqlnterfaceURL,
+		    CURLOPT_USERAGENT => 'ESSDP',
+		    CURLOPT_POST => 1,
+		    CURLOPT_POSTFIELDS => array(
+		        'action' => 'GETPERSONALDETAILS',
+		        'emailAddress'=>$userEmail
+
+		    )
+		));		
+		$getPersonalDetailsResponse = curl_exec($curl);
+
+		// Close request to clear up some resources
+		curl_close($curl);
+		return $getPersonalDetailsResponse;
+		// echo $getPersonalDetailsResponse;
+	}
+
+	public function getQualificationDetails($userEmail){
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		    CURLOPT_RETURNTRANSFER => 1,
+		    CURLOPT_URL => sqlnterfaceURL,
+		    CURLOPT_USERAGENT => 'ESSDP',
+		    CURLOPT_POST => 1,
+		    CURLOPT_POSTFIELDS => array(
+		        'action' => 'GETQUALIFICATIONDETAILS',
+		        'emailAddress'=>$userEmail
+
+		    )
+		));		
+		$getQualificationDetailsResponse = curl_exec($curl);
+
+		// Close request to clear up some resources
+		curl_close($curl);
+		return $getQualificationDetailsResponse;
+		// echo $getQualificationDetailsResponse;
+	}
+
+	public function getRefereeDetails($userEmail){
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		    CURLOPT_RETURNTRANSFER => 1,
+		    CURLOPT_URL => sqlnterfaceURL,
+		    CURLOPT_USERAGENT => 'ESSDP',
+		    CURLOPT_POST => 1,
+		    CURLOPT_POSTFIELDS => array(
+		        'action' => 'GETREFEREEDETAILS',
+		        'emailAddress'=>$userEmail
+
+		    )
+		));		
+		$getRefereeeDetailsResponse = curl_exec($curl);
+
+		// Close request to clear up some resources
+		curl_close($curl);
+		// echo $getQualificationDetailsResponse;	
+		return $getRefereeeDetailsResponse;
+	}
+
+	public function getemploymentHistoryDetails($userEmail){
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		    CURLOPT_RETURNTRANSFER => 1,
+		    CURLOPT_URL => sqlnterfaceURL,
+		    CURLOPT_USERAGENT => 'ESSDP',
+		    CURLOPT_POST => 1,
+		    CURLOPT_POSTFIELDS => array(
+		        'action' => 'GETEMPLOYMENTHISTORY',
+		        'emailAddress'=>$userEmail
+
+		    )
+		));		
+		$getemploymentHistoryDetailsResponse = curl_exec($curl);
+
+		// Close request to clear up some resources
+		curl_close($curl);
+		// echo $getemploymentHistoryDetailsResponse;
+		return $getemploymentHistoryDetailsResponse;;
+	}
+
 	//Logout
 	public function logoutController(){
 		$this->session->sess_destroy();

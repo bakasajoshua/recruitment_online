@@ -1,30 +1,13 @@
 <?php
 //C# web service
 	// $webServiceUrl = 'http://www.essdp.com:8080/Service.svc?wsdl';
-	// $webServiceUrl = 'http://www.kippraservice.com:8095/Service.svc?wsdl';//dev on .31 
-	$webServiceUrl = 'http://www.kipraservice.com:8084/Service.svc?wsdl';//bakasa local
+	$webServiceUrl = 'http://www.kippraservice.com:8095/Service.svc?wsdl';//dev on .31 
 //C# web service
 	
 	if(isset($_POST['action'])){
 		$action = $_POST['action'];
 
-		if($action == "FILTERVACANCIES"){
-			$criteria = $_POST['criteria'];
-			$searchValue = $_POST['searchValue'];
-
-		    $client = new SoapClient($webServiceUrl);
-			try {
-				$res = $client->filterVacancies(array(
-												"criteria"=>$criteria,
-												"searchValue"=>$searchValue
-												)
-											);
-			} catch (SoapFault $e) {
-				//$res = 3;
-			    $res = "Error: {$e->faultstring}";
-			}
-			// print_r($res);die;
-		}else if($action == "GETVACANCIES"){
+		if($action == "GETVACANCIES"){
 			$client = new SoapClient($webServiceUrl);
 			try {
 				$res = $client->getAllVacancies();
@@ -33,15 +16,14 @@
 			    $res = "Error: {$e->faultstring}";
 			}
 			$resp = (array)$res;
-			// print_r($resp);die();
 			$response = $resp["getAllVacanciesResult"];
 			echo $response;
-		}else if($action == "VIEWVACANCYDETAILS"){
+		}else if($action == "getVacancySkillsDescription"){
 			$adID = $_POST['adID'];
 
 			$client = new SoapClient($webServiceUrl);
 			try {
-				$res = $client->getVacancyDetails(array(
+				$res = $client->getVacancySkillsDescription(array(
 													"adID"=>$adID
 													)
 												);
@@ -49,9 +31,61 @@
 				//$res = 3;
 			    $res = "Error: {$e->faultstring}";
 			}
+
 			$resp = (array)$res;			
-			$response = $resp["getVacancyDetailsResult"];
-			echo $response;
+			$response = $resp["getVacancySkillsDescriptionResult"];
+			echo $response;			
+		}else if($action == "getVacancyQualificationDetails"){
+			$adID = $_POST['adID'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->getVacancyQualificationDetails(array(
+													"adID"=>$adID
+													)
+												);
+			} catch (SoapFault $e) {
+				//$res = 3;
+			    $res = "Error: {$e->faultstring}";
+			}
+			
+			$resp = (array)$res;			
+			$response = $resp["getVacancyQualificationDetailsResult"];
+			echo $response;			
+		}else if($action == "getVacancyPerformanceDetails"){
+			$adID = $_POST['adID'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->getVacancyPerformanceDetails(array(
+													"adID"=>$adID
+													)
+												);
+			} catch (SoapFault $e) {
+				//$res = 3;
+			    $res = "Error: {$e->faultstring}";
+			}
+			
+			$resp = (array)$res;			
+			$response = $resp["getVacancyPerformanceDetailsResult"];
+			echo $response;						
+		}else if($action == "getVacancyCompetencyDetails"){
+			$adID = $_POST['adID'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->getVacancyCompetencyDetails(array(
+													"adID"=>$adID
+													)
+												);
+			} catch (SoapFault $e) {
+				//$res = 3;
+			    $res = "Error: {$e->faultstring}";
+			}
+			
+			$resp = (array)$res;			
+			$response = $resp["getVacancyCompetencyDetailsResult"];
+			echo $response;						
 		}else if($action == "GETSPECIFICVACANCY"){
 			$adID = $_POST['adID'];
 
@@ -151,7 +185,7 @@
 			} catch (SoapFault $e) {				
 			    $res = "Error: {$e->faultstring}";
 			}
-			echo $res->updatePersonalDetailsResult;
+			echo $res->insertPersonalDetailsResult;
 		}else if($action == "SAVEQUALIFICATIONS"){
 			$qualifications = $_POST['qualifications'];
 			$email = $_POST['email'];
@@ -268,9 +302,57 @@
 			} catch (SoapFault $e) {				
 			    $res = "Error: {$e->faultstring}";
 			}
-			print_r($res);
-			//echo $res->getEmploymentHistoryResult;
-		}
+			// print_r($res);
+			echo $res->getEmploymentHistoryResult;
+		}else if($action == "CHECKFORREAPPLICATION"){
+			$emailAddress = $_POST['emailAddress'];
+			$adID = $_POST['adID'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->checkForReApplyForPosition(array(
+											"emailAddress"=>$emailAddress,
+											"adID" => $adID
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}
+			echo($res->checkForReApplyForPositionResult);
+		}else if($action == "SAVEFILEPATHS"){
+			$emailAddress = $_POST['emailAddress'];
+			$pathTOCv = $_POST['pathTOCv'];
+			$pathTOApplicationLetter = $_POST['pathTOApplicationLetter'];
+			print_r($_POST);die;
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->savefilepaths(array(
+											"emailAddress"=>$emailAddress,
+											"pathTOCv" => $pathTOCv,
+											"pathTOApplicationLetter" => $pathTOApplicationLetter
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}
+			print_r($res);die;
+			//echo($res->checkForReApplyForPositionResult);
+		}else if($action == "UPDATEACCOUNTDETAILS"){
+			$email = $_POST['email'];
+			$newPass = $_POST['newPass'];
+			$username = $_POST['username'];
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->updateAccountDetails(array(
+											"email"=>$email,
+											"newPass" => $newPass,
+											"username" => $username
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}
+			echo $res->updateAccountDetailsResult;		}
 		else{
 			echo "Invalid Action";
 		}

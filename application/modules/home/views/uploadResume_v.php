@@ -21,7 +21,9 @@
 							<div class="progress">
 								<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
-							<center><p id="personalDetailsFormAlert"></p></center>
+							<div  id="personalDetailsFormAlert">
+							
+							</div>
 							<div class="box row-fluid">	
 								<br>
 								<!-- Personal Details -->
@@ -150,6 +152,9 @@
 											</div>
 										</div>
 									</form>
+									<a href="<?php echo base_url(); ?>" class="pull-right" id="editPersonalDetailsBtn">
+										<button type="button" class="btn btn-primary">Edit Personal Details</button>
+									</a>
 								</div>
 								<!-- Personal Details -->
 
@@ -157,7 +162,7 @@
 								<div class="step">
 									<h3>2. Qualifications</h3>
 									<form id="qualificationsForm">
-										<div class="field_wrapper">
+										<div class="field_wrapperQualifications">
 											<div>
 												<div class="col-md-3">
 													<div class="form-group">
@@ -199,13 +204,33 @@
 														<p>Years Completed</p>
 														<div class="col-sm-10">
 															<input type="number" name="years" min="1" value="" class="form-control" id="years" placeholder="Years"  style="width: 50%; display: inline-block;">
-															<i class="fa fa-plus" aria-hidden="true" id="addQualifications" title="Add Qualification"></i>
+															<i class="fa fa-plus" aria-hidden="true" id="addQualifications" title="Add Qualification" style="cursor: pointer;"></i>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</form>
+
+									<div class="table-responsive" id="qualificationListContainer">
+									  	<table class="table">
+									  		<thead>
+												<td>Institution</td>  			
+												<td>Certification</td>
+												<td>Description</td>
+												<td>Years Completed</td>
+									  		</thead>
+
+									  		<tbody id="qualificationList">
+									  			
+									  		</tbody>									    	
+									  	</table>
+									  	<a href="<?php echo base_url(); ?>" class="pull-right" id="editQualificationDetailsBtn">
+											<button type="button" class="btn btn-primary">Edit Qualification Details</button>
+										</a>
+									</div>
+
+
 								</div>
 								<!-- Qualifications -->
 
@@ -244,13 +269,28 @@
 														<p>Years</p>
 														<div class="col-sm-10">
 															<input type="number" min="1" name="employmentYears[]" value="" class="form-control" id="employmentYears" placeholder="Institution" style="width: 50%; display: inline-block;">
-															<i class="fa fa-plus" aria-hidden="true" id="addEmploymentHistory" title="Add Employment History"></i>
+															<i class="fa fa-plus" aria-hidden="true" id="addEmploymentHistory" title="Add Employment History" style="cursor:pointer;"></i>
 														</div>
 													</div>
 												</div>
 											</div>		  
 										</div>
 									</form>
+									<div class="table-responsive" id="employmentListContainer">
+										<table class="table">
+											<thead>
+												<td>Institution</td>  			
+												<td>Certification</td>
+												<td>Description</td>
+												<td>Years Completed</td>
+											</thead>
+											<tbody id="employmentList">
+											</tbody>
+										</table>
+									  	<a href="<?php echo base_url(); ?>" class="pull-right" id="editEmploymentnDetailsBtn">
+											<button type="button" class="btn btn-primary">Edit Employment History Details</button>
+										</a>										
+									</div>
 								</div>
 								<!-- Employment History -->
 
@@ -261,7 +301,7 @@
 										<i class="fa fa-plus" aria-hidden="true" id="addReferee" title="Add Referee" style="cursor: pointer;"></i>
 									</h3>	
 									<form id="refereesForm">
-										<div class="field_wrapper" >
+										<div class="field_wrapperReferees" >
 											<div>
 												<div class="col-md-3">
 													<div class="form-group">
@@ -284,6 +324,23 @@
 											</div>
 										</div>
 									</form>
+
+									<div class="table-responsive" id="refereeListContainer">
+										<table class="table">
+											<thead>
+												<td>Name</td>  			
+												<td>Organization</td>
+												<td>Designation</td>
+												<td>Phone</td>
+												<td>Email</td>
+											</thead>
+											<tbody id="refereeList">
+											</tbody>
+										</table>
+									  	<a href="<?php echo base_url(); ?>" class="pull-right" id="editReferreeListBtn">
+											<button type="button" class="btn btn-primary">Edit Referee Details</button>
+										</a>										
+									</div>
 								</div>
 								<!-- Referees -->
 
@@ -297,6 +354,7 @@
 													<div class="form-group">
 														<p>Comprehensive Curriculum Vitae</p>
 														<div class="col-sm-10">
+															<progress id="prog2" value="0" max="100"></progress>
 															<input type="file" name="documentsCV" value="" class="form-control" id="documentsCV">
 														</div>
 													</div>
@@ -306,6 +364,7 @@
 													<div class="form-group">
 														<p>Application Letter</p>
 														<div class="col-sm-10">
+															<progress id="prog" value="0" max="100"></progress>
 															<input type="file" name="documentsApplicationLetter" value="" class="form-control" id="documentsApplicationLetter">
 														</div>
 													</div>
@@ -339,16 +398,36 @@
 		</div><!-- /#footer-text -->
 	</footer><!-- /#footer -->
 </div>
+<script type="text/javascript" src="<?php echo base_url('assets/xhr2/xhr2FileUpload.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/customScripts/personalDetails.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/customScripts/employmentHistory.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/customScripts/referee.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/customScripts/qualifications.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/customScripts/uploadDocuments.js'); ?>"></script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		//Save CV URLS
 		$savePersonalDetailsURL = "<?php echo base_url('home/uploadResume/savePersonalDetails'); ?>";
 		$saveQualificationDetailsURL = "<?php echo base_url('home/uploadResume/saveQualificationDetails'); ?>";
 		$saveEmploymentHistoryDetailsURL = "<?php echo base_url('home/uploadResume/saveEmploymentHistoryDetails'); ?>";
 		$saveRefereeDetailsURL = "<?php echo base_url('home/uploadResume/saveRefereeDetails'); ?>";
+		$saveApplicationLetterURL  = "<?php echo base_url('home/uploadResume/saveDocuments'); ?>";
+		$saveCVURL = "<?php echo base_url('home/uploadResume/saveCV'); ?>";
+		$savePathsToDocumentsURL = "<?php echo base_url('home/uploadResume/saveFilePaths'); ?>";
+		//Save CV URLS
+
+		//Get CV Details URLs
+		$getPersonalDetailsURL = "<?php echo base_url('home/uploadResume/getPersonalDetailsFromDB'); ?>";
+		$getEmploymentHistoryDetailsFromDBURL = "<?php echo base_url('home/uploadResume/getEmploymentHistoryDetailsFromDB'); ?>";
+		$getQualificationDetailsURL = "<?php echo base_url('home/uploadResume/getQualificationDetailsFromDB'); ?>";
+		$getRefereeDetailsFromDBURL = "<?php echo base_url('home/uploadResume/getRefereeDetailsFromDB'); ?>";
+		//Get CV Details URLs
+
+		getPersonalDetailsFromDB(9999,"onPageLoad");//pre-populate the personal details if the user has already provided these details
+		getQualificationsFromDB(9999,"onPageLoad");//pre-populate the qualities if the user has alread provided these details
+		getEmploymentHistoryDetailsFromDb(9999,"onPageLoad");//pre-populate the qualities if the user has alread provided these details
+		getRefereeDetails(9999,"onPageLoad");//pre-populate the Referee details if user has alread provided these details
 		var current = 1;
 		
 		widget      = $(".step");
@@ -363,123 +442,299 @@
 
 		// Next button click action
 		btnnext.click(function(){
+			console.log("Current when Next Clicked "+current);
 			$response = "";
 			if(current < widget.length){
 				// Check validation
 				if(current == 1){
-					//validate personal details
-					// $response = validatePersonalDetails();
-					// if($response == "Valid Form"){//the form is valid proceed and save information
-					// 	//savePersonalDetails
-					// 	savePersonalDetails(current);
-					// }else{
-					// 	$("#personalDetailsFormAlert").html($response);
-					// }
-					widget.show();
-					widget.not(':eq('+(current++)+')').hide();
-					setProgress(current);
-					hideButtons(current);
+					// //validate personal details
+					$response = validatePersonalDetails();
+					if($response == "Valid Form"){//the form is valid proceed and save information
+						//savePersonalDetails
+						$.post($getPersonalDetailsURL,{}, function(data, status){
+							$(".overlay").show();
+							$data = JSON.parse(data);
+							$status = $data['status'];
+
+							if($status == 1){
+								$message = $data['message'];
+								savePersonalDetails(current);
+								$(".overlay").hide();
+							}else if($status == 0){
+								$message = $data['message'];
+								$dataReturned = $data['data'];
+								$("#editPersonalDetailsBtn").show();
+								//redirect to next form
+								if(current < widget.length){ 
+									widget.show();
+									widget.not(':eq('+(current++)+')').hide();
+									setProgress(current);
+								}
+								hideButtons(current);
+								$(".overlay").hide();
+							}else{}			
+						});		
+					}else{//the form is invalid
+						$message = "<center>";
+							$message += "<strong>Error.</strong> <br/>"+$response;
+						$message += "</center>";
+	    				showAlert('alert alert-danger','alert alert-success',$message);
+					}
 				}else if(current == 2){
 					//validate Qualifications
-					// $response = validateQualifications(current);
-					// console.log("Response from validate Qualifications "+$response );
-					// if($response == "Valid Form"){
-					// 	//proceed to save the details
-					// 	saveQualificationDetails(current);
-					// }else{
-					// 	$("#personalDetailsFormAlert").html("Please fill in all the fields.");
-					// }
-					widget.show();
-					widget.not(':eq('+(current++)+')').hide();
-					setProgress(current);
-					hideButtons(current);
+					if($("#qualificationsForm").is(":visible")){
+						$response = validateQualifications();
+					}else{
+						$response = "Valid Form";
+					}
+
+					//console.log("Response from validate Qualifications "+$response );
+					if($response == "Valid Form"){
+						$.post($getQualificationDetailsURL,{}, function(data, status){//check if user has provided these qualifications
+							$data = JSON.parse(data);
+							$status = $data['status'];
+
+							if($status == 1){//no qualification details have been provided, thus save the qualification details
+							// 	$message = $data['message'];
+							// 	//save Qualification Details
+								$qualificationsFormValues = $('#qualificationsForm').serializeArray();
+								$savePersonalDetailsResponse = '';
+								$.post($saveQualificationDetailsURL,
+									{
+										'qualificationsFormValues':$qualificationsFormValues
+									},function(data, status){
+										if(data == "Inserted"){
+											$message = "<center>";
+												$message += "<strong>Success.</strong> <br/> Successfully saved your qualification details.";
+											$message += "</center>";
+						    				showAlert('alert alert-success','alert alert-danger',$message);
+
+											if(current < widget.length){ 
+												widget.show();
+												widget.not(':eq('+(current++)+')').hide();
+												setProgress(current);
+											}
+											hideButtons(current);
+										}else{
+											$message = "<center>";
+												$message += "<strong>Error.</strong> <br/> Error occurred while saving";
+											$message += "</center>";
+						    				showAlert('alert alert-danger','alert alert-success',$message);
+										}
+									}
+								);
+							// 	//save Qualification Details
+							}else if($status == 0){//qualification details have been provided
+							// 	//redirect to next form
+								if(current < widget.length){ 
+									widget.show();
+									widget.not(':eq('+(current++)+')').hide();
+									setProgress(current);
+								}
+								hideButtons(current);
+							}else{}			
+						});
+					}else{
+						$message = "<center>";
+							$message += "<strong>Error.</strong> <br/> Please fill in all the fields.";
+						$message += "</center>";
+	    				showAlert('alert alert-danger','alert alert-success',$message);
+					}
 				}else if(current ==3){
 					//validate employment history
-					// $response = validateEmploymentHistory();
-					// if($response == "Valid Form"){
-					// 	//proceed to save the details
-					// 	saveEmploymentHistoryDetails(current);
-					// }else{
-					// 	$("#personalDetailsFormAlert").html("Please fill in all the fields.");
-					// }
-					widget.show();
-					widget.not(':eq('+(current++)+')').hide();
-					setProgress(current);
-					hideButtons(current);
+					if($("#employmentForm").is(":visible")){
+						$response = validateEmploymentHistory();
+					}else{
+						$response = "Valid Form";//the user has previously given data on the employement history
+					}
+					
+					if($response == "Valid Form"){
+						//proceed to save the details
+						// saveEmploymentHistoryDetails(current);
+						$.post($getEmploymentHistoryDetailsFromDBURL,{}, function(data, status){
+							console.log(data);
+							$data = JSON.parse(data);
+							$status = $data['status'];
+
+							if($status == 1){//no employment history details havev been saved so far
+								$message = $data['message'];
+								
+								$employmentHistoryFormValues = $('#employmentForm').serializeArray();
+								$.post($saveEmploymentHistoryDetailsURL,
+									{
+										'employmentHistoryFormValues':$employmentHistoryFormValues
+									},function(data, status){
+										console.log(data+" save employment history");
+										if(data == "Inserted"){
+											
+											$message = "<center>";
+												$message += "<strong>Success.</strong> <br/> Successfully saved your employment details.";
+											$message += "</center>";
+						    				showAlert('alert alert-success','alert alert-danger',$message);
+										if(current < widget.length){
+											widget.show();
+											widget.not(':eq('+(current++)+')').hide();
+											setProgress(current);
+										}
+										hideButtons(current);
+										}else{
+											$message = "<center>";
+												$message += "<strong>Error.</strong> <br/> Error occurred while saving.";
+											$message += "</center>";
+						    				showAlert('alert alert-danger','alert alert-success',$message);
+										}
+									}
+								);
+							}else if($status ==0){//some employment history has been saved therefore list it
+								$message = $data['message'];
+								$dataReturned = $data['data'];
+								//redirect to next form
+								if(current < widget.length){ 
+									widget.show();
+									widget.not(':eq('+(current++)+')').hide();
+									setProgress(current);
+								}
+								hideButtons(current);
+							}else{}
+						});
+					}else{
+						$message = "<center>";
+							$message += "<strong>Error.</strong> <br/> Please fill in all the fields.";
+						$message += "</center>";
+	    				showAlert('alert alert-danger','alert alert-success',$message);
+					}
 				}else if(current == 4){
-					//validate Referees
-					// $response = validateReferences();
-					// if($response == "Valid Form"){
-					// 	//proceed to save the details
-					// 	saveRefereeDetails(current);
-					// }else{
-					// 	$("#personalDetailsFormAlert").html("Please fill in all the fields.");
-					// }
-					widget.show();
-					widget.not(':eq('+(current++)+')').hide();
-					setProgress(current);
-					hideButtons(current);
+					if($("#refereesForm").is(":visible")){
+						$response = validateReferences();
+					}else{
+						$response = "Valid Form";//the user has previously given data on the referee history
+					}
+
+					if($response == "Valid Form"){
+						//proceed to save the details
+						$.post($getRefereeDetailsFromDBURL,{}, function(data, status){
+							console.log(data);
+							$data = JSON.parse(data);
+							$status = $data['status'];
+
+							if($status == 1){//no referee details have been saved so far						
+								$refereeFormValues = $('#refereesForm').serializeArray();
+								$.post($saveRefereeDetailsURL,
+									{
+										'refereeFormValues':$refereeFormValues
+									},function(data, status){
+										console.log(data+" save referee history");
+										if(data == "Inserted"){
+											
+											$message = "<center>";
+												$message += "<strong>Success.</strong> <br/> Successfully saved your referee details.";
+											$message += "</center>";
+						    				showAlert('alert alert-success','alert alert-danger',$message);
+										if(current < widget.length){
+											widget.show();
+											widget.not(':eq('+(current++)+')').hide();
+											setProgress(current);
+										}
+										hideButtons(current);
+										}else{
+											$message = "<center>";
+												$message += "<strong>Error.</strong> <br/> Error occurred while saving you referee details.";
+											$message += "</center>";
+						    				showAlert('alert alert-danger','alert alert-success',$message);
+										}
+									}
+								);
+							}else if($status ==0){//some referee details have been save and have been listed
+								//redirect to next form
+								if(current < widget.length){
+									widget.show();
+									widget.not(':eq('+(current++)+')').hide();
+									setProgress(current);
+								}
+								hideButtons(current);
+							}else{}
+						});
+					}else{
+						$message = "<center>";
+							$message += "<strong>Error.</strong> <br/> Please fill in all the fields.";
+						$message += "</center>";
+	    				showAlert('alert alert-danger','alert alert-success',$message);
+					}
 				}else if(current == 5){
 					//Documents
 					$respose = validateDocuments();
 				}
-
-				
-				
-				
 			}
-			
 		});
+		// Back button click action
+		btnback.click(function(){
+			console.log("Current when Bck Clicked "+current);
+			placeInvocked = "btnBack";
+			if(current == 2){//if current is two get values for personal details belonging to this user
+				$.post($getPersonalDetailsURL,{}, function(data, status){
+					$data = JSON.parse(data);
+					$status = $data['status'];
 
+					if($status == 1){
+						$msg = $data['message'];
+						
+						$message = "<center>";
+							$message += "<strong>Error.</strong> <br/>"+$msg;
+						$message += "</center>";
+	    				showAlert('alert alert-danger','alert alert-success',$message);
+					}else if($status == 0){
+						$message = $data['message'];
+						$dataReturned = $data['data'];
+						//set values in the input fields for personal details
+						setPersonalDetailsInInputFields($dataReturned);
+						if(placeInvocked === 'btnBack'){//getPersonalDetailsFromDB was called by clicking the back button
 
-		window.validateQualifications = function(){
-		    $('input', '#qualificationsForm').each(function(){
-		    	if($(this).val() == ""){
-		    		$response = "Please fill in all the fields";
-		    	}else{
-		    		$response = "Valid Form";
-		    	}
-			})
-	        return $response;
-		}
-
-		
-		window.saveQualificationDetails = function(current){
-			$qualificationsFormValues = $('#qualificationsForm').serializeArray();
-			$savePersonalDetailsResponse = '';
-			$.post($saveQualificationDetailsURL,
-				{
-					'qualificationsFormValues':$qualificationsFormValues
-				},function(data, status){
-					if(data == "Inserted"){
-						$("#personalDetailsFormAlert").html("Successfully saved your qualification details.");
+							if(current > 1){//the first form personal details
+								current = current - 2;
+								if(current < widget.length){
+									widget.show();
+									widget.not(':eq('+(current++)+')').hide();
+									setProgress(current);
+								}
+								hideButtons(current);
+							}
+							//console.log("value of current @ hideButtons(current) "+current);
+						}else{}//getPersonalDetailsFromDB was called by a different action
+					}else{}			
+				});		
+			}else if(current == 3){//get qualification history
+				//getQualificationsFromDB(current,"btnBack");
+				if(current > 1){
+					current = current - 2;
+					if(current < widget.length){
 						widget.show();
 						widget.not(':eq('+(current++)+')').hide();
 						setProgress(current);
-						hideButtons(current);
-					}else{
-						$("#personalDetailsFormAlert").html("Error occurred while saving");
 					}
 				}
-			);
-		};
-
-		window.validateDocuments = function(){
-
-		}
-
-		
-		// Back button click action
-		btnback.click(function(){
-			if(current > 1){
-				current = current - 2;
-				if(current < widget.length){
-					widget.show();
-					widget.not(':eq('+(current++)+')').hide();
-					setProgress(current);
+				hideButtons(current);
+			}else if(current == 4){//get employment history
+				//getEmploymentHistoryDetailsFromDb(current,"btnBack");
+				if(current > 1){
+					current = current - 2;
+					if(current < widget.length){
+						widget.show();
+						widget.not(':eq('+(current++)+')').hide();
+						setProgress(current);
+					}
 				}
-			}
-			hideButtons(current);
+				hideButtons(current);
+			}else if(current == 5){
+				if(current > 1){
+					current = current - 2;
+					if(current < widget.length){
+						widget.show();
+						widget.not(':eq('+(current++)+')').hide();
+						setProgress(current);
+					}
+				}
+				hideButtons(current);
+			}else{}
 		})
 	});
 
@@ -492,6 +747,7 @@
 
 	// Hide buttons according to the current step
 	hideButtons = function(current){
+		console.log("value of current at hideButtons "+current);
 		var limit = parseInt(widget.length); 
 
 		$(".action").hide();
@@ -506,6 +762,17 @@
 			btnnext.hide(); 
 			btnsubmit.show();
 		}
+	}
+
+	window.showAlert = function($classToShow,$classToHide,$message){
+		$("#personalDetailsFormAlert").removeClass($classToHide);
+		$("#personalDetailsFormAlert").addClass($classToShow)
+		$("#personalDetailsFormAlert").html($message);
+		$("#personalDetailsFormAlert").show();
+		setTimeout(function(){
+			$(".overlay").hide();
+			$("#personalDetailsFormAlert").hide();
+		},6000);//give the registration function time to complete before hiding the overlay
 	}
 
 </script>

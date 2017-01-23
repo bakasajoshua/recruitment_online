@@ -18,7 +18,9 @@
 				<div class="col-md-5">
 					<div id="register-form-wrapper" class="">
 						<form id="register-form" method="post">
-						<p style="color:#ffffff;" id="alertTag"></p>
+							<div  id="alertTag">
+							
+							</div>
 							<div class="form-group">
 								<input class="form-control" type="text" name="register_name" id="register_name" placeholder="Username" required="required" />
 							</div><!-- /.form-group -->
@@ -61,4 +63,5 @@
 <script>
 	$registerURL = "<?php echo base_url('register/signup/saveuser'); ?>";
 	$validateEmailURL = "<?php echo base_url('register/signup/validateEmail'); ?>";
+	$redirectToLoginPage = "<?php echo base_url('login'); ?>";
 </script>
