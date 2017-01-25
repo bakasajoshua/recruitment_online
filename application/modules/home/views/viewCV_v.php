@@ -60,15 +60,8 @@
 					<div class="col-sm-4">
 						<h1 class="frontend-title">Curriculum Vitae</h1>
 					</div><!-- /.col-md-6 -->
-			<div class="col-sm-8">
-				<div class="candidate-button">
-					<form id="bookmark-resume" method="post" action="http://zury.co.ke/kippra/wp-admin/admin-ajax.php">
-						<input type="hidden" name="resume_id" value="194" />
-						<a download target="_blank" href="" class="btn btn-resume">Download Resume</a>
-						<a href="#" class="btn btn-contact" data-toggle="modal" data-target="#contact-resume-modal">Contact</a>
-					</form>
-								</div><!-- /.candidate-button -->
-			</div><!-- /.col-md-6 -->
+				</div>
+			</div>
 		</div><!-- /.row -->
 
 	</div><!-- /.container -->
@@ -243,7 +236,7 @@
 						<a href="#" class="btn btn-contact" data-toggle="modal" data-target="#contact-resume-modal" style="color:#ffffff;">Edit</a>
 				</div><!-- /.education-container -->
 				<hr/>
-				<div class="experience-container">
+				<!-- <div class="experience-container">
 					<h3 class="educations-title">URL(s)</h3>
 					<ul class="resume-lists">
 						<li>							
@@ -252,7 +245,7 @@
 								<i class="fa fa-fw fa-link"></i>&nbsp;<a href="" target="_blank">www.somesite.com</a>
 							</span>
 						</li>					</ul>
-				</div><!-- /.experience-container -->
+				</div> --><!-- /.experience-container -->
 			</div><!-- /.col-md-6 -->
 		</div><!-- /.row -->
 	</div><!-- /.container -->

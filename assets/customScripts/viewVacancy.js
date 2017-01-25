@@ -15,7 +15,7 @@ $(document).ready(function(){
 
 				if($status == 0){
 					$message = "<center>";
-						$message += "<strong>Error.</strong> <br/>"+$msg;
+						$message += "<strong>Success.</strong> <br/>"+$msg;
 					$message += "</center>";
 	    			showAlert('alert alert-success','alert alert-danger',$message);
 				}else if($status == 1){

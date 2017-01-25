@@ -226,15 +226,21 @@ class MX_Controller
 				$result = curl_exec($curl);
 				// Close request to clear up some resources
 				curl_close($curl);
-
 				if($result == "Updated"){//the C.V complete status is set to Completed, allow user to login
-					$cvUpdateStatus = "CV is complete";
 					$this->session->set_userdata('cvComplete', 0);
+					$response['status'] = 0;
+					$response['message'] = "CV is complete";					
+					return json_encode($response);
 				}else{//an error occured while updateing the complete CV status, allow user to login but warn them about not been able to apply for positions
-					$cvUpdateStatus = "CV is complete, but you might not be able to apply";
+					$response['status'] = 1;
+					$response['message'] = "CV is complete, but y1ou might not be able to apply";
 				}
+				return json_encode($response);
 			}else{
 				//do nothing because user needs to provide these details
+				$response['status'] = 2;
+				$response['message'] = "Complete your CV to apply for this postion.";
+				return json_encode($response);
 			}
 		}
 		//check if C.V is complete
