@@ -54,6 +54,8 @@ class Login extends MX_Controller {
 				$maritalStatus = $result[0]->maritalStatus;
 				$currentLocation = $result[0]->currentLocation;
 
+				//check if C.V is complete
+				$this->validateCompetionOfCV($email,$cvComplete);
 				
 				$newdata = array(
 					'username'=>$username,

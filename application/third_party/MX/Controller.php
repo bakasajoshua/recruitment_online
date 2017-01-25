@@ -192,6 +192,75 @@ class MX_Controller
 		return $getemploymentHistoryDetailsResponse;;
 	}
 
+	public function validateCompetionOfCV($email,$cvComplete){
+		//check if C.V is complete
+		if($cvComplete == 1){//the C.V has not been uploaded
+			//check if the user has completed the login since the last login attempt
+			//get all C.V details
+			
+			$myCVPersonalDetails = $this->getPersonalDetails($email);
+			$getQualificationDetails = $this->getQualificationDetails($email);
+			$getemploymentHistoryDetails = $this->getemploymentHistoryDetails($email);
+			$getRefereeDetails = $this->getRefereeDetails($email);
+			$getUserDocDetails = $this->getUserDocDetails($email);
+
+			$sizeOfmyCVPersonalDetails = sizeof(json_decode($myCVPersonalDetails));
+			$sizeOfgetQualificationDetails = sizeof(json_decode($getQualificationDetails));
+			$sizeOfgetemploymentHistoryDetails = sizeof(json_decode($getemploymentHistoryDetails));
+			$sizeofgetRefereeDetails = sizeof(json_decode($getRefereeDetails));
+			$sizeOfgetUserDocDetails = sizeof(json_decode($getUserDocDetails));
+
+			if($sizeOfmyCVPersonalDetails >= 1 && $sizeOfgetQualificationDetails >= 1 && $sizeOfgetemploymentHistoryDetails >= 1 && $sizeofgetRefereeDetails >= 1 && $sizeOfgetUserDocDetails >= 1) {
+				//the user has provided all the above details therfore you update the DB to reflect the completed C.V
+				$curl = curl_init();
+				curl_setopt_array($curl, array(
+				    CURLOPT_RETURNTRANSFER => 1,
+				    CURLOPT_URL => sqlnterfaceURL,
+				    CURLOPT_USERAGENT => 'ESSDP',
+				    CURLOPT_POST => 1,
+				    CURLOPT_POSTFIELDS => array(
+				        'action' => 'UPDATECOMPLETECV',
+				        'emailAddress' => $email						       	
+				    )
+				));
+				$result = curl_exec($curl);
+				// Close request to clear up some resources
+				curl_close($curl);
+
+				if($result == "Updated"){//the C.V complete status is set to Completed, allow user to login
+					$cvUpdateStatus = "CV is complete";
+					$this->session->set_userdata('cvComplete', 0);
+				}else{//an error occured while updateing the complete CV status, allow user to login but warn them about not been able to apply for positions
+					$cvUpdateStatus = "CV is complete, but you might not be able to apply";
+				}
+			}else{
+				//do nothing because user needs to provide these details
+			}
+		}
+		//check if C.V is complete
+	}
+
+	public function getUserDocDetails($userEmail){
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		    CURLOPT_RETURNTRANSFER => 1,
+		    CURLOPT_URL => sqlnterfaceURL,
+		    CURLOPT_USERAGENT => 'ESSDP',
+		    CURLOPT_POST => 1,
+		    CURLOPT_POSTFIELDS => array(
+		        'action' => 'GETUSERDOCS',
+		        'email'=>$userEmail
+
+		    )
+		));		
+		$getUserDocDetailsResponse = curl_exec($curl);
+
+		// Close request to clear up some resources
+		curl_close($curl);
+		// echo $getemploymentHistoryDetailsResponse;
+		return $getUserDocDetailsResponse;
+	}
+
 	//Logout
 	public function logoutController(){
 		$this->session->sess_destroy();

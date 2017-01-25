@@ -26,13 +26,12 @@ $(document).ready(function(){
 					//$newRow += '<input type="text" name="certification" value="" class="form-control" id="certification" placeholder="Certification">';
 					$newRow += '<select class="form-control" name="certification[]" id="certification">';
 						$newRow += '<option value="">Select</option>';
-						$newRow += '<option value="primary">Primary Education</option>';																
-						$newRow += '<option value="Secondary">Secondary Education</option>';							      								
-						$newRow += '<option value="cert">Certificate</option>';							      								
-						$newRow += '<option value="dip">Diploma</option>';
-						$newRow += '<option value="degree">Degree</option>';
-						$newRow += '<option value="masters">Masters</option>';
-						$newRow += '<option value="PHD">PHD</option>';							      								
+						$newRow += '<option value="Professional Certificate">Professional Certificate</option>';																
+						$newRow += '<option value="Diploma">Diploma</option>';							      								
+						$newRow += '<option value="Degree">Degree</option>';							      								
+						$newRow += '<option value="Masters">Masters</option>';
+						$newRow += '<option value="Doctorate">Doctorate</option>';
+						$newRow += '<option value="PHD">PHD</option>';
 					$newRow += '</select>';															
 
 				$newRow += '</div>';

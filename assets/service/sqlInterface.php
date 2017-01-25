@@ -323,7 +323,7 @@
 			$emailAddress = $_POST['emailAddress'];
 			$pathTOCv = $_POST['pathTOCv'];
 			$pathTOApplicationLetter = $_POST['pathTOApplicationLetter'];
-			print_r($_POST);die;
+			
 			$client = new SoapClient($webServiceUrl);
 			try {
 				$res = $client->savefilepaths(array(
@@ -335,8 +335,7 @@
 			} catch (SoapFault $e) {				
 			    $res = "Error: {$e->faultstring}";
 			}
-			print_r($res);die;
-			//echo($res->checkForReApplyForPositionResult);
+			echo($res->savefilepathsResult);
 		}else if($action == "UPDATEACCOUNTDETAILS"){
 			$email = $_POST['email'];
 			$newPass = $_POST['newPass'];
@@ -352,7 +351,44 @@
 			} catch (SoapFault $e) {				
 			    $res = "Error: {$e->faultstring}";
 			}
-			echo $res->updateAccountDetailsResult;		}
+			echo $res->updateAccountDetailsResult;		
+		}else if($action == "GETUSERDOCS"){
+			$emailAddress = $_POST['email'];
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->getUserDocs(array(
+											"emailAddress"=>$emailAddress
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}			
+			echo $res->getUserDocsResult;
+		}else if($action == 'UPDATECOMPLETECV'){
+			$emailAddress = $_POST['emailAddress'];
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->updateCompleteCV(array(
+											"emailAddress"=>$emailAddress
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}	
+			echo $res->updateCompleteCVResult;
+		}else if($action == 'checkForCompletedCV'){
+			$emailAddress = $_POST['emailAddress'];
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->checkForCompletedCV(array(
+											"emailAddress"=>$emailAddress
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}			
+			echo $res->checkForCompletedCVResult;
+		}
 		else{
 			echo "Invalid Action";
 		}

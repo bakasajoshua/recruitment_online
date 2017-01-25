@@ -21,7 +21,10 @@
 				Job Detail
 				<input type="hidden" id="jobADID" value="<?php echo $vacancyDetails[0]->adID; ?>" ></span>
 			</h1>
-			<center><p id="alertTag"></p></center>
+
+			<div id="alertTag">
+			</div>
+
 			<div class="the-job-details clearfix">
 				<div class="the-job-title">
 					<h3>
@@ -66,9 +69,11 @@
 
 			<span class="the-job-aditional-title">
 				Experience(s) : 
+				<span id="yearsOfExperience">
 				<?php 
 					echo $vacancyDetails[0]->workExperience;
 				?>
+				</span>
 				&nbsp;Year(s)</span>
 		</div><!-- /.the-job-aditional-details -->
 
@@ -130,7 +135,7 @@
 				$vacancyQualificationDetails = (array)$vacancyQualificationDetails;
 				$vacancyQualificationDetails = json_decode($vacancyQualificationDetails[0]);
 
-				$Qualifications = "<p><strong> Qualifications Required </strong><br/><br/>";
+				$Qualifications = "<p><strong> Academic Qualifications Required </strong><br/><br/>";
 				if(sizeof($vacancyQualificationDetails) == 0){
 					$Qualifications .= "• None <br/>";					
 				}else{
@@ -177,8 +182,8 @@
 
 				<div class="modal-body">
 					<div class="alert alert-warning" role="alert">
-						You need to create resume first to apply this job. Click 
-						<a href="<?php echo base_url('login'); ?>">Here</a> to add new resume.				
+						You need to be logged in first to apply for this position. Click
+						<a href="<?php echo base_url('login'); ?>">Here</a> to login.
 					</div>
 				</div><!-- /.modal-body -->
 

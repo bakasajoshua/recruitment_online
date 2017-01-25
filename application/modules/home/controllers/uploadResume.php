@@ -170,7 +170,7 @@ class UploadResume extends MX_Controller {
 		echo $result;
 	}
 
-	public function saveRefereeDetails(){
+	public function saveRefereeDetails(){		
 		$refereeValues = $_POST['refereeFormValues'];
 
 		$refereeValuesContainer = array();
@@ -240,18 +240,18 @@ class UploadResume extends MX_Controller {
 		$tmpName = $_FILES["documentsApplicationLetter"]["tmp_name"]; //tempName
 		$fileError = $_FILES["documentsApplicationLetter"]["error"];
 		$uploadLocation = "C:\\xampp\\htdocs\\recruit\\assets\\uploads";//base_url('assets/uploads');
-		$URLToFileLocation = base_url('assets/uploads/');
+		$URLToFileLocation = '169.239.252.31:8080/assets/uploads';
 		$fileName = preg_replace("/[^A-Z0-9._-]/i", "_", $fileName);
 		$fileNameArray = explode(".", $fileName);// ensure a safe filename
-		if (!empty($_FILES["documentsApplicationLetter"])) {
+		// if (!empty($_FILES["documentsApplicationLetter"])) {
 
-			$fileType = $fileNameArray[1];
+		// 	$fileType = $fileNameArray[1];
 			// print_r($fileType."File type");die;
-			$allowed = array("docx", "doc", "pdf");
-			if (!in_array($fileType, $allowed)) {
-				$response['message'] = "Invalid File Type";
-				$response['status'] = 1;
-			}else{
+			// $allowed = array("docx", "doc", "pdf");
+			// if (!in_array($fileType, $allowed)) {
+			// 	$response['message'] = "Invalid File Type";
+			// 	$response['status'] = 1;
+			// }else{
 	    		$randomNum = rand(999,999999);
 	    		$date = date('dmY');
 	    		$newFileName = $fileNameArray[0].$randomNum."APPLetter_".$date.".".$fileNameArray[1];
@@ -270,11 +270,11 @@ class UploadResume extends MX_Controller {
 					$this->session->set_userdata('pathTOApplicationLetter', $URLToFileLocation);
 					// $return = $this->saveImagePathsToDB($URLToFileLocation, $userEmail);
 			    }
-			}
-		}else{
-			$response['message'] = "Please select a file.";
-			$response['status'] = 1;
-		}
+			// }
+		// }else{
+		// 	$response['message'] = "Please select a file.";
+		// 	$response['status'] = 1;
+		// }
 
 		echo json_encode($response);
 		
@@ -294,19 +294,19 @@ class UploadResume extends MX_Controller {
 		$tmpName = $_FILES["documentsCV"]["tmp_name"]; //tempName
 		$fileError = $_FILES["documentsCV"]["error"];
 		$uploadLocation = "C:\\xampp\\htdocs\\recruit\\assets\\uploads";//base_url('assets/uploads');
-		$URLToFileLocation = base_url('assets/uploads/');
+		$URLToFileLocation = '169.239.252.31:8080/assets/uploads';
 
 		$fileName = preg_replace("/[^A-Z0-9._-]/i", "_", $fileName);
 		$fileNameArray = explode(".", $fileName);// ensure a safe filename
-		if (!empty($_FILES["documentsCV"])) {
+		// if (!empty($_FILES["documentsCV"])) {
 
-			$fileType = $fileNameArray[1];
+			// $fileType = $fileNameArray[1];
 			// print_r($fileType."File type");die;
-			$allowed = array("docx", "doc", "pdf");
-			if (!in_array($fileType, $allowed)) {
-				$response['message'] = "Invalid File Type";
-				$response['status'] = 1;
-			}else{
+			// $allowed = array("docx", "doc", "pdf");
+			// if (!in_array($fileType, $allowed)) {
+			// 	$response['message'] = "Invalid File Type";
+			// 	$response['status'] = 1;
+			// }else{
 	    		$randomNum = rand(999,999999);
 	    		$date = date('dmY');
 	    		$newFileName = $fileNameArray[0].$randomNum."CV_".$date.".".$fileNameArray[1];
@@ -325,11 +325,11 @@ class UploadResume extends MX_Controller {
 					$this->session->set_userdata('URLToCv', $URLToFileLocation);
 					//$return = $this->saveImagePathsToDB($URLToFileLocation, $userEmail);
 			    }
-			}
-		}else{
-			$response['message'] = "Please select a file.";
-			$response['status'] = 1;
-		}
+			// }
+		// }else{
+		// 	$response['message'] = "Please select a file.";
+		// 	$response['status'] = 1;
+		// }
 
 		echo json_encode($response);
 	}
@@ -340,6 +340,10 @@ class UploadResume extends MX_Controller {
 		$emailAddress = $this->session->userdata('Email');
 		$pathTOCv = $this->session->userdata('URLToCv');
 		$pathTOApplicationLetter = $this->session->userdata('pathTOApplicationLetter');
+
+		$pathTOApplicationLetter = json_encode($pathTOApplicationLetter);
+		$pathTOCv = json_encode($pathTOCv);
+
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
 		    CURLOPT_RETURNTRANSFER => 1,
@@ -359,7 +363,17 @@ class UploadResume extends MX_Controller {
 		$this->session->unset_userdata('URLToCv');
 		$this->session->unset_userdata('pathTOApplicationLetter');
 
-		print_r($result);
+
+		if($result === "Inserted"){//successfully uploaded Application and CV
+			// echo "worked ".$result;
+			$resp['status'] = 0;
+			$resp['message'] = "You successfully uploaded your documents.";
+		}else{
+			// echo "didn't works ".$result;
+			$resp['status'] = 1;
+			$resp['message'] = "An error occurred while saving your documents. Kindly try again later";
+		}
+		echo json_encode($resp);
 	}
 	//after uploading the Document to the server save the paths to the DB
 
@@ -428,6 +442,23 @@ class UploadResume extends MX_Controller {
 			$response['status'] = 0;
 			$response['data'] = $getRefereeDetailsDecoded;
 			$response['message'] = "You have successfully retreived your referee details";
+		}
+		echo json_encode($response);
+	}
+
+	public function getUserDocuments(){
+		$userEmail = $this->session->userdata('Email');
+		$getUserDocetails = $this->getUserDocDetails($userEmail);	
+		$getUserDocetailsDecoded = json_decode($getUserDocetails);
+
+		if(sizeof($getUserDocetailsDecoded) <= 0){//no referees have been save so far
+			//do nothing
+			$response['status'] = 2;
+			$response['message'] = "You have not provided any documents so far";
+		}else{//some referee details had been saved
+			$response['status'] = 0;
+			$response['data'] = $getUserDocetailsDecoded;
+			$response['message'] = "You have successfully retreived your document details";
 		}
 		echo json_encode($response);
 	}
