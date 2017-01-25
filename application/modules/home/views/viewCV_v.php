@@ -60,15 +60,8 @@
 					<div class="col-sm-4">
 						<h1 class="frontend-title">Curriculum Vitae</h1>
 					</div><!-- /.col-md-6 -->
-			<div class="col-sm-8">
-				<div class="candidate-button">
-					<form id="bookmark-resume" method="post" action="http://zury.co.ke/kippra/wp-admin/admin-ajax.php">
-						<input type="hidden" name="resume_id" value="194" />
-						<a download target="_blank" href="" class="btn btn-resume">Download Resume</a>
-						<a href="#" class="btn btn-contact" data-toggle="modal" data-target="#contact-resume-modal">Contact</a>
-					</form>
-								</div><!-- /.candidate-button -->
-			</div><!-- /.col-md-6 -->
+				</div>
+			</div>
 		</div><!-- /.row -->
 
 	</div><!-- /.container -->
@@ -78,23 +71,36 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="skills-container">
+					<h3 class="skills-title">
+						Personal Details
+					</h3>	
 					<?php 
 						$myCVPersonalDetails = json_decode($myCVPersonalDetails);
+						if(sizeof($myCVPersonalDetails) == 0){//the user has not provided any personal details
 					?>
-					<h3 class="skills-title">
-						<?php echo $myCVPersonalDetails[0]->fname." ".$myCVPersonalDetails[0]->mname." ".$myCVPersonalDetails[0]->lname  ?> 
-					</h3>
-					<div class="the-skills">
-						<span class="skill-item">Email: <?php echo $myCVPersonalDetails[0]->email; ?></span>
-						<span class="skill-item">Mobile: <?php echo $myCVPersonalDetails[0]->mobileNo ?></span>
-						<span class="skill-item">Address: <?php echo $myCVPersonalDetails[0]->address ?></span>
-						<span class="skill-item">Current Location: <?php echo $myCVPersonalDetails[0]->currentLocation ?></span>
-						<span class="skill-item">Country: <?php echo $myCVPersonalDetails[0]->country ?></span>
-						<span class="skill-item">ID: <?php echo $myCVPersonalDetails[0]->nationalID ?></span>
-						<span class="skill-item">PIN(KRA): <?php echo $myCVPersonalDetails[0]->PIN ?></span>
-						<span class="skill-item">Marital Status: <?php echo $myCVPersonalDetails[0]->maritalStatus ?> </span>
-					</div><!-- /.the-skills -->
-					<a href="#" class="btn btn-contact" data-toggle="modal" data-target="#contact-resume-modal" style="color:#ffffff;">Edit</a>
+						<div class="alert alert-warning">
+							<p>Complete your CV to view your personal details here.</p>
+						</div>						
+					<?php
+						}else{//display the personal info
+					?>
+						<h3 class="skills-title">
+							<?php echo $myCVPersonalDetails[0]->fname." ".$myCVPersonalDetails[0]->mname." ".$myCVPersonalDetails[0]->lname  ?> 
+						</h3>
+						<div class="the-skills">
+							<span class="skill-item">Email: <?php echo $myCVPersonalDetails[0]->email; ?></span>
+							<span class="skill-item">Mobile: <?php echo $myCVPersonalDetails[0]->mobileNo ?></span>
+							<span class="skill-item">Address: <?php echo $myCVPersonalDetails[0]->address ?></span>
+							<span class="skill-item">Current Location: <?php echo $myCVPersonalDetails[0]->currentLocation ?></span>
+							<span class="skill-item">Country: <?php echo $myCVPersonalDetails[0]->country ?></span>
+							<span class="skill-item">ID: <?php echo $myCVPersonalDetails[0]->nationalID ?></span>
+							<span class="skill-item">PIN(KRA): <?php echo $myCVPersonalDetails[0]->PIN ?></span>
+							<span class="skill-item">Marital Status: <?php echo $myCVPersonalDetails[0]->maritalStatus ?> </span>
+						</div><!-- /.the-skills -->
+						<a href="#" class="btn btn-contact" data-toggle="modal" data-target="#contact-resume-modal" style="color:#ffffff;">Edit</a>
+					<?php
+						}
+					?>
 				</div><!-- /.skills-container -->
 				<hr/>
 				<div class="education-container">
@@ -103,6 +109,12 @@
 						$getQualificationDetails = json_decode($getQualificationDetails);
 						$sizeOfObject = sizeof($getQualificationDetails);
 						$educationList = "";
+						if($sizeOfObject == 0){
+							$educationList = '<div class="alert alert-warning">
+												<p>Complete your CV to view your education history here.</p>
+											</div>	';
+							echo $educationList;
+						}
 
 						for($i = 0; $i<$sizeOfObject; $i++) {
 							$email = $getQualificationDetails[$i]->email;
@@ -128,7 +140,37 @@
 					<hr/>
 					<div class="experience-container">
 						<h3 class="educations-title">Documents</h3>
-						<ul class="resume-lists">
+						<?php 
+							$getUserDocDetails = json_decode($getUserDocDetails);
+							$sizeOfObject = sizeof($getUserDocDetails);
+							if($sizeOfObject == 0){
+								$educationList = '<div class="alert alert-warning">
+												<p>Complete your CV to view your education history here.</p>
+											</div>	';
+								echo $educationList;
+							}
+
+							for($i = 0; $i<$sizeOfObject; $i++) {
+								$linkToCv = json_decode($getUserDocDetails[$i]->linkToCV);
+								$linkToApplicationLetter = json_decode($getUserDocDetails[$i]->linkToApplicationLetter);
+
+								$documentList = '<ul class="resume-lists">';
+									$documentList .= '<li>';
+										$documentList .= '<div class="education-name"><strong></strong></div>';
+										$documentList .= '<span class="education-period">';
+											$documentList .= '<i class="fa fa-fw fa-link"></i>&nbsp;<a href="'.$linkToCv.'" target="_blank">CV</a>';
+										$documentList .= '</span>';
+										$documentList .= '<br/>';
+										$documentList .= '<span class="education-period">';
+											$documentList .= '<i class="fa fa-fw fa-link"></i>&nbsp;<a href="'.$linkToApplicationLetter.'" target="_blank">Application Letter</a>';
+										$documentList .= '</span>';
+									$documentList .= '</li>';
+								$documentList .=  '</ul>';
+
+								echo $documentList;
+							}
+						?>
+						<!-- <ul class="resume-lists">
 							<li>							
 								<div class="education-name"><strong></strong></div>
 								<span class="education-period">
@@ -147,7 +189,7 @@
 									<i class="fa fa-fw fa-link"></i>&nbsp;<a href="" target="_blank">Certificate 2</a>
 								</span>
 							</li>					
-						</ul>
+						</ul> -->
 					</div>
 					<a href="#" class="btn btn-contact" data-toggle="modal" data-target="#contact-resume-modal" style="color:#ffffff;">Edit</a>
 
@@ -161,6 +203,13 @@
 							$getRefereeDetails = json_decode($getRefereeDetails);
 							$sizeOfObject = sizeof($getRefereeDetails);
 							$referenceList = "";
+
+							if($sizeOfObject == 0){
+								$educationList = '<div class="alert alert-warning">
+													<p>Complete your CV to view your references here.</p>
+												</div>	';
+								echo $educationList;
+							}
 
 							for($i = 0; $i<$sizeOfObject; $i++) {
 								$fname = $getRefereeDetails[$i]->fname;
@@ -184,24 +233,10 @@
 								echo $referenceList;
 							}
 						?>
-
-
-						
-						<!-- <ul class="resume-lists">
-							<li>							
-								<div class="education-name"><strong>Kevin Mittnick</strong></div>
-								<span class="education-qualification"><i class="fa fa-fw fa-check"></i>&nbsp;Organization&nbsp;:&nbsp;Some Organization</span><br />
-								<span class="education-qualification"><i class="fa fa-fw fa-check"></i>&nbsp;Designation&nbsp;:&nbsp;ICT Manager</span><br />
-								<span class="education-period"><i class="fa fa-fw fa-calendar"></i>&nbsp;Email&nbsp;:&nbsp;somemailaddress@gmail.com</span><br />
-								<span class="education-grade"><i class="fa fa-fw fa-star"></i>&nbsp;Phone&nbsp;:&nbsp;0718715998</span><br />
-								<span class="education-qualification"><i class="fa fa-fw fa-check"></i>&nbsp;Website&nbsp;:&nbspwww.somesite.com</span>
-								
-							</li>					
-						</ul> -->
 						<a href="#" class="btn btn-contact" data-toggle="modal" data-target="#contact-resume-modal" style="color:#ffffff;">Edit</a>
 				</div><!-- /.education-container -->
 				<hr/>
-				<div class="experience-container">
+				<!-- <div class="experience-container">
 					<h3 class="educations-title">URL(s)</h3>
 					<ul class="resume-lists">
 						<li>							
@@ -210,7 +245,7 @@
 								<i class="fa fa-fw fa-link"></i>&nbsp;<a href="" target="_blank">www.somesite.com</a>
 							</span>
 						</li>					</ul>
-				</div><!-- /.experience-container -->
+				</div> --><!-- /.experience-container -->
 			</div><!-- /.col-md-6 -->
 		</div><!-- /.row -->
 	</div><!-- /.container -->

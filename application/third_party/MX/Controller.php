@@ -2,9 +2,6 @@
 
 /** load the CI class for Modular Extensions **/
 require dirname(__FILE__).'/Base.php';
-require_once('phpmailer/class.phpmailer.php');
-define('GUSER', 'kippraregister@gmail.com'); // Gmail username
-define('GPWD', 'K!pprareg@0123'); // Gmail password
 
 /**
  * Modular Extensions - HMVC
@@ -195,37 +192,79 @@ class MX_Controller
 		return $getemploymentHistoryDetailsResponse;;
 	}
 
-	function smtpmailer($from='baksajoshua09@gmail.com', $from_name='TESTING', $body='This is the body of the email!') { 
-		global $error;
-		$mail = new PHPMailer();  // create a new object
-		$mail->IsSMTP(); // enable SMTP
-		$mail->SMTPDebug = 0;  // debugging: 1 = errors and messages, 2 = messages only
-		$mail->SMTPAuth = true;  // authentication enabled
-		$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
-		$mail->Host = 'smtp.gmail.com';
-		$mail->Port = 465; 
-		$mail->Username = GUSER;  
-		$mail->Password = GPWD;           
-		$mail->From = GUSER;
-		$mail->FromName = $from_name;
-		
-		$mail->AddReplyTo(GUSER, $from_name);
-		$mail->Subject = 'WELCOME TO KIPPRA';
-		$mail->Body = $body;
-		// echo "<pre>";print_r($mail);die();
-		// $mail->AddAddress('jbatuka@usaid.gov');
-		// $mail->AddAddress('jhungu@clintonhealthaccess.org');
-		// $mail->AddAddress('aaron.mbowa@dataposit.co.ke');
-		// $mail->AddAddress('jlusike@clintonhealthaccess.org');
-		// $mail->AddAddress('tngugi@clintonhealthaccess.org');
-		$mail->AddAddress('joshua.bakasa@strathmore.edu');
-		if(!$mail->Send()) {
-			$error = 'Mail error: '.$mail->ErrorInfo; 
-			return false;
-		} else {
-			$error = 'Message sent!';
-			return true;
+	public function validateCompetionOfCV($email,$cvComplete){
+		//check if C.V is complete
+		if($cvComplete == 1){//the C.V has not been uploaded
+			//check if the user has completed the login since the last login attempt
+			//get all C.V details
+			
+			$myCVPersonalDetails = $this->getPersonalDetails($email);
+			$getQualificationDetails = $this->getQualificationDetails($email);
+			$getemploymentHistoryDetails = $this->getemploymentHistoryDetails($email);
+			$getRefereeDetails = $this->getRefereeDetails($email);
+			$getUserDocDetails = $this->getUserDocDetails($email);
+
+			$sizeOfmyCVPersonalDetails = sizeof(json_decode($myCVPersonalDetails));
+			$sizeOfgetQualificationDetails = sizeof(json_decode($getQualificationDetails));
+			$sizeOfgetemploymentHistoryDetails = sizeof(json_decode($getemploymentHistoryDetails));
+			$sizeofgetRefereeDetails = sizeof(json_decode($getRefereeDetails));
+			$sizeOfgetUserDocDetails = sizeof(json_decode($getUserDocDetails));
+
+			if($sizeOfmyCVPersonalDetails >= 1 && $sizeOfgetQualificationDetails >= 1 && $sizeOfgetemploymentHistoryDetails >= 1 && $sizeofgetRefereeDetails >= 1 && $sizeOfgetUserDocDetails >= 1) {
+				//the user has provided all the above details therfore you update the DB to reflect the completed C.V
+				$curl = curl_init();
+				curl_setopt_array($curl, array(
+				    CURLOPT_RETURNTRANSFER => 1,
+				    CURLOPT_URL => sqlnterfaceURL,
+				    CURLOPT_USERAGENT => 'ESSDP',
+				    CURLOPT_POST => 1,
+				    CURLOPT_POSTFIELDS => array(
+				        'action' => 'UPDATECOMPLETECV',
+				        'emailAddress' => $email						       	
+				    )
+				));
+				$result = curl_exec($curl);
+				// Close request to clear up some resources
+				curl_close($curl);
+				if($result == "Updated"){//the C.V complete status is set to Completed, allow user to login
+					$this->session->set_userdata('cvComplete', 0);
+					$response['status'] = 0;
+					$response['message'] = "CV is complete";					
+					return json_encode($response);
+				}else{//an error occured while updateing the complete CV status, allow user to login but warn them about not been able to apply for positions
+					$response['status'] = 1;
+					$response['message'] = "CV is complete, but y1ou might not be able to apply";
+				}
+				return json_encode($response);
+			}else{
+				//do nothing because user needs to provide these details
+				$response['status'] = 2;
+				$response['message'] = "Complete your CV to apply for this postion.";
+				return json_encode($response);
+			}
 		}
+		//check if C.V is complete
+	}
+
+	public function getUserDocDetails($userEmail){
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		    CURLOPT_RETURNTRANSFER => 1,
+		    CURLOPT_URL => sqlnterfaceURL,
+		    CURLOPT_USERAGENT => 'ESSDP',
+		    CURLOPT_POST => 1,
+		    CURLOPT_POSTFIELDS => array(
+		        'action' => 'GETUSERDOCS',
+		        'email'=>$userEmail
+
+		    )
+		));		
+		$getUserDocDetailsResponse = curl_exec($curl);
+
+		// Close request to clear up some resources
+		curl_close($curl);
+		// echo $getemploymentHistoryDetailsResponse;
+		return $getUserDocDetailsResponse;
 	}
 
 	//Logout

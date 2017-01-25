@@ -11,11 +11,12 @@ class ViewCV extends MX_Controller {
 	public function index() {
 		$this->isLoggedIN();
 		$data['content_view'] = 'home/viewCV_v';
-
-		$data['myCVPersonalDetails'] = $this->getPersonalDetails($this->session->userdata('Email'));
-		$data['getQualificationDetails'] = $this->getQualificationDetails($this->session->userdata('Email'));
-		$data['getemploymentHistoryDetails'] = $this->getemploymentHistoryDetails($this->session->userdata('Email'));
-		$data['getRefereeDetails'] = $this->getRefereeDetails($this->session->userdata('Email'));
+		$userEmail = $this->session->userdata('Email');
+		$data['myCVPersonalDetails'] = $this->getPersonalDetails($userEmail);
+		$data['getQualificationDetails'] = $this->getQualificationDetails($userEmail);
+		$data['getemploymentHistoryDetails'] = $this->getemploymentHistoryDetails($userEmail);
+		$data['getRefereeDetails'] = $this->getRefereeDetails($userEmail);
+		$data['getUserDocDetails'] = $this->getUserDocDetails($userEmail);
 		
 		$this->load->view('template/template_v.php',$data);
 		// $this->load->view('home/viewCV_v');

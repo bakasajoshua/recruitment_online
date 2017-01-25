@@ -68,7 +68,7 @@
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="email" class="col-sm-2 control-label">Address</label>
+												<label for="email" class="col-sm-2 control-label">Postal Address</label>
 												<div class="col-sm-10">
 													<input type="text" name="address" id="address" class="form-control" id="email" placeholder="Address">
 												</div>
@@ -179,12 +179,11 @@
 														<div class="col-sm-10">
 															<select class="form-control" name="certification[]" id="certification">
 																<option value="">Select</option>
-							      								<option value="primary">Primary Education</option>
-							      								<option value="Secondary">Secondary Education</option>
-							      								<option value="cert">Certificate</option>
-							      								<option value="dip">Diploma</option>
-							      								<option value="degree">Degree</option>
-							      								<option value="masters">Masters</option>
+							      								<option value="Professional Certificate">Professional Certificate</option>
+							      								<option value="Diploma">Diploma</option>
+							      								<option value="Degree">Degree</option>
+							      								<option value="Masters">Masters</option>
+							      								<option value="Doctorate">Doctorate</option>
 							      								<option value="PHD">PHD</option>
 															</select>
 														</div>
@@ -238,7 +237,7 @@
 								<div class="step">
 									<h3>Employment History</h3>	
 									<form id="employmentForm">
-										<div class="field_wrapper">
+										<div class="employmentHistoryfield_wrapper">
 											<div>
 												<div class="col-md-3">
 													<div class="form-group">
@@ -252,7 +251,7 @@
 													<div class="form-group">
 														<p>Position</p>
 														<div class="col-sm-10">
-															<input type="text" name="employmentPosition[]" value="" class="form-control" id="employmentPosition" placeholder="Institution">
+															<input type="text" name="employmentPosition[]" value="" class="form-control" id="employmentPosition" placeholder="Position">
 														</div>
 													</div>
 												</div>
@@ -260,7 +259,7 @@
 													<div class="form-group">
 														<p>Responsibilities</p>
 														<div class="col-sm-10">
-															<input type="text" name="employmentResponsibilities[]" value="" class="form-control" id="employmentResponsibilities" placeholder="Institution">
+															<input type="text" name="employmentResponsibilities[]" value="" class="form-control" id="employmentResponsibilities" placeholder="Responsibilities">
 														</div>
 													</div>
 												</div>
@@ -268,7 +267,7 @@
 													<div class="form-group">
 														<p>Years</p>
 														<div class="col-sm-10">
-															<input type="number" min="1" name="employmentYears[]" value="" class="form-control" id="employmentYears" placeholder="Institution" style="width: 50%; display: inline-block;">
+															<input type="number" min="1" name="employmentYears[]" value="" class="form-control" id="employmentYears" placeholder="Years" style="width: 50%; display: inline-block;">
 															<i class="fa fa-plus" aria-hidden="true" id="addEmploymentHistory" title="Add Employment History" style="cursor:pointer;"></i>
 														</div>
 													</div>
@@ -372,6 +371,20 @@
 											</div>								
 										</div>
 									</form>
+
+									<div class="table-responsive" id="userDocsListContainer" style="margin-right: auto; margin-left: auto;">
+										<table class="table">
+											<thead>
+												<td>C.V</td>  			
+												<td>Application Letter</td>
+											</thead>
+											<tbody id="userDocsList">
+											</tbody>
+										</table>
+									  	<a href="<?php echo base_url(); ?>" class="pull-right" id="editUserDocsListBtn">
+											<button type="button" class="btn btn-primary">Edit Application Letter</button>
+										</a>										
+									</div>
 								</div>
 								<!-- Documents -->
 
@@ -422,12 +435,16 @@
 		$getEmploymentHistoryDetailsFromDBURL = "<?php echo base_url('home/uploadResume/getEmploymentHistoryDetailsFromDB'); ?>";
 		$getQualificationDetailsURL = "<?php echo base_url('home/uploadResume/getQualificationDetailsFromDB'); ?>";
 		$getRefereeDetailsFromDBURL = "<?php echo base_url('home/uploadResume/getRefereeDetailsFromDB'); ?>";
+		$getUserDocsFromDBURL = "<?php echo base_url('home/uploadResume/getUserDocuments'); ?>";
 		//Get CV Details URLs
+
+		$refreshUploadResumePage = "<?php echo base_url('home/uploadResume'); ?>";
 
 		getPersonalDetailsFromDB(9999,"onPageLoad");//pre-populate the personal details if the user has already provided these details
 		getQualificationsFromDB(9999,"onPageLoad");//pre-populate the qualities if the user has alread provided these details
 		getEmploymentHistoryDetailsFromDb(9999,"onPageLoad");//pre-populate the qualities if the user has alread provided these details
 		getRefereeDetails(9999,"onPageLoad");//pre-populate the Referee details if user has alread provided these details
+		getUserDocuements(9999, "onPageLoad");//pre-populates the application letter and CV if provided
 		var current = 1;
 		
 		widget      = $(".step");
@@ -446,7 +463,7 @@
 			$response = "";
 			if(current < widget.length){
 				// Check validation
-				if(current == 1){
+				if(current == 1){//personal Details
 					// //validate personal details
 					$response = validatePersonalDetails();
 					if($response == "Valid Form"){//the form is valid proceed and save information
@@ -480,7 +497,7 @@
 						$message += "</center>";
 	    				showAlert('alert alert-danger','alert alert-success',$message);
 					}
-				}else if(current == 2){
+				}else if(current == 2){//Qualifications
 					//validate Qualifications
 					if($("#qualificationsForm").is(":visible")){
 						$response = validateQualifications();
@@ -540,7 +557,7 @@
 						$message += "</center>";
 	    				showAlert('alert alert-danger','alert alert-success',$message);
 					}
-				}else if(current ==3){
+				}else if(current ==3){//Employment History
 					//validate employment history
 					if($("#employmentForm").is(":visible")){
 						$response = validateEmploymentHistory();
@@ -603,7 +620,7 @@
 						$message += "</center>";
 	    				showAlert('alert alert-danger','alert alert-success',$message);
 					}
-				}else if(current == 4){
+				}else if(current == 4){//referees
 					if($("#refereesForm").is(":visible")){
 						$response = validateReferences();
 					}else{
@@ -613,11 +630,11 @@
 					if($response == "Valid Form"){
 						//proceed to save the details
 						$.post($getRefereeDetailsFromDBURL,{}, function(data, status){
-							console.log(data);
+							console.log("response from $getRefereeDetailsFromDBURL"+data);
 							$data = JSON.parse(data);
 							$status = $data['status'];
 
-							if($status == 1){//no referee details have been saved so far						
+							if($status == 2){//no referee details have been saved so far						
 								$refereeFormValues = $('#refereesForm').serializeArray();
 								$.post($saveRefereeDetailsURL,
 									{

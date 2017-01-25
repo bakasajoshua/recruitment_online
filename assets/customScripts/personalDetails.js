@@ -62,6 +62,7 @@ $(document).ready(function(){
 	}
 	//validate form
 
+
 	//save personal details to DB
 	window.savePersonalDetails = function(current){
 		getPersonalDetails();//get personal details from input fields	

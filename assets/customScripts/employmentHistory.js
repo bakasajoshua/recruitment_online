@@ -23,7 +23,7 @@ $(document).ready(function(){
 			$newRow +='<div class="form-group">';
 				$newRow += '<p>Position</p>';
 				$newRow += '<div class="col-sm-10">';
-					$newRow += '<input type="text" name="employmentPosition[]" value="" class="form-control" id="employmentPosition" placeholder="Institution">';
+					$newRow += '<input type="text" name="employmentPosition[]" value="" class="form-control" id="employmentPosition" placeholder="Position">';
 				$newRow += '</div>';
 			$newRow += '</div>';
 		$newRow += '</div>';
@@ -45,7 +45,7 @@ $(document).ready(function(){
 				$newRow += '<div class="form-group">';
 					$newRow += '<p>Years</p>';
 					$newRow += '<div class="col-sm-10">';
-						$newRow += '<input type="number" min="1" name="employmentYears[]" value="" class="form-control" id="employmentYears" placeholder="Years worked" style="width: 50%; display: inline-block;">';
+						$newRow += '<input type="number" min="1" name="employmentYears[]" value="" class="form-control" id="employmentYears" placeholder="Years worked" style="">';
 					$newRow += '</div>';
 				$newRow += '</div>';
 			$newRow += '</div>';
@@ -76,14 +76,14 @@ $(document).ready(function(){
 		}else{
     		if(x < maxField){ //Check maximum number of input fields
 	            x++; //Increment field counter
-	            $(".field_wrapper").append(fieldHTML.row(x)); // Add field html
+	            $(".employmentHistoryfield_wrapper").append(fieldHTML.row(x)); // Add field html
 	        }
 		}
 		
         console.log("Add fields button clicked "+$(this).val());
     });
 
-    $('.field_wrapper').on('click', '#removeEmploymentHistory', function(e){ //Once remove button is clicked
+    $('.employmentHistoryfield_wrapper').on('click', '#removeEmploymentHistory', function(e){ //Once remove button is clicked
         e.preventDefault();
         $(this).parent('div').remove(); //Remove field html
         x--; //Decrement field counter

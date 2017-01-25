@@ -37,7 +37,7 @@
 							<?php
 									}else if($_GET['m'] == 2){
 							?>	
-									<div class="alert alert-success" id="getAlert">
+									<div class="alert alert-danger" id="getAlert">
 										<center>
 											<strong>Please login to view this page.</strong> <br/>
 										</center>
