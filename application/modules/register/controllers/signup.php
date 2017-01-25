@@ -43,21 +43,25 @@ class Signup extends MX_Controller {
 	public function validateEmail(){
 		$register_email = $_POST['register_email'];
 
-		$curl = curl_init();
-		curl_setopt_array($curl, array(
-		    CURLOPT_RETURNTRANSFER => 1,
-		    CURLOPT_URL => sqlnterfaceURL,
-		    CURLOPT_USERAGENT => 'ESSDP',
-		    CURLOPT_POST => 1,
-		    CURLOPT_POSTFIELDS => array(
-		        'action' => 'VALIDATEEMAIL',
-		       	'register_email'=> $register_email
-		    )
-		));
-		$result = curl_exec($curl);
-		// Close request to clear up some resources
-		curl_close($curl);
-
+		if (!filter_var($register_email, FILTER_VALIDATE_EMAIL)) {
+		  $result = json_encode(array(0 => array('message' => 'Invalid email format',
+		  				 'status' => 1)));
+		}else {
+			$curl = curl_init();
+			curl_setopt_array($curl, array(
+			    CURLOPT_RETURNTRANSFER => 1,
+			    CURLOPT_URL => sqlnterfaceURL,
+			    CURLOPT_USERAGENT => 'ESSDP',
+			    CURLOPT_POST => 1,
+			    CURLOPT_POSTFIELDS => array(
+			        'action' => 'VALIDATEEMAIL',
+			       	'register_email'=> $register_email
+			    )
+			));
+			$result = curl_exec($curl);
+			// Close request to clear up some resources
+			curl_close($curl);
+		}
 		echo $result;		
 	}
 }

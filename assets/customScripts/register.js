@@ -11,7 +11,7 @@ $(document).ready(function(){
 		$confirm_register_password = $("#confirm_register_password").val();
 		
 		$validatePassResponse = validatePassword($register_password);
-		
+		// console.log($validatePassResponse);
 		if($validatePassResponse == 1){//password does not meet required standards
 			$message = "<center>";
 				$message += "<strong>Error!</strong> <br/> Password provided do not match the minimum strength requirements";
@@ -63,9 +63,9 @@ $(document).ready(function(){
 			$("#user_submit").prop('disabled', true);
 		}else{
 			$.post($validateEmailURL,{"register_email":$register_email}, function(data, status){
-				cnosole.log(data);
+				// console.log(data);
 				$data = JSON.parse(data);
-
+				// console.log($data);
 				$status = $data[0]['status'];
 				if($status == 0){//doesn't exists
 					$resp = $data[0]['message'];
@@ -76,7 +76,7 @@ $(document).ready(function(){
 
 					showAlert('alert alert-success','alert alert-danger',$message);
 					$("#user_submit").prop('disabled', false);	
-				}else{//it exists
+				}else{//it exists or is not a valid email
 					$resp = $data[0]['message'];
 
 					$message = "<center>";
@@ -88,7 +88,7 @@ $(document).ready(function(){
 				}
 			});
 		}
-	});
+	 });
 
 	window.showAlert = function($classToShow,$classToHide,$message){
 		$("#alertTag").removeClass($classToHide);

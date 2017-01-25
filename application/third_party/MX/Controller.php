@@ -2,6 +2,9 @@
 
 /** load the CI class for Modular Extensions **/
 require dirname(__FILE__).'/Base.php';
+require_once('phpmailer/class.phpmailer.php');
+define('GUSER', 'kippraregister@gmail.com'); // Gmail username
+define('GPWD', 'K!pprareg@0123'); // Gmail password
 
 /**
  * Modular Extensions - HMVC
@@ -190,6 +193,39 @@ class MX_Controller
 		curl_close($curl);
 		// echo $getemploymentHistoryDetailsResponse;
 		return $getemploymentHistoryDetailsResponse;;
+	}
+
+	function smtpmailer($from='baksajoshua09@gmail.com', $from_name='TESTING', $body='This is the body of the email!') { 
+		global $error;
+		$mail = new PHPMailer();  // create a new object
+		$mail->IsSMTP(); // enable SMTP
+		$mail->SMTPDebug = 0;  // debugging: 1 = errors and messages, 2 = messages only
+		$mail->SMTPAuth = true;  // authentication enabled
+		$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+		$mail->Host = 'smtp.gmail.com';
+		$mail->Port = 465; 
+		$mail->Username = GUSER;  
+		$mail->Password = GPWD;           
+		$mail->From = GUSER;
+		$mail->FromName = $from_name;
+		
+		$mail->AddReplyTo(GUSER, $from_name);
+		$mail->Subject = 'WELCOME TO KIPPRA';
+		$mail->Body = $body;
+		// echo "<pre>";print_r($mail);die();
+		// $mail->AddAddress('jbatuka@usaid.gov');
+		// $mail->AddAddress('jhungu@clintonhealthaccess.org');
+		// $mail->AddAddress('aaron.mbowa@dataposit.co.ke');
+		// $mail->AddAddress('jlusike@clintonhealthaccess.org');
+		// $mail->AddAddress('tngugi@clintonhealthaccess.org');
+		$mail->AddAddress('joshua.bakasa@strathmore.edu');
+		if(!$mail->Send()) {
+			$error = 'Mail error: '.$mail->ErrorInfo; 
+			return false;
+		} else {
+			$error = 'Message sent!';
+			return true;
+		}
 	}
 
 	//Logout

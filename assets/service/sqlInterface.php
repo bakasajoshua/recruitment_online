@@ -1,7 +1,8 @@
 <?php
 //C# web service
-	// $webServiceUrl = 'http://www.essdp.com:8080/Service.svc?wsdl';
-	$webServiceUrl = 'http://www.kippraservice.com:8095/Service.svc?wsdl';//dev on .31 
+	//$webServiceUrl = 'http://www.essdp.com:8080/Service.svc?wsdl';
+	//$webServiceUrl = 'http://www.kippraservice.com:8095/Service.svc?wsdl';//dev on .31 
+	$webServiceUrl = 'http://www.kipraservice.com:8084/Service.svc?wsdl';//Bakasa Local development
 //C# web service
 	
 	if(isset($_POST['action'])){
