@@ -20,7 +20,7 @@ $(document).ready(function(){
 		}else{//password meets minimum standards
 			if($confirm_register_password === $register_password){
 				$.post($registerURL,{"register_name":$register_name, "register_email":$register_email, "register_password":$register_password}, function(data, status){
-					console.log(data);
+					// console.log(data);
 					if(data == "Inserted"){
 						$message = "<center>";
 							$message += "<strong>Congratulations!</strong> <br/>You have successfully registered.";
@@ -69,7 +69,7 @@ $(document).ready(function(){
 				showAlert('alert alert-danger','alert alert-success',$message);
 			}else{
 				$.post($validateEmailURL,{"register_email":$register_email}, function(data, status){
-					console.log(data);
+					// console.log(data);
 					$data = JSON.parse(data);
 
 					$status = $data[0]['status'];

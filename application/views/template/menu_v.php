@@ -47,6 +47,9 @@
 						<li id="menu-item-272" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-272">
 							<a href="<?php echo base_url('info/faqs'); ?>">FAQ&#8217;s</a>
 						</li>
+						<li id="menu-item-272" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-272">
+							<a href="<?php echo base_url('info/contactUs'); ?>">Contact&nbsp;Us</a>
+						</li>
 					</ul>
 				</nav><!-- /#main-menu -->
 			</div><!-- /#menu-wrapper -->
