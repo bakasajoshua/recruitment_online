@@ -91,28 +91,6 @@
 								</ul>
 							</div>
 							<hr>
-							<!-- <div class="menu-menu-1-container">
-								<ul id="menu-menu-2" class="menu">
-									<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-219">
-										<a href="<?php echo base_url('info/vacancies'); ?>">Home</a>
-									</li>
-									<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-184 current_page_item menu-item-has-children menu-item-226">
-										<a href="#">Personal Details</a>
-										<ul class="sub-menu">
-											<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-223">
-												<a href="<?php echo base_url('home/uploadResume'); ?>">Post Your CV</a>
-											</li>
-										</ul>
-									</li>
-									<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-232">
-										<a href="<?php echo base_url('info/vacancies'); ?>">Vacancies</a>
-									</li>
-									<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-272">
-										<a href="<?php echo base_url('info/faqs'); ?>">FAQ&#8217;s</a>
-									</li>
-								</ul>
-							</div>
-						</div>	 -->
 					</aside><!-- /#sidebar-default -->
 				</div><!-- /.col-md-4 -->	
 			</div><!-- /.row -->

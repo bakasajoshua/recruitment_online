@@ -64,7 +64,6 @@ class Signup extends MX_Controller {
 		return $resp;
 	}
 
-
 	public function validateEmail(){
 		$register_email = $_POST['register_email'];
 

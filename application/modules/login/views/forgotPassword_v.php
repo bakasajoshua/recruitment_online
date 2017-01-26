@@ -4,8 +4,8 @@
 			<div class="container">
 				<ul class="jobboard-social-media"></ul><!-- /.social-media -->
 				<div class="jobboard-login-register clearfix">
-					<a class="btn btn-header-register" href="http://zury.co.ke/kippra/register/">REGISTER</a>
-					<a class="btn btn-header-login" href="http://zury.co.ke/kippra/?redirect=http%3A%2F%2Fzury.co.ke%2Fkippra%2F">LOG IN</a>
+					<a class="btn btn-header-register" href="<?php echo base_url();?>register/signup">REGISTER</a>
+					<a class="btn btn-header-login" href="<?php echo base_url();?>login">LOG IN</a>
 				</div>
 			</div><!-- /.container -->
 		</div><!-- /#header-bar -->			
@@ -21,7 +21,7 @@
 			<div class="row">
 				<div class="col-md-5">
 					<div id="login-form-wrapper" class="no-animated">
-						<form name="lostpasswordform" id="login-form" action="http://zury.co.ke/kippra/wp-login.php?action=lostpassword" method="post">
+						<form name="lostpasswordform" id="login-form" method="post">
 							<div class="form-group">
 								<input class="form-control" type="text" name="user_login" id="user_login" class="input" value="" placeholder="Username or Email"/>
 							</div>
@@ -36,7 +36,7 @@
 						<article id="page-179">
 							<h3 class="sc-title normal">Not A Member? Register Now</h3>
 							<p>An email will be sent to the registered email address; Access email and click on link to activate your account</p>
-							<p><a href="http://zury.co.ke/kippra/register/" target="_self" class="btn sc-button medium grey">REGISTER</a></p>
+							<p><a href="<?php echo base_url();?>register/signup" target="_self" class="btn sc-button medium grey">REGISTER</a></p>
 							<div class="row">
 								<div class="col-sm-6 col-sm-offset-0">
 									<ul class="sc-ul">
@@ -75,3 +75,8 @@
 		</div><!-- /#footer-text -->
 	</footer><!-- /#footer -->
 </div><!-- /#wrapper -->
+<script>
+	$forgotURL = "<?php echo base_url('login/forgotPassword/confirmUser'); ?>";
+	$validateEmailURL = "<?php echo base_url('register/signup/validateEmail'); ?>";
+	$redirectToLoginPage = "<?php echo base_url('register/signup/forgotPassword'); ?>";
+</script>
