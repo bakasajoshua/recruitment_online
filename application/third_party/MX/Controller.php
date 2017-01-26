@@ -267,6 +267,106 @@ class MX_Controller
 		return $getUserDocDetailsResponse;
 	}
 
+	//GMAIL for local developement
+
+	//send Mail
+		public function phpMailerSendMail($FName, $LName, $subject, $Message, $From, $to){
+		//SMTP needs accurate times, and the PHP time zone MUST be set
+		//This should be done in your php.ini, but this is how to do it if you don't have access to that
+		date_default_timezone_set('Etc/UTC');
+
+		//Create a new PHPMailer instance
+		$mail = new PHPMailer;
+
+		//Tell PHPMailer to use SMTP
+		$mail->isSMTP();
+
+		//Enable SMTP debugging
+		// 0 = off (for production use)
+		// 1 = client messages
+		// 2 = client and server messages
+		$mail->SMTPDebug = 0;
+
+		//Ask for HTML-friendly debug output
+		$mail->Debugoutput = 'html';
+
+		//Set the hostname of the mail server
+
+		// $mail->Host = 'mail.kippra.or.ke';
+		// use
+		$mail->Host = 'smtp.gmail.com';
+		// if your network does not support SMTP over IPv6
+
+		//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
+		// $mail->Port = 25;
+		$mail->Port = 465;
+
+		//Set the encryption system to use - ssl (deprecated) or tls
+		// $mail->SMTPSecure = 'tsl';
+		$mail->SMTPSecure = 'ssl';
+
+		//Whether to use SMTP authentication
+		// $mail->SMTPAuth = false;
+		$mail->SMTPAuth = true;
+
+		//Username to use for SMTP authentication - use full email address for gmail
+		// $mail->Username = "kipprahr@kippra.or.ke";
+		$mail->Username = "kippraess@gmail.com";
+
+		//Password to use for SMTP authentication
+		// $mail->Password = "Treasury123";
+		$mail->Password = "abc123**";
+
+		//Set who the message is to be sent from
+		$mail->setFrom($From, $FName." ".$LName);
+
+		//Set an alternative reply-to address
+		$mail->addReplyTo($From, $FName." ".$LName);
+
+		//Set who the message is to be sent to
+		if( is_array($to) == 1){
+			$approver = $to['approver'];
+			$applier = $to['applier'];
+			$mail->addAddress($applier, 'NAV ESS Support');
+			$mail->AddCC($approver, 'Line Manager');
+		}else{
+			$mail->addAddress($to, 'NAV ESS Support');
+		}
+		
+		// if(strcasecmp($subject, "Password Reset") == 0 || strcasecmp($subject, "Successfully Registered") == 0 || strcasecmp($subject, "Employee Requisitions") == 0 ||  strcasecmp($subject, "Pending Leave Approval") == 0 || strcasecmp($subject, "Leaev Approved") == 0 ){
+
+		// }else{
+		// 	//$mail->AddCC('navsupport@dataposit.co.ke', 'NAV SUPPORT');
+		// }
+
+		//Set the subject line
+		$mail->Subject = $subject;
+
+		//Read an HTML message body from an external file, convert referenced images to embedded,
+		//convert HTML into a basic plain-text alternative body
+		// file_get_contents('contents.html'), dirname(__FILE__)
+		$mail->msgHTML($Message);
+
+		//Replace the plain text body with one created manually
+		// $mail->AltBody = 'This is a plain-text message body';
+
+		//Attach an image file
+		//$mail->addAttachment('images/phpmailer_mini.png');
+
+		//send the message, check for errors
+		if (!$mail->send()) {
+		    // echo "Mailer Error: " . $mail->ErrorInfo;
+		    // $resp['message'] = "Mailer Error: " . $mail->ErrorInfo;
+		    $resp['message'] = "Error occured whille sending.";
+		    $resp['status'] = 1;	
+		} else {
+		    $resp['message'] = "Mail sent";
+		    $resp['status'] = 0;	
+		}
+
+		return json_encode($resp);
+	}
+
 	//Logout
 	public function logoutController(){
 		$this->session->sess_destroy();
