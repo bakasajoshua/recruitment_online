@@ -22,10 +22,11 @@
 				<div class="col-md-5">
 					<div id="login-form-wrapper" class="no-animated">
 						<form name="lostpasswordform" id="login-form" method="post">
+							<div  id="alertTag"></div>
 							<div class="form-group">
-								<input class="form-control" type="text" name="user_login" id="user_login" class="input" value="" placeholder="Username or Email"/>
+								<input class="form-control" type="email" name="email_forgot" id="email_forgot" class="input" value="" placeholder="Username or Email"/>
 							</div>
-							<input type="hidden" name="redirect_to" value="http://zury.co.ke/kippra/?redirect=http%3A%2F%2Fzury.co.ke%2Fkippra%2Fhomepage%2F&amp;mode=lost-password&amp;reset=true" />
+							<!-- <input type="hidden" name="redirect_to" value="http://zury.co.ke/kippra/?redirect=http%3A%2F%2Fzury.co.ke%2Fkippra%2Fhomepage%2F&amp;mode=lost-password&amp;reset=true" /> -->
 							<button type="submit" name="user_submit" id="user_submit" value="1" class="btn btn-login">Reset Password</button>
 						</form>
 					</div><!-- /.login-form-wrapper -->
@@ -75,8 +76,10 @@
 		</div><!-- /#footer-text -->
 	</footer><!-- /#footer -->
 </div><!-- /#wrapper -->
+<script type="text/javascript" src="<?php echo base_url('assets/customScripts/forgotPassword.js'); ?>"></script>
 <script>
 	$forgotURL = "<?php echo base_url('login/forgotPassword/confirmUser'); ?>";
-	$validateEmailURL = "<?php echo base_url('register/signup/validateEmail'); ?>";
-	$redirectToLoginPage = "<?php echo base_url('register/signup/forgotPassword'); ?>";
+	$validateEmailURL = "<?php echo base_url('login/forgotPassword/validateEmail'); ?>";
+	$redirectToResetPage = "<?php echo base_url('login/forgotPassword/resetPassword'); ?>";
+	$preventDuplicate = "<?php echo base_url('login/forgotPassword/conform_code_exists'); ?>";
 </script>

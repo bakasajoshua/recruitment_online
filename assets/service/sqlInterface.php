@@ -389,8 +389,69 @@
 			    $res = "Error: {$e->faultstring}";
 			}			
 			echo $res->checkForCompletedCVResult;
-		}
-		else{
+		}else if ($action == 'FORGOTPASSWORD') {
+			$emailAddress = $_POST['forgot_email'];
+			$recoverycode = $_POST['passChangeCode'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->setPasswordChangeRequest(array(
+											"email"=>$emailAddress,
+											"code"=>$recoverycode
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}			
+			echo $res->setPasswordChangeRequestResult;
+		}else if ($action == 'changePassword') {
+			$email = $_POST['email'];
+			$password = $_POST['password'];
+			$code = $_POST['code'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->changePassword(array(
+											"email"=>$email,
+											"password"=>$password,
+											"code"=>$code
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}			
+			echo $res->changePasswordResult;
+		}else if ($action == 'DUPLICATEPASSREQ') {
+			$emailAddress = $_POST['forgot_email'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->preventDuplicateRequest(array(
+											"email"=>$emailAddress
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}
+			// echo "<pre>";print_r($res);die();
+			echo($res->preventDuplicateRequestResult);
+		}else if ($action == 'confirmCode') {
+			$emailAddress = $_POST['forgot_email'];
+			$verificationCode = $_POST['verification_code'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->confirmVerificationCode(array(
+											"email"=>$emailAddress,
+											"code"=>$verificationCode
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}
+			// echo "<pre>";print_r($res);die();
+			echo($res->confirmVerificationCodeResult);
+		}else{
 			echo "Invalid Action";
 		}
 	}
