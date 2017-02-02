@@ -408,7 +408,7 @@
 			$email = $_POST['email'];
 			$password = $_POST['password'];
 			$code = $_POST['code'];
-
+			// echo "<pre>";print_r($email.'<__>'.$password.'<__>'.$code);die();
 			$client = new SoapClient($webServiceUrl);
 			try {
 				$res = $client->changePassword(array(

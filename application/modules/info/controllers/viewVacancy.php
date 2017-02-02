@@ -64,10 +64,11 @@ class ViewVacancy extends MX_Controller {
 			if($cvComplete == "No"){
 				$cvComplete = 1;
 			}
-		}		
+		}
+		// echo "<pre>";print_r($emailAddress.'<__>'.$cvComplete);die();	
 		$validateCompetionOfCVResponse = $this->validateCompetionOfCV($emailAddress,$cvComplete);
 		$validateCompetionOfCVResponse = json_decode($validateCompetionOfCVResponse);
-		
+		// echo "<pre>";print_r($validateCompetionOfCVResponse);die();
 		$status = $validateCompetionOfCVResponse->status;
 		$msg = $validateCompetionOfCVResponse->message;
 
@@ -120,6 +121,7 @@ class ViewVacancy extends MX_Controller {
 						if(sizeof($checkReapplication) == 1){//user has already applied for this job position
 							$response['status'] = 1;
 							$response['message'] = "You have already applied for this position.";
+							echo json_encode($response);
 						}else if(sizeof($checkReapplication) == 0){//the user has not yet applied 
 							$curl = curl_init();
 							curl_setopt_array($curl, array(
@@ -275,4 +277,27 @@ class ViewVacancy extends MX_Controller {
 		curl_close($curl);
 		return $vacancyCompetencyDetails;
 	}
+
+	public function sendRegistrationemail($name,$email,$job_title,$job_description)
+	{
+		//person sending email
+		$FName = "KIPPRA";
+		$LName = "ESS";
+		//person sending email
+
+		//Subject of the Email
+		$subject = "RECIEPT OF JOB APPLICATION";
+
+		$Message = "<br/><p>Your job application for the position of ".$job_title." has been received.</p><br/>";
+		$Message .= "<br /><strong><p>Job details</p></strong>";
+		$Message .= "<br /><br />".$job_description."<br/>";
+
+		// $From = "kipprahr@kippra.or.ke";
+		$From = "kippraess@gmail.com";
+		$to = $email;
+
+		$resp = $this->phpMailerSendMail($FName, $LName, $subject, $Message, $From, $to);
+		return $resp;
+	}
 }
+?>

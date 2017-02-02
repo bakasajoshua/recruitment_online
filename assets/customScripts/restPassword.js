@@ -27,13 +27,13 @@ $(document).ready(function(){
 					$status = $data['status'];
 					
 					if($status == 1){
-						console.log("invalid login");
+						// console.log("invalid login");
 						$message = "<center>";
 							$message += "<strong>Error.</strong> <br/>"+$responseMsg;
 						$message += "</center>";
 						showAlert('alert alert-danger','alert alert-success',$message);
 					}else if($status == 0){
-						console.log("Valid Login");
+						// console.log("Valid Login");
 						$message = "<center>";
 							$message += "<strong>Success.</strong> <br/>"+$responseMsg;
 						$message += "</center>";

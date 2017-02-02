@@ -242,8 +242,12 @@ class MX_Controller
 				$response['message'] = "Complete your CV to apply for this postion.";
 				return json_encode($response);
 			}
+		}else {//check if C.V is complete
+			$response['status'] = 0;
+			$response['message'] = "CV has been completed";
+			return json_encode($response);
 		}
-		//check if C.V is complete
+		
 	}
 
 	public function getUserDocDetails($userEmail){
