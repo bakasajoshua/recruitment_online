@@ -1,3 +1,12 @@
+<style type="text/css">
+	#control-label:after { 
+	    font-family: 'FontAwesome';
+		font-weight: normal;
+		font-size: 7px;
+		content: "\f069";
+		color: red;
+	}
+</style>
 <div id="wrapper">
 	<header id="header">
 		<!-- loads the avatar section -->
@@ -10,7 +19,7 @@
 		?>
 		<!-- loads the avatar section -->
 		<?php echo $this->load->view('template/menu_v'); ?>
-		</header><!-- /#header -->
+	</header><!-- /#header -->
 		<div id="content">
 			<div class="container">
 				<div class="row">
@@ -32,7 +41,7 @@
 									<form id="personalDetailsForm">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="name" class="col-sm-2 control-label">First Name</label>
+												<label for="name" class="col-sm-2 control-label" id="control-label">First Name</label>
 												<div class="col-sm-10">
 													<input type="text" name="fname" id="fname" class="form-control" placeholder="First Name">
 												</div>
@@ -41,7 +50,7 @@
 										
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="email" class="col-sm-2 control-label">Middle Name</label>
+												<label for="email" class="col-sm-2 control-label" id="control-label">Middle Name</label>
 												<div class="col-sm-10">
 													<input type="text" name="mname" id="mname" class="form-control" id="email" placeholder="Middle Name">
 												</div>
@@ -50,7 +59,7 @@
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="email" class="col-sm-2 control-label">Last Name</label>
+												<label for="email" class="col-sm-2 control-label" id="control-label">Last Name</label>
 												<div class="col-sm-10">
 													<input type="text" name="lname" id="lname" class="form-control" id="email" placeholder="Last Name">
 												</div>
@@ -59,7 +68,7 @@
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="email" class="col-sm-2 control-label">Mobile No.</label>
+												<label for="email" class="col-sm-2 control-label" id="control-label">Mobile No.</label>
 												<div class="col-sm-10">
 													<input type="text" name="mobileNo" id="mobileNo" class="form-control" id="email" placeholder="Mobile No.">
 												</div>
@@ -68,7 +77,7 @@
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="email" class="col-sm-2 control-label">Postal Address</label>
+												<label for="email" class="col-sm-2 control-label" id="control-label">Postal Address</label>
 												<div class="col-sm-10">
 													<input type="text" name="address" id="address" class="form-control" id="email" placeholder="Address">
 												</div>
@@ -86,7 +95,7 @@
 										
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="country" class="col-sm-2 control-label">Country</label>
+												<label for="country" class="col-sm-2 control-label" id="control-label">Country</label>
 												<div class="col-sm-10">
 													<select class="form-control" name="country" id="country">
 														<?php $this->load->view('home/listOfCountries'); ?>
@@ -97,7 +106,7 @@
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="email" class="col-sm-2 control-label">PIN No.</label>
+												<label for="email" class="col-sm-2 control-label" id="control-label">PIN No.</label>
 												<div class="col-sm-10">
 													<input type="text" name="pinNo" id="pinNo" class="form-control" placeholder="KRA PIN">
 												</div>
@@ -124,7 +133,7 @@
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="country" class="col-sm-2 control-label">Disabled?</label>
+												<label for="country" class="col-sm-2 control-label" id="control-label">Disabled?</label>
 												<div class="col-sm-10">
 													<select class="form-control" name="disabledStatus" id="disabledStatus">
 														<option value="">Select</option>
@@ -137,7 +146,7 @@
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="country" class="col-sm-2 control-label">Marital Status?</label>
+												<label for="country" class="col-sm-2 control-label" id="control-label">Marital Status?</label>
 												<div class="col-sm-10">
 													<select class="form-control" name="maritalStatus" id="maritalStatus">
 														<option value="">Select</option>
@@ -152,7 +161,7 @@
 											</div>
 										</div>
 									</form>
-									<a href="<?php echo base_url(); ?>" class="pull-right" id="editPersonalDetailsBtn">
+									<a href="<?php echo base_url("info/vacancies"); ?>" class="pull-right" id="editPersonalDetailsBtn">
 										<button type="button" class="btn btn-primary">Edit Personal Details</button>
 									</a>
 								</div>
@@ -166,7 +175,7 @@
 											<div>
 												<div class="col-md-3">
 													<div class="form-group">
-														<p>Institution</p>
+														<p id="control-label">Institution</p>
 														<div class="col-sm-10">
 															<input type="text" name="school" value="" class="form-control" id="school" placeholder="Institution">
 														</div>
@@ -175,7 +184,7 @@
 												<div class="col-md-2">
 													<div class="form-group">
 														<!-- <label for="school" class="col-sm-2 control-label">Certification</label> -->
-														<p>Certification</p>
+														<p id="control-label">Certification</p>
 														<div class="col-sm-10">
 															<select class="form-control" name="certification[]" id="certification">
 																<option value="">Select</option>
@@ -192,7 +201,7 @@
 												<div class="col-md-5">
 													<div class="form-group">
 														<!-- <label for="school" class="col-sm-2 control-label">Description</label> -->
-														<p>Description</p>
+														<p id="control-label">Description</p>
 														<div class="col-sm-10">
 															<input type="text" name="description" value="" class="form-control" id="description" placeholder="Description">
 														</div>
@@ -200,7 +209,7 @@
 												</div>
 												<div class="col-md-2">
 													<div class="form-group">
-														<p>Years Completed</p>
+														<p id="control-label">Years Completed</p>
 														<div class="col-sm-10">
 															<input type="number" name="years" min="1" value="" class="form-control" id="years" placeholder="Years"  style="width: 50%; display: inline-block;">
 															<i class="fa fa-plus" aria-hidden="true" id="addQualifications" title="Add Qualification" style="cursor: pointer;"></i>
@@ -224,7 +233,7 @@
 									  			
 									  		</tbody>									    	
 									  	</table>
-									  	<a href="<?php echo base_url(); ?>" class="pull-right" id="editQualificationDetailsBtn">
+									  	<a href="<?php echo base_url("info/vacancies"); ?>" class="pull-right" id="editQualificationDetailsBtn">
 											<button type="button" class="btn btn-primary">Edit Qualification Details</button>
 										</a>
 									</div>
@@ -286,7 +295,7 @@
 											<tbody id="employmentList">
 											</tbody>
 										</table>
-									  	<a href="<?php echo base_url(); ?>" class="pull-right" id="editEmploymentnDetailsBtn">
+									  	<a href="<?php echo base_url("info/vacancies"); ?>" class="pull-right" id="editEmploymentnDetailsBtn">
 											<button type="button" class="btn btn-primary">Edit Employment History Details</button>
 										</a>										
 									</div>
@@ -304,19 +313,19 @@
 											<div>
 												<div class="col-md-3">
 													<div class="form-group">
-														<p>First Name</p>
+														<p id="control-label">First Name</p>
 															<input type="text" name="refereesFName" value="" class="form-control input-sm" id="refereesFName" placeholder="First Name">
-														<p>Last Name</p>
+														<p id="control-label">Last Name</p>
 															<input type="text" name="refereesLName" value="" class="form-control input-sm" id="refereesLName" placeholder="Last Name">
-														<p>Referee Designation</p>
+														<p id="control-label">Referee Designation</p>
 															<input type="text" name="refereesDesignation" value="" class="form-control input-sm" id="refereesDesignation" placeholder="Referee Designation">
-														<p>Organization</p>
+														<p id="control-label">Organization</p>
 															<input type="text" name="refereesOrganization" value="" class="form-control input-sm" id="refereesOrganization" placeholder="Organization">
-														<p>Phone</p>
+														<p id="control-label">Phone</p>
 															<input type="text" name="refereesPhone" value="" class="form-control input-sm" id="refereesPhone" placeholder="Phone">
-														<p>Email</p>
+														<p id="control-label">Email</p>
 															<input type="text" name="refereesEmail" value="" class="form-control input-sm" id="refereesEmail" placeholder="Email">
-														<p>Website</p>
+														<p id="control-label">Website</p>
 															<input type="text" name="refereesWebsite" value="" class="form-control input-sm" id="refereesWebsite" placeholder="Website">
 													</div>
 												</div>
@@ -336,7 +345,7 @@
 											<tbody id="refereeList">
 											</tbody>
 										</table>
-									  	<a href="<?php echo base_url(); ?>" class="pull-right" id="editReferreeListBtn">
+									  	<a href="<?php echo base_url("info/vacancies"); ?>" class="pull-right" id="editReferreeListBtn">
 											<button type="button" class="btn btn-primary">Edit Referee Details</button>
 										</a>										
 									</div>
@@ -381,7 +390,7 @@
 											<tbody id="userDocsList">
 											</tbody>
 										</table>
-									  	<a href="<?php echo base_url(); ?>" class="pull-right" id="editUserDocsListBtn">
+									  	<a href="<?php echo base_url("info/vacancies"); ?>" class="pull-right" id="editUserDocsListBtn">
 											<button type="button" class="btn btn-primary">Edit Application Letter</button>
 										</a>										
 									</div>
