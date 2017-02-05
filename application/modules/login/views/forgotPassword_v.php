@@ -4,8 +4,8 @@
 			<div class="container">
 				<ul class="jobboard-social-media"></ul><!-- /.social-media -->
 				<div class="jobboard-login-register clearfix">
-					<a class="btn btn-header-register" href="http://zury.co.ke/kippra/register/">REGISTER</a>
-					<a class="btn btn-header-login" href="http://zury.co.ke/kippra/?redirect=http%3A%2F%2Fzury.co.ke%2Fkippra%2F">LOG IN</a>
+					<a class="btn btn-header-register" href="<?php echo base_url();?>register/signup">REGISTER</a>
+					<a class="btn btn-header-login" href="<?php echo base_url();?>login">LOG IN</a>
 				</div>
 			</div><!-- /.container -->
 		</div><!-- /#header-bar -->			
@@ -21,11 +21,12 @@
 			<div class="row">
 				<div class="col-md-5">
 					<div id="login-form-wrapper" class="no-animated">
-						<form name="lostpasswordform" id="login-form" action="http://zury.co.ke/kippra/wp-login.php?action=lostpassword" method="post">
+						<form name="lostpasswordform" id="login-form" method="post">
+							<div  id="alertTag"></div>
 							<div class="form-group">
-								<input class="form-control" type="text" name="user_login" id="user_login" class="input" value="" placeholder="Username or Email"/>
+								<input class="form-control" type="email" name="email_forgot" id="email_forgot" class="input" value="" placeholder="Username or Email"/>
 							</div>
-							<input type="hidden" name="redirect_to" value="http://zury.co.ke/kippra/?redirect=http%3A%2F%2Fzury.co.ke%2Fkippra%2Fhomepage%2F&amp;mode=lost-password&amp;reset=true" />
+							<!-- <input type="hidden" name="redirect_to" value="http://zury.co.ke/kippra/?redirect=http%3A%2F%2Fzury.co.ke%2Fkippra%2Fhomepage%2F&amp;mode=lost-password&amp;reset=true" /> -->
 							<button type="submit" name="user_submit" id="user_submit" value="1" class="btn btn-login">Reset Password</button>
 						</form>
 					</div><!-- /.login-form-wrapper -->
@@ -36,7 +37,7 @@
 						<article id="page-179">
 							<h3 class="sc-title normal">Not A Member? Register Now</h3>
 							<p>An email will be sent to the registered email address; Access email and click on link to activate your account</p>
-							<p><a href="http://zury.co.ke/kippra/register/" target="_self" class="btn sc-button medium grey">REGISTER</a></p>
+							<p><a href="<?php echo base_url();?>register/signup" target="_self" class="btn sc-button medium grey">REGISTER</a></p>
 							<div class="row">
 								<div class="col-sm-6 col-sm-offset-0">
 									<ul class="sc-ul">
@@ -75,3 +76,10 @@
 		</div><!-- /#footer-text -->
 	</footer><!-- /#footer -->
 </div><!-- /#wrapper -->
+<script type="text/javascript" src="<?php echo base_url('assets/customScripts/forgotPassword.js'); ?>"></script>
+<script>
+	$forgotURL = "<?php echo base_url('login/forgotPassword/confirmUser'); ?>";
+	$validateEmailURL = "<?php echo base_url('login/forgotPassword/validateEmail'); ?>";
+	$redirectToResetPage = "<?php echo base_url('login/forgotPassword/resetPassword'); ?>";
+	$preventDuplicate = "<?php echo base_url('login/forgotPassword/conform_code_exists'); ?>";
+</script>

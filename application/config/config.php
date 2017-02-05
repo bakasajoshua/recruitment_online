@@ -15,6 +15,7 @@
 |
 */
 $config['base_url']	= 'http://'.$_SERVER['SERVER_NAME'].':8080/recruit';
+// $config['base_url']	= 'http://'.$_SERVER['SERVER_NAME'].'/recruit';//Bakasa Develop
 
 /*
 |--------------------------------------------------------------------------
@@ -361,3 +362,4 @@ $config['proxy_ips'] = '';
 /* End of file config.php */
 /* Location: ./application/config/config.php */
 define('sqlnterfaceURL','127.0.0.1:8080/recruit/assets/service/sqlInterface.php');//development on .31
+// define('sqlnterfaceURL','127.0.0.1/recruit/assets/service/sqlInterface.php');//Bakasa local on .31

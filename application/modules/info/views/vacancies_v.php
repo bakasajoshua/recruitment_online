@@ -1,3 +1,8 @@
+<style type="text/css">
+	#vacanciesTable_wrapper {
+		background-color: #F2F1EF;
+	}
+</style>
 <div id="wrapper">
 	<header id="header">
 		<!-- loads the avatar section -->
