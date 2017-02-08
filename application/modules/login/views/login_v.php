@@ -65,7 +65,7 @@
 							<hr>
 							<div>
 								<center style="">
-									<a class="lost-password-link" href="<?php echo base_url('register/signup'); ?>">Register</a>	
+									Don't have an account?<a class="lost-password-link" href="<?php echo base_url('register/signup'); ?>">Register</a>
 									<a class="lost-password-link" href="<?php echo base_url('login/forgotPassword'); ?>">Lost password?</a>
 								</center>
 							</div>
