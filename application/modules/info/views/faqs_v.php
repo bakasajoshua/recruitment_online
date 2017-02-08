@@ -61,6 +61,9 @@
 							<h3 class="default-widget-title">Careers</h3>
 							<div class="menu-menu-1-container">
 								<ul id="menu-menu-2" class="menu">
+								<?php
+									if($this->session->userdata('logged_in') == 1){
+								?>
 									<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-219">
 										<a href="<?php echo base_url('info/vacancies'); ?>">Home</a>
 									</li>
@@ -75,8 +78,20 @@
 									<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-232">
 										<a href="<?php echo base_url('info/vacancies'); ?>">Vacancies</a>
 									</li>
+								<?php 
+									}else {
+								?>
+									<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-272">
+										<a href="<?php echo base_url('login'); ?>">Login</a>
+									</li>
+								<?php
+									}
+								?>
 									<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-272">
 										<a href="<?php echo base_url('info/faqs'); ?>">FAQ&#8217;s</a>
+									</li>
+									<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-272">
+										<a href="<?php echo base_url('info/contactUs'); ?>">Contact&nbsp;Us</a>
 									</li>
 								</ul>
 							</div>

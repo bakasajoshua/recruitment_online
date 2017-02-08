@@ -1,14 +1,13 @@
 <div id="wrapper">
 	<header id="header">
-		<div id="header-bar">
+		<!-- <div id="header-bar">
 			<div class="container">
-				<ul class="jobboard-social-media"></ul><!-- /.social-media -->
-				<div class="jobboard-login-register clearfix">
-					<a class="btn btn-header-register" href="<?php echo base_url();?>register/signup">REGISTER</a>
-					<a class="btn btn-header-login" href="<?php echo base_url();?>login">LOG IN</a>
+				<ul class="jobboard-social-media"></ul> --><!-- /.social-media -->
+				<!-- <div class="jobboard-login-register clearfix">
+					<a class="btn btn-header-login" href="<?php echo base_url('login/login/'); ?>">LOG IN</a>
 				</div>
-			</div><!-- /.container -->
-		</div><!-- /#header-bar -->			
+			</div> --><!-- /.container -->
+		<!-- </div> --><!-- /#header-bar -->		
 		<?php $this->load->view('template/menu_v'); ?>
 	</header><!-- /#header -->
 
@@ -20,14 +19,15 @@
 
 			<div class="row">
 				<div class="col-md-5">
-					<div id="login-form-wrapper" class="no-animated">
+					<div id="login-form-wrapper" class="no-animated" style="border-radius: 0px;">
 						<form name="lostpasswordform" id="login-form" method="post">
 							<div  id="alertTag"></div>
 							<div class="form-group">
+								<label for="email_forgot">Username or Email</label>
 								<input class="form-control" type="email" name="email_forgot" id="email_forgot" class="input" value="" placeholder="Username or Email"/>
 							</div>
 							<!-- <input type="hidden" name="redirect_to" value="http://zury.co.ke/kippra/?redirect=http%3A%2F%2Fzury.co.ke%2Fkippra%2Fhomepage%2F&amp;mode=lost-password&amp;reset=true" /> -->
-							<button type="submit" name="user_submit" id="user_submit" value="1" class="btn btn-login">Reset Password</button>
+							<button type="submit" name="user_submit" id="user_submit" value="1" class="btn btn-login"  style="border-radius: 0px;">Reset Password</button>
 						</form>
 					</div><!-- /.login-form-wrapper -->
 				</div><!-- /.col-md-5 -->
