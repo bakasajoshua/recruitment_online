@@ -9,6 +9,7 @@ class Vacancies extends MX_Controller {
 	}
 
 	public function index() {
+		$this->isLoggedIN();
 		$data['content_view'] = 'info/vacancies_v';
 		$data['vacancies'] = $this->getVacancies();
 		// echo "<pre>";print_r($data);die();
