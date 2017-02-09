@@ -1,13 +1,13 @@
 <div id="wrapper">
 	<header id="header">
-		<div id="header-bar">
+		<!-- <div id="header-bar">
 			<div class="container">
-				<ul class="jobboard-social-media"></ul><!-- /.social-media -->
-				<div class="jobboard-login-register clearfix">
+				<ul class="jobboard-social-media"></ul> --><!-- /.social-media -->
+				<!-- <div class="jobboard-login-register clearfix">
 					<a class="btn btn-header-login" href="<?php echo base_url('login/login/'); ?>">LOG IN</a>
 				</div>
-			</div><!-- /.container -->
-		</div><!-- /#header-bar -->			
+			</div> --><!-- /.container -->
+		<!-- </div> --><!-- /#header-bar -->			
 		<?php $this->load->view('template/menu_v'); ?>
 	</header><!-- /#header -->
 
@@ -16,24 +16,28 @@
 			<h1 class="page-title">Register</h1>
 			<div class="row">
 				<div class="col-md-5">
-					<div id="register-form-wrapper" class="">
+					<div id="register-form-wrapper" class="" style="border-radius: 0px;background-color: #1abc9c;">
 						<form id="register-form" method="post">
 							<div  id="alertTag">
 							
 							</div>
 							<div class="form-group">
+								<label for="register_name">Username</label>
 								<input class="form-control" type="text" name="register_name" id="register_name" placeholder="Username" required="required" />
 							</div><!-- /.form-group -->
 							<div class="form-group">
+								<label for="register_email">Email</label>
 								<input class="form-control" type="email" name="register_email" id="register_email" placeholder="Email" required="required" />
 							</div><!-- /.form-group -->
 							<div class="form-group">
+								<label for="register_password">Password</label>
 								<input class="form-control" type="password" name="register_password" id="register_password" placeholder="Password" required="required" />
 							</div><!-- /.form-group -->
 							<div class="form-group">
+								<label for="confirm_register_password">Confirm Password</label>
 								<input class="form-control" type="password" name="confirm_register_password" id="confirm_register_password" placeholder="Confirm Password" required="required" />
 							</div><!-- /.form-group -->
-							<button type="button" name="user_submit" id="user_submit" value="1" class="btn btn-register">Register</button>
+							<button type="button" name="user_submit" id="user_submit" value="1" class="btn btn-register" style="    background-color: #A0E1D3; color: #1abc9c; border-radius: 0px;">Register</button>
 						</form>
 					</div><!-- /.login-form-wrapper -->
 				</div><!-- /.col-md-5 -->
