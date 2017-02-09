@@ -8,26 +8,28 @@ $(document).ready(function(){
 		$loginDetails = $("#login-form").serializeArray();
 
 		$.post($loginUserURL,{"loginDetails":$loginDetails}, function(data, status){
-			console.log(data);
-
 			$data = JSON.parse(data);
 			$responseMsg = $data['message'];
 			$status = $data['status'];
 			
 			if($status == 1){
-				console.log("invalid login");
 				$message = "<center>";
 					$message += "<strong>Error.</strong> <br/>"+$responseMsg;
 				$message += "</center>";
 				showAlert('alert alert-danger','alert alert-success',$message);
 			}else if($status == 0){
-				console.log("Valid Login");
 				$message = "<center>";
 					$message += "<strong>Success.</strong> <br/>"+$responseMsg;
 				$message += "</center>";
 				showAlert('alert alert-success','alert alert-danger',$message);
 				window.location.href = $redirectToHomePage;
-			}else{}
+			}else if($status == 2){
+				$message = "<center>";
+					$message += "<strong>Success.</strong> <br/>"+$responseMsg;
+				$message += "</center>";
+				showAlert('alert alert-success','alert alert-danger',$message);
+				window.location.href = $redirectFirstPage;
+			}
 		});
 	});
 

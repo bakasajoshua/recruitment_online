@@ -96,4 +96,5 @@
 <script type="text/javascript">
 	$loginUserURL = "<?php echo base_url("login/loginUser");?>";
 	$redirectToHomePage = "<?php echo base_url("info/vacancies"); ?>";
+	$redirectFirstPage = "<?php echo base_url("home/uploadResume"); ?>";
 </script>
