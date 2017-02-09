@@ -78,8 +78,14 @@ class Login extends MX_Controller {
 				);
 				$this->session->set_userdata($newdata);	
 
-				$response['message'] =  "Logged In";
-				$response['status'] = 0;
+				if ($cvComplete == 1 || $cvComplete == "1") {
+					$response['message'] =  "Logged In";
+					$response['status'] = 2;
+				} else {
+					$response['message'] =  "Logged In";
+					$response['status'] = 0;
+				}
+				
 		}else{
 			$response['message'] = "Invalid Credentials. <br/> Register using your employee ID to login.";
 			$response['status'] = 1;
