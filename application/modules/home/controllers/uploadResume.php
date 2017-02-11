@@ -10,7 +10,7 @@ class UploadResume extends MX_Controller {
 
 	public function index() {
 		$this->isLoggedIN();
-		$data['content_view'] = 'home/uploadResume_v';
+		$data['content_view'] = 'home/uploadResume_vw';
 		$this->load->view('template/template_v.php',$data);
 	}
 

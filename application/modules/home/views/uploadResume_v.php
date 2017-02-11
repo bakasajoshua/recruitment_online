@@ -460,7 +460,7 @@
 		btnnext     = $(".next");
 		btnback     = $(".back"); 
 		btnsubmit   = $(".submit");
-
+		console.log(widget);
 		// Init buttons and UI
 		widget.not(':eq(0)').hide();
 		hideButtons(current);
