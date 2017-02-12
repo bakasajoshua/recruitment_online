@@ -385,9 +385,8 @@ class UploadResume extends MX_Controller {
 		$emailAddress = $this->session->userdata('Email');
 		$pathTOCv = $this->session->userdata('URLToCv');
 		$pathTOApplicationLetter = $this->session->userdata('pathTOApplicationLetter');
-
-		$pathTOApplicationLetter = json_encode($pathTOApplicationLetter);
-		$pathTOCv = json_encode($pathTOCv);
+		$pathTOApplicationLetter = $pathTOApplicationLetter;
+		$pathTOCv = $pathTOCv;
 
 		$curl = curl_init();
 		curl_setopt_array($curl, array(

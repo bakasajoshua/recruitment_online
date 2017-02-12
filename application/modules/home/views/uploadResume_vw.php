@@ -693,7 +693,7 @@
                 
             }else if (current == 5){
                 //Documents
-                $respose = validateDocuments();
+               // $respose = validateDocuments();
             }
             
         });

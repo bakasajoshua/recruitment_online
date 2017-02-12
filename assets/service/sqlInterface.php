@@ -361,7 +361,7 @@
 			$emailAddress = $_POST['emailAddress'];
 			$pathTOCv = $_POST['pathTOCv'];
 			$pathTOApplicationLetter = $_POST['pathTOApplicationLetter'];
-			
+			// echo "<pre>";print_r($emailAddress)
 			$client = new SoapClient($webServiceUrl);
 			try {
 				$res = $client->savefilepaths(array(
