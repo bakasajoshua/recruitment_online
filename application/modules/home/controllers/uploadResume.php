@@ -404,6 +404,8 @@ class UploadResume extends MX_Controller {
 		$result = curl_exec($curl);
 		// Close request to clear up some resources
 		curl_close($curl);
+
+		$this->validateCompetionOfCV($emailAddress,$this->session->userdata('cvComplete'));
 		$this->session->unset_userdata('URLToCv');
 		$this->session->unset_userdata('pathTOApplicationLetter');
 
