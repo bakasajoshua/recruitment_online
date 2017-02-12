@@ -59,6 +59,51 @@ class UploadResume extends MX_Controller {
 		echo $result;
 	}
 
+	public function editPersonalDetails(){
+		$fname = $_POST['fname'];
+		$mname = $_POST['mname'];
+		$lname = $_POST['lname'];
+		$mobileNo = $_POST['mobileNo'];
+		$address =$_POST['address'];
+		$country = $_POST['country'];
+		$pin = $_POST['pin'];
+		$passportNo = $_POST['passportNo'];
+		$disabledStatus = $_POST['disabledStatus'];
+		$maritalStatus = $_POST['maritalStatus'];
+		$currentLocation = $_POST['currentLocation'];
+		$nationalIDNO = $_POST['nationalIDNO'];
+					
+		$email = $this->session->userdata('Email');
+
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		    CURLOPT_RETURNTRANSFER => 1,
+		    CURLOPT_URL => sqlnterfaceURL,
+		    CURLOPT_USERAGENT => 'ESSDP',
+		    CURLOPT_POST => 1,
+		    CURLOPT_POSTFIELDS => array(
+		        'action' => 'EDITPERSONALDETAILS',
+		        "email"=>$email,
+		        "fname"=>$fname,
+				"mname"=>$mname,
+				"lname"=>$lname,
+				"mobileNo"=>$mobileNo,
+				"address"=>$address,
+				"country"=>$country,
+				"pin"=>$pin,
+				"passportNo"=>$passportNo,
+				"disabledStatus"=>$disabledStatus,
+				"maritalStatus"=>$maritalStatus,
+				"currentLocation"=>$currentLocation,
+				"nationalIDNO"=>$nationalIDNO
+		    )
+		));
+		$result = curl_exec($curl);
+		// Close request to clear up some resources
+		curl_close($curl);
+		echo $result;
+	}
+
 	public function saveQualificationDetails(){
 		$qualificationValues = $_POST['qualificationsFormValues'];
 		// print_r($qualificationValues);die;
@@ -240,7 +285,7 @@ class UploadResume extends MX_Controller {
 		$tmpName = $_FILES["documentsApplicationLetter"]["tmp_name"]; //tempName
 		$fileError = $_FILES["documentsApplicationLetter"]["error"];
 		$uploadLocation = "C:\\xampp\\htdocs\\recruit\\assets\\uploads";//base_url('assets/uploads');
-		$URLToFileLocation = '169.239.252.31:8080/assets/uploads';
+		$URLToFileLocation = '169.239.252.31:8080/recruit/assets/uploads';
 		$fileName = preg_replace("/[^A-Z0-9._-]/i", "_", $fileName);
 		$fileNameArray = explode(".", $fileName);// ensure a safe filename
 		// if (!empty($_FILES["documentsApplicationLetter"])) {

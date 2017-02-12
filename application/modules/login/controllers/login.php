@@ -32,9 +32,10 @@ class Login extends MX_Controller {
 		));
 		$result = curl_exec($curl);
 		// Close request to clear up some resources
+		// echo $result;
 		curl_close($curl);
 		$result = json_decode($result);
-		
+		// die();
 		
 		if(isset($result[0]->fname)){
 				$username = $result[0]->username;
@@ -77,7 +78,7 @@ class Login extends MX_Controller {
 			        'logged_in' => TRUE
 				);
 				$this->session->set_userdata($newdata);	
-
+				// echo json_encode($cvComplete);die();
 				if ($cvComplete == 1 || $cvComplete == "1") {
 					$response['message'] =  "Logged In";
 					$response['status'] = 2;

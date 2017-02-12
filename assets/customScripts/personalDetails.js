@@ -93,12 +93,12 @@ $(document).ready(function(){
 							$message += "</center>";
 			    			showAlert('alert alert-success','alert alert-danger',$message);
 
-			    			if(current < widget.length){ 
-								widget.show();
-								widget.not(':eq('+(current++)+')').hide();
-								setProgress(current);
-							}
-							hideButtons(current);
+			    // 			if(current < widget.length){ 
+							// 	widget.show();
+							// 	widget.not(':eq('+(current++)+')').hide();
+							// 	setProgress(current);
+							// }
+							// hideButtons(current);
 			    		}else{
 			    			$message = "<center>";
 								$message += "<strong>Error.</strong> <br/> An error occurred during update please try again.";
@@ -108,17 +108,54 @@ $(document).ready(function(){
 				    }
 			    );
 			}else if($status == 0){//data was returned, to edit this information go to view my CV page 
-				$message = "<center>";
-					$message += "<strong>Error.</strong> <br/> Go to your CV to edit your personal details.";
-				$message += "</center>";
-    			showAlert('alert alert-danger','alert alert-success',$message);
+				$.post($editPersonalDetailsURL,
+						{
+							"fname":$fname,
+							"mname":$mname,
+							"lname":$lname,
+							"mobileNo":$mobileNo,
+							"address":$address,
+							"country":$country,
+							"pin":$pin,
+							"passportNo":$passportNo,
+							"disabledStatus":$disabledStatus,
+							"maritalStatus":$maritalStatus,
+							"currentLocation":$currentLocation,
+							"nationalIDNO":$nationalIDNO
+						}, 
+					function(data, status){
+						console.log(data);
+						if(data == "Updated"){
+			    			$message = "<center>";
+								$message += "<strong>Success.</strong> <br/> Personal Details have successfully Updated.";
+							$message += "</center>";
+			    			showAlert('alert alert-success','alert alert-danger',$message);
 
-				if(current < widget.length){ 
-					widget.show();
-					widget.not(':eq('+(current++)+')').hide();
-					setProgress(current);
-				}
-				hideButtons(current);
+			    // 			if(current < widget.length){ 
+							// 	widget.show();
+							// 	widget.not(':eq('+(current++)+')').hide();
+							// 	setProgress(current);
+							// }
+							// hideButtons(current);
+			    		}else{
+			    			$message = "<center>";
+								$message += "<strong>Error.</strong> <br/> An error occurred during update please try again.";
+							$message += "</center>";
+			    			showAlert('alert alert-danger','alert alert-success',$message);
+			    		}
+				    }
+			    );
+				// $message = "<center>";
+				// 	$message += "<strong>Error.</strong> <br/> Go to your CV to edit your personal details.";
+				// $message += "</center>";
+    // 			showAlert('alert alert-danger','alert alert-success',$message);
+
+				// if(current < widget.length){ 
+				// 	widget.show();
+				// 	widget.not(':eq('+(current++)+')').hide();
+				// 	setProgress(current);
+				// }
+				// hideButtons(current);
 			}else{}
 		});
 	}
