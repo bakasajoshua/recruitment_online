@@ -54,7 +54,7 @@ $(document).ready(function(){
 	$("#submitCV").click(function(){		
 		if($("#documentsApplicationLetter").get(0).files.length == 0 || $("#documentsCV").get(0).files.length == 0 ){
 			$message = "<center>";
-				$message += "<strong>Error.</strong> <br/> Kindly upload your a PDF copy of your CV and application letter.";
+				$message += "<strong>Error.</strong> <br/> Kindly upload a PDF copy of your CV and application letter.";
 			$message += "</center>";
 			showAlert('alert alert-danger','alert alert-success',$message);
 		}else{
@@ -108,7 +108,7 @@ $(document).ready(function(){
 
 				setTimeout(function(){
 					window.location.assign($refreshUploadResumePage)
-				},5000)
+				},5000);
 				
 			}else{}
 		},function(prog,value){
@@ -165,9 +165,10 @@ $(document).ready(function(){
 	}
 
 		window.displayUserDocsTable = function($dataReturned){
+			console.log($dataReturned);
 			for($i = 0; $i < $dataReturned.length; $i++){
-				$linkToCV = JSON.parse($dataReturned[$i]['linkToCV']);
-				$linkToApplicationLetter = JSON.parse($dataReturned[$i]['linkToApplicationLetter']);
+				$linkToCV = $dataReturned[$i]['linkToCV'];
+				$linkToApplicationLetter = $dataReturned[$i]['linkToApplicationLetter'];
 				
 				$tableRow = '<tr>';
 				$tableRow += '<td> <a href='+$linkToCV+'> View C.V</a></td>';

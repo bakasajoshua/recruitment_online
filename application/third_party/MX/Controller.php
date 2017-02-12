@@ -233,7 +233,7 @@ class MX_Controller
 					return json_encode($response);
 				}else{//an error occured while updateing the complete CV status, allow user to login but warn them about not been able to apply for positions
 					$response['status'] = 1;
-					$response['message'] = "CV is complete, but y1ou might not be able to apply";
+					$response['message'] = "CV is complete, but you might not be able to apply";
 				}
 				return json_encode($response);
 			}else{

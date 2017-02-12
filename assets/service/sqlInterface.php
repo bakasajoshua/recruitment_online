@@ -187,6 +187,43 @@
 			    $res = "Error: {$e->faultstring}";
 			}
 			echo $res->insertPersonalDetailsResult;
+		}else if($action == "EDITPERSONALDETAILS"){
+			$fname = $_POST['fname'];
+			$mname = $_POST['mname'];
+			$lname = $_POST['lname'];
+			$mobileNo = $_POST['mobileNo'];
+			$address =$_POST['address'];
+			$country = $_POST['country'];
+			$pin = $_POST['pin'];
+			$passportNo = $_POST['passportNo'];
+			$disabledStatus = $_POST['disabledStatus'];
+			$maritalStatus = $_POST['maritalStatus'];
+			$email = $_POST['email'];
+			$nationalIDNO = $_POST['nationalIDNO'];
+			$currentLocation = $_POST['currentLocation'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->editPersonalDetails(array(
+											"email"=>$email,
+											"fname"=>$fname,
+											"mname"=>$mname,
+											"lname"=>$lname,
+											"mobileNo"=>$mobileNo,
+											"address"=>$address,
+											"country"=>$country,
+											"pin"=>$pin,
+											"passportNo"=>$passportNo,
+											"disabledStatus"=>$disabledStatus,
+											"maritalStatus"=>$maritalStatus,
+											"currentLocation"=>$currentLocation,
+											"nationalIDNO"=>$nationalIDNO
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}
+			echo $res->editPersonalDetailsResult;
 		}else if($action == "SAVEQUALIFICATIONS"){
 			$qualifications = $_POST['qualifications'];
 			$email = $_POST['email'];
@@ -324,7 +361,7 @@
 			$emailAddress = $_POST['emailAddress'];
 			$pathTOCv = $_POST['pathTOCv'];
 			$pathTOApplicationLetter = $_POST['pathTOApplicationLetter'];
-			
+			// echo "<pre>";print_r($emailAddress)
 			$client = new SoapClient($webServiceUrl);
 			try {
 				$res = $client->savefilepaths(array(

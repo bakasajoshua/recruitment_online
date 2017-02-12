@@ -451,6 +451,7 @@
     $(document).ready(function(){
         //Save CV URLS
         $savePersonalDetailsURL = "<?php echo base_url('home/uploadResume/savePersonalDetails'); ?>";
+        $editPersonalDetailsURL = "<?php echo base_url('home/uploadResume/editPersonalDetails'); ?>";
         $saveQualificationDetailsURL = "<?php echo base_url('home/uploadResume/saveQualificationDetails'); ?>";
         $saveEmploymentHistoryDetailsURL = "<?php echo base_url('home/uploadResume/saveEmploymentHistoryDetails'); ?>";
         $saveRefereeDetailsURL = "<?php echo base_url('home/uploadResume/saveRefereeDetails'); ?>";
@@ -495,7 +496,7 @@
                             }else if($status == 0){
                                 $message = $data['message'];
                                 $dataReturned = $data['data'];
-                                $("#editPersonalDetailsBtn").show();
+                                savePersonalDetails(current);
                                 //redirect to next form
                                 $(".overlay").hide();
                             }else{}         
@@ -692,7 +693,7 @@
                 
             }else if (current == 5){
                 //Documents
-                $respose = validateDocuments();
+               // $respose = validateDocuments();
             }
             
         });
