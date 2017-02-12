@@ -165,13 +165,14 @@
                                  </div>
                               </div>
                            </div>
-                           <div class="col-md-6 col-md-offset-8">
-                               <button class="btnNext btn btn-primary" value="1">Save Details</button>
+                           <div class="col-md-2 col-md-offset-10">
+                               <button class="btnSave btn btn-primary" value="1">Save Details</button>
+                               <button class="btnNext btn btn-primary" value="1">Next</button>
                            </div>
                         </form>
-                        <a href="<?php echo base_url("info/vacancies"); ?>" class="pull-right" id="editPersonalDetailsBtn">
+                        <!-- <a href="<?php echo base_url("info/vacancies"); ?>" class="pull-right" id="editPersonalDetailsBtn">
                            <button type="button" class="btn btn-primary">Edit Personal Details</button>
-                        </a>
+                        </a> -->
                      </div>
                      <div role="tabpanel" class="tab-pane" id="qualification">
                      <br><br>
@@ -230,7 +231,8 @@
                            </div>
                             <div class="col-md-6 col-md-offset-8">
                                <button class="btnBack btn btn-primary" value="1">Previous</button>
-                               <button class="btnNext btn btn-primary" value="2">Save Details</button>
+                               <button class="btnSave btn btn-primary" value="2">Save Details</button>
+                               <button class="btnNext btn btn-primary" value="1">Next</button>
                             </div>
                         </form>
 
@@ -299,7 +301,8 @@
                            </div>
                            <div class="col-md-6 col-md-offset-6">
                                <button class="btnBack btn btn-primary" value="1">Previous</button>
-                               <button class="btnNext btn btn-primary" value="3">Save Details</button>
+                               <button class="btnSave btn btn-primary" value="3">Save Details</button>
+                               <button class="btnNext btn btn-primary" value="1">Next</button>
                             </div>
                         </form>
                         <div class="table-responsive" id="employmentListContainer">
@@ -323,7 +326,7 @@
                      <div role="tabpanel" class="tab-pane" id="referee">
                      <br><br>
                      <div class="row">
-                         <i class="fa fa-plus" aria-hidden="true" id="addReferee" title="Add Referee" style="cursor: pointer;">Add Referee</i>
+                         <i class="fa fa-plus" aria-hidden="true" id="addReferee" title="Add Referee" style="cursor: pointer;color: blue;">Add Referee</i>
                      </div>
                         <form id="refereesForm">
                            <div class="field_wrapperReferees" >
@@ -350,7 +353,8 @@
                            </div>
                            <div class="col-md-6 col-md-offset-6">
                                <button class="btnBack btn btn-primary" value="1">Previous</button>
-                               <button class="btnNext btn btn-primary" value="4">Save Details</button>
+                               <button class="btnSave btn btn-primary" value="4">Save Details</button>
+                               <button class="btnNext btn btn-primary" value="1">Next</button>
                             </div>
                         </form>
 
@@ -366,10 +370,7 @@
                               <tbody id="refereeList">
                               </tbody>
                            </table>
-                           <div class="col-md-6 col-md-offset-6">
-                               <button class="btnBack btn btn-primary" value="1">Previous</button>
-                               <button class="btnNext btn btn-primary" value="2">Save Details</button>
-                            </div>
+                           
                            <a href="<?php echo base_url("info/vacancies"); ?>" class="pull-right" id="editReferreeListBtn">
                               <button type="button" class="btn btn-primary">Edit Referee Details</button>
                            </a>                             
@@ -404,7 +405,7 @@
                            </div>
                            <div class="col-md-6 col-md-offset-6">
                                    <button class="btnBack btn btn-primary" value="1">Previous</button>
-                                   <button class="btnNext btn btn-primary" value="5">Save Details</button>
+                                   <button class="btnSave btn btn-primary" value="5" id="submitCV">Save Details</button>
                                 </div>
                         </form>
 
@@ -433,7 +434,7 @@
       </div>
     </div>
   </div>
-  <!-- <footer id="footer">
+  <footer id="footer">
     <div id="footer-text" class="container">
       Developed By Sepia      
     </div><!-- /#footer-text -->
@@ -474,7 +475,7 @@
         getRefereeDetails(9999,"onPageLoad");//pre-populate the Referee details if user has alread provided these details
         getUserDocuements(9999, "onPageLoad");//pre-populates the application letter and CV if provided
 
-        $(".btnNext").click(function(e){
+        $(".btnSave").click(function(e){
             e.preventDefault();
             current = $(this).val();
             if (current == 1){

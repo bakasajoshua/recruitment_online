@@ -78,6 +78,17 @@
 						<article id="page-105">
 							<h3 class="default-widget-title">WELCOME TO KIPPRA RECRUITMENT PORTAL</h3>
 							<p>The Kenya Institute for Public Policy Research and Analysis (KIPPRA) is an autonomous public institute that was established in May 1997 through a Legal Notice and commenced operations in June 1999. In January 2007,His Excellency the President signed the KIPPRA Bill into law and the KIPPRA Act No. 15 of 2006 commenced on 1st February 2007.</p>
+							<ul class="sc-ul">
+								<li>
+									<i style="color:#1abc9c" class="fa fa-fw fa-arrow-right"></i> Provide your login details here
+								</li>
+								<li>
+									<i style="color:#1abc9c" class="fa fa-fw fa-arrow-right"></i> Login and fill your personal and qualification details and attach required documents
+								</li>
+								<li>
+									<i style="color:#1abc9c" class="fa fa-fw fa-arrow-right"></i> Go to vacancies and apply for the advertised positions
+								</li>
+							</ul>
 						</article>
 					</div><!-- /#content -->
 				</div><!-- /.col-md-7 -->
