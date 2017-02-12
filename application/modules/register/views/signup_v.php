@@ -48,7 +48,37 @@
 							<p>
 								<a href="<?php echo base_url("login"); ?>" target="_self" class="btn sc-button medium grey">Log In</a>
 							</p>
-							<p>&nbsp;</p>
+							<div class="row">
+								<div class="col-sm-6 col-sm-offset-0">
+									<ul class="sc-ul">
+										<li>
+											<i style="color:#1abc9c" class="fa fa-fw fa-arrow-right"></i> Provide your login details here
+										</li>
+										<li>
+											<i style="color:#1abc9c" class="fa fa-fw fa-arrow-right"></i> You will receive an email with the login details
+										</li>
+										<li>
+											<i style="color:#1abc9c" class="fa fa-fw fa-arrow-right"></i> Login and fill your personal and qualification details and attach required documents
+										</li>
+										<li>
+											<i style="color:#1abc9c" class="fa fa-fw fa-arrow-right"></i> Go to vacancies and apply for the advertised positions
+										</li>
+									</ul>
+								</div>
+								<div class="col-sm-6 col-sm-offset-0">
+									<ul class="sc-ul">
+										<li>
+											<i style="color:#1abc9c" class="fa fa-fw fa-arrow-right"></i>
+											<p> 
+												The Kenya Institute for Public Policy Research and Analysis (KIPPRA) is an autonomous public institute that was established in May 1997 through a Legal Notice and commenced operations in June 1999. In January 2007,His Excellency the President signed the KIPPRA Bill into law and the KIPPRA Act No. 15 of 2006 commenced on 1st February 2007.
+											</p>
+											<p>
+												The Institute is thus an autonomous Think Tank established under an Act of Parliament.
+											</p>
+										</li>
+									</ul>
+								</div>
+							</div>
 						</article>
 					</div><!-- /#content -->
 				</div><!-- /.col-md-7 -->
