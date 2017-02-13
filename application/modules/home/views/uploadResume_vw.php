@@ -176,11 +176,10 @@
                      </div>
                      <div role="tabpanel" class="tab-pane" id="qualification">
                      <br><br>
-                     <div class="row">
-                         <i class="fa fa-plus" aria-hidden="true" id="addQualifications" title="Add Qualification" style="cursor: pointer;">Add Qualification</i>
-                     </div>
-                        
                         <form id="qualificationsForm">
+                        <div class="row">
+                           <i class="fa fa-plus" aria-hidden="true" id="addQualifications" title="Add Qualification" style="cursor: pointer;">Add Qualification</i>
+                        </div>
                            <div class="field_wrapperQualifications">
                               <div>
                                  <div class="col-md-3">
@@ -250,17 +249,18 @@
                               </tbody>                               
                            </table>
                           
-                           <a href="<?php echo base_url("info/vacancies"); ?>" class="pull-right" id="editQualificationDetailsBtn">
+                           <!-- <a href="<?php echo base_url("info/vacancies"); ?>" class="pull-right" id="editQualificationDetailsBtn">
                               <button type="button" class="btn btn-primary">Edit Qualification Details</button>
-                           </a>
+                           </a> -->
                         </div>
                      </div>
                      <div role="tabpanel" class="tab-pane" id="employment">
                      <br><br>
-                     <div class="row">
-                         <i class="fa fa-plus" aria-hidden="true" id="addEmploymentHistory" title="Add Employment History" style="cursor:pointer;">Add Employment History</i>
-                     </div>
+                     
                         <form id="employmentForm">
+                        <div class="row">
+                           <i class="fa fa-plus" aria-hidden="true" id="addEmploymentHistory" title="Add Employment History" style="cursor:pointer;">Add Employment History</i>
+                        </div>
                            <div class="employmentHistoryfield_wrapper">
                               <div>
                                  <div class="col-md-3">
@@ -317,18 +317,19 @@
                               </tbody>
                            </table>
                            
-                           <a href="<?php echo base_url("info/vacancies"); ?>" class="pull-right" id="editEmploymentnDetailsBtn">
+                           <!-- <a href="<?php echo base_url("info/vacancies"); ?>" class="pull-right" id="editEmploymentnDetailsBtn">
                               <button type="button" class="btn btn-primary">Edit Employment History Details</button>
-                           </a>                             
+                           </a>    -->                          
                         </div>
 
                      </div>
                      <div role="tabpanel" class="tab-pane" id="referee">
                      <br><br>
-                     <div class="row">
-                         <i class="fa fa-plus" aria-hidden="true" id="addReferee" title="Add Referee" style="cursor: pointer;color: blue;">Add Referee</i>
-                     </div>
+                     
                         <form id="refereesForm">
+                        <div class="row">
+                           <i class="fa fa-plus" aria-hidden="true" id="addReferee" title="Add Referee" style="cursor: pointer;color: blue;">Add Referee</i>
+                        </div>
                            <div class="field_wrapperReferees" >
                               <div>
                                  <div class="col-md-3">
@@ -371,9 +372,9 @@
                               </tbody>
                            </table>
                            
-                           <a href="<?php echo base_url("info/vacancies"); ?>" class="pull-right" id="editReferreeListBtn">
+                           <!-- <a href="<?php echo base_url("info/vacancies"); ?>" class="pull-right" id="editReferreeListBtn">
                               <button type="button" class="btn btn-primary">Edit Referee Details</button>
-                           </a>                             
+                           </a> -->                             
                         </div>
                      </div>
                      <div role="tabpanel" class="tab-pane" id="documents">
@@ -418,9 +419,9 @@
                               <tbody id="userDocsList">
                               </tbody>
                            </table>
-                           <a href="<?php echo base_url("info/vacancies"); ?>" id="editUserDocsListBtn">
+                           <!-- <a href="<?php echo base_url("info/vacancies"); ?>" id="editUserDocsListBtn">
                               <button type="button" class="btn btn-primary">Edit Application Letter</button>
-                           </a>                             
+                           </a> -->                             
                         </div>
                      </div>
                       
@@ -500,8 +501,7 @@
                                 //redirect to next form
                                 $(".overlay").hide();
                             }else{}         
-                        });
-                         $('.nav-tabs a[href="#qualification"]').tab('show');    
+                        });   
                     }else{//the form is invalid
                         $message = "<center>";
                             $message += "<strong>Error.</strong> <br/>"+$response;
@@ -559,7 +559,6 @@
                                 // hideButtons(current);
                             }else{}         
                         });
-                        $('.nav-tabs a[href="#employment"]').tab('show');
                     }else{
                         $message = "<center>";
                             $message += "<strong>Error.</strong> <br/> Please fill in all the fields.";
@@ -624,7 +623,6 @@
                                 // hideButtons(current);
                             }else{}
                         });
-                        $('.nav-tabs a[href="#referee"]').tab('show');
                     }else{
                         $message = "<center>";
                             $message += "<strong>Error.</strong> <br/> Please fill in all the fields.";
@@ -682,7 +680,6 @@
                                 // }
                                 // hideButtons(current);
                             }else{}
-                            $('.nav-tabs a[href="#documents"]').tab('show');
                         });
                     }else{
                         $message = "<center>";
@@ -691,6 +688,24 @@
                         showAlert('alert alert-danger','alert alert-success',$message);
                     }
                 
+            }else if (current == 5){
+                //Documents
+               // $respose = validateDocuments();
+            }
+            
+        });
+
+$(".btnNext").click(function(e){
+            e.preventDefault();
+            current = $(this).val();
+            if (current == 1){
+               $('.nav-tabs a[href="#qualification"]').tab('show');    
+            }else if (current == 2){
+               $('.nav-tabs a[href="#employment"]').tab('show');
+            }else if (current == 3){
+               $('.nav-tabs a[href="#referee"]').tab('show');
+            }else if (current == 4){
+               $('.nav-tabs a[href="#documents"]').tab('show');
             }else if (current == 5){
                 //Documents
                // $respose = validateDocuments();
