@@ -26,8 +26,8 @@
 								<a href="#">Personal Details</a>
 								<ul class="sub-menu">
 									<li id="menu-item-223" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-223">
+										<a href="<?php echo base_url('home/viewCV'); ?>">Profile</a>
 										<a href="<?php echo base_url('home/uploadResume'); ?>">Post Your Details</a>
-										<a href="<?php echo base_url('home/viewCV'); ?>">Your CV</a>
 									</li>
 								</ul>
 							</li>
