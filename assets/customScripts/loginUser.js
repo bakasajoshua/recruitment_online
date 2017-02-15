@@ -28,7 +28,7 @@ $(document).ready(function(){
 					$message += "<strong>Success.</strong> <br/>"+$responseMsg;
 				$message += "</center>";
 				showAlert('alert alert-success','alert alert-danger',$message);
-				window.location.href = $redirectFirstPage;
+				window.location.href = $redirectToHomePage;
 			}
 		});
 	});

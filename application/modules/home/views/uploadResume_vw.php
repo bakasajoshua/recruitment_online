@@ -43,133 +43,250 @@
                   <div class="tab-content">
                      <div role="tabpanel" class="tab-pane active" id="person_details">
                         <br><br>
-                        <form id="personalDetailsForm">
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="name" class="col-sm-2 control-label" id="control-label">First Name</label>
-                                 <div class="col-sm-10">
-                                    <input type="text" name="fname" id="fname" class="form-control" placeholder="First Name">
+                        <div id="pdForm">
+                           <form id="personalDetailsForm" style="display: none;">
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="name" class="col-sm-2 control-label" id="control-label">First Name</label>
+                                    <div class="col-sm-10">
+                                       <input type="text" name="fname" id="fname" class="form-control" placeholder="First Name">
+                                    </div>
                                  </div>
                               </div>
-                           </div>
-                           
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="email" class="col-sm-2 control-label" id="control-label">Middle Name</label>
-                                 <div class="col-sm-10">
-                                    <input type="text" name="mname" id="mname" class="form-control" id="email" placeholder="Middle Name">
-                                 </div>
-                              </div>           
-                           </div>
+                              
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label" id="control-label">Middle Name</label>
+                                    <div class="col-sm-10">
+                                       <input type="text" name="mname" id="mname" class="form-control" id="email" placeholder="Middle Name">
+                                    </div>
+                                 </div>           
+                              </div>
 
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="email" class="col-sm-2 control-label" id="control-label">Last Name</label>
-                                 <div class="col-sm-10">
-                                    <input type="text" name="lname" id="lname" class="form-control" id="email" placeholder="Last Name">
-                                 </div>
-                              </div>           
-                           </div>
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label" id="control-label">Last Name</label>
+                                    <div class="col-sm-10">
+                                       <input type="text" name="lname" id="lname" class="form-control" id="email" placeholder="Last Name">
+                                    </div>
+                                 </div>           
+                              </div>
 
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="email" class="col-sm-2 control-label" id="control-label">Mobile No.</label>
-                                 <div class="col-sm-10">
-                                    <input type="text" name="mobileNo" id="mobileNo" class="form-control" id="email" placeholder="Mobile No.">
-                                 </div>
-                              </div>           
-                           </div>
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label" id="control-label">Mobile No.</label>
+                                    <div class="col-sm-10">
+                                       <input type="text" name="mobileNo" id="mobileNo" class="form-control" id="email" placeholder="Mobile No.">
+                                    </div>
+                                 </div>           
+                              </div>
 
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="email" class="col-sm-2 control-label" id="control-label">Postal Address</label>
-                                 <div class="col-sm-10">
-                                    <input type="text" name="address" id="address" class="form-control" id="email" placeholder="Address">
-                                 </div>
-                              </div>           
-                           </div>
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label" id="control-label">Postal Address</label>
+                                    <div class="col-sm-10">
+                                       <input type="text" name="address" id="address" class="form-control" id="email" placeholder="Address">
+                                    </div>
+                                 </div>           
+                              </div>
 
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="email" class="col-sm-2 control-label">Current Location</label>
-                                 <div class="col-sm-10">
-                                    <input type="text" name="currentLocation" id="currentLocation" class="form-control" id="email" placeholder="Address">
-                                 </div>
-                              </div>           
-                           </div>
-                           
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="country" class="col-sm-2 control-label" id="control-label">Country</label>
-                                 <div class="col-sm-10">
-                                    <select class="form-control" name="country" id="country">
-                                       <?php $this->load->view('home/listOfCountries'); ?>
-                                    </select>
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">Current Location</label>
+                                    <div class="col-sm-10">
+                                       <input type="text" name="currentLocation" id="currentLocation" class="form-control" id="email" placeholder="Address">
+                                    </div>
+                                 </div>           
+                              </div>
+                              
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="country" class="col-sm-2 control-label" id="control-label">Country</label>
+                                    <div class="col-sm-10">
+                                       <select class="form-control" name="country" id="country">
+                                          <?php $this->load->view('home/listOfCountries'); ?>
+                                       </select>
+                                    </div>
                                  </div>
                               </div>
-                           </div>
 
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="email" class="col-sm-2 control-label" id="control-label">PIN No.</label>
-                                 <div class="col-sm-10">
-                                    <input type="text" name="pinNo" id="pinNo" class="form-control" placeholder="KRA PIN">
-                                 </div>
-                              </div>           
-                           </div>
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label" id="control-label">PIN No.</label>
+                                    <div class="col-sm-10">
+                                       <input type="text" name="pinNo" id="pinNo" class="form-control" placeholder="KRA PIN">
+                                    </div>
+                                 </div>           
+                              </div>
 
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="email" class="col-sm-2 control-label">National ID No.</label>
-                                 <div class="col-sm-10">
-                                    <input type="text" name="nationalIDNO" id="nationalIDNO" class="form-control" placeholder="National ID No.">
-                                 </div>
-                              </div>           
-                           </div>
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">National ID No.</label>
+                                    <div class="col-sm-10">
+                                       <input type="text" name="nationalIDNO" id="nationalIDNO" class="form-control" placeholder="National ID No.">
+                                    </div>
+                                 </div>           
+                              </div>
 
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="email" class="col-sm-2 control-label">Passport No.</label>
-                                 <div class="col-sm-10">
-                                    <input type="text" name="passportNo" id="passportNo" class="form-control" id="passportNo" placeholder="(Optional)">
-                                 </div>
-                              </div>           
-                           </div>
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">Passport No.</label>
+                                    <div class="col-sm-10">
+                                       <input type="text" name="passportNo" id="passportNo" class="form-control" id="passportNo" placeholder="(Optional)">
+                                    </div>
+                                 </div>           
+                              </div>
 
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="country" class="col-sm-2 control-label" id="control-label">Disabled?</label>
-                                 <div class="col-sm-10">
-                                    <select class="form-control" name="disabledStatus" id="disabledStatus">
-                                       <option value="">Select</option>
-                                          <option value="Yes">Yes</option>
-                                          <option value="No">No</option>
-                                    </select>
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="country" class="col-sm-2 control-label" id="control-label">Disabled?</label>
+                                    <div class="col-sm-10">
+                                       <select class="form-control" name="disabledStatus" id="disabledStatus">
+                                          <option value="">Select</option>
+                                             <option value="Yes">Yes</option>
+                                             <option value="No">No</option>
+                                       </select>
+                                    </div>
                                  </div>
                               </div>
-                           </div>
 
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="country" class="col-sm-2 control-label" id="control-label">Marital Status?</label>
-                                 <div class="col-sm-10">
-                                    <select class="form-control" name="maritalStatus" id="maritalStatus">
-                                       <option value="">Select</option>
-                                          <option value="single">Single</option>
-                                          <option value="married">Married</option>
-                                          <option value="divorced">Divorced</option>
-                                          <option value="separated">Separated</option>
-                                          <option value="widow">Widow(er)</option>
-                                          <option value="otjer">Other</option>
-                                    </select>
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="country" class="col-sm-2 control-label" id="control-label">Marital Status?</label>
+                                    <div class="col-sm-10">
+                                       <select class="form-control" name="maritalStatus" id="maritalStatus">
+                                          <option value="">Select</option>
+                                             <option value="single">Single</option>
+                                             <option value="married">Married</option>
+                                             <option value="divorced">Divorced</option>
+                                             <option value="separated">Separated</option>
+                                             <option value="widow">Widow(er)</option>
+                                             <option value="otjer">Other</option>
+                                       </select>
+                                    </div>
                                  </div>
                               </div>
+
+                              <div class="col-md-2 col-md-offset-10">
+                                  <button class="btnSave btn btn-primary" value="1" style="margin-bottom: 0.5em;">Save Details</button>
+                              </div>
+                           </form>
+                        </div>
+                        <div id="pdLabels">
+                           <div>
+                              <button class="btn btn-primary" id="addEditBtn">Add/Edit Details</button>
                            </div>
-                           <div class="col-md-2 col-md-offset-10">
-                               <button class="btnSave btn btn-primary" value="1">Save Details</button>
-                               <button class="btnNext btn btn-primary" value="1">Next</button>
-                           </div>
-                        </form>
+                           <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="lbfname" class="col-sm-4 control-label">First Name</label>
+                                    <div class="col-sm-8">
+                                       <label id="lbfname" class="col-sm-10"></label>
+                                    </div>
+                                 </div>
+                              </div>
+                              
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="lbmname" class="col-sm-4 control-label"">Middle Name</label>
+                                    <div class="col-sm-8">
+                                       <label id="lbmname" class="col-sm-10"></label>
+                                    </div>
+                                 </div>           
+                              </div>
+
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="lblname" class="col-sm-4 control-label">Last Name</label>
+                                    <div class="col-sm-8">
+                                       <label id="lblname" class="col-sm-10"></label>
+                                    </div>
+                                 </div>           
+                              </div>
+
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="lbmobileNo" class="col-sm-4 control-label">Mobile No.</label>
+                                    <div class="col-sm-8">
+                                       <label id="lbmobileNo" class="col-sm-10"></label>
+                                    </div>
+                                 </div>           
+                              </div>
+
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="lbaddress" class="col-sm-4 control-label">Postal Address</label>
+                                    <div class="col-sm-8">
+                                       <label id="lbaddress" class="col-sm-10"></label>
+                                    </div>
+                                 </div>           
+                              </div>
+
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="lbcurrentLocation" class="col-sm-4 control-label">Current Location</label>
+                                    <div class="col-sm-8">
+                                       <label id="lbcurrentLocation" class="col-sm-10"></label>
+                                    </div>
+                                 </div>           
+                              </div>
+                              
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="lbcountry" class="col-sm-4 control-label">Country</label>
+                                    <div class="col-sm-8">
+                                       <label id="lbcountry" class="col-sm-10"></label>
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="lbpinNo" class="col-sm-4 control-label">PIN No.</label>
+                                    <div class="col-sm-8">
+                                       <label id="lbpinNo" class="col-sm-8"></label>
+                                    </div>
+                                 </div>           
+                              </div>
+
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="lbnationalIDNO" class="col-sm-4 control-label">National ID No.</label>
+                                    <div class="col-sm-8">
+                                       <label id="lbnationalIDNO" class="col-sm-8"></label>
+                                    </div>
+                                 </div>           
+                              </div>
+
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="lbpassportNo" class="col-sm-4 control-label">Passport No.</label>
+                                    <div class="col-sm-8">
+                                       <label id="lbpassportNo" class="col-sm-8"></label>
+                                    </div>
+                                 </div>           
+                              </div>
+
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="lbdisabledStatus" class="col-sm-4 control-label">Disabled?</label>
+                                    <div class="col-sm-8">
+                                       <label id="lbdisabledStatus" class="col-sm-8"></label>
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                    <label for="lbmaritalStatus" class="col-sm-4 control-label">Marital Status?</label>
+                                    <div class="col-sm-8">
+                                       <label id="lbmaritalStatus" class="col-sm-8"></label>
+                                    </div>
+                                 </div>
+                              </div>
+                        </div>
+                        <div class="col-md-2 col-md-offset-10">
+                           <button class="btnNext btn btn-primary" value="1">Next</button>
+                        </div>
                         <!-- <a href="<?php echo base_url("info/vacancies"); ?>" class="pull-right" id="editPersonalDetailsBtn">
                            <button type="button" class="btn btn-primary">Edit Personal Details</button>
                         </a> -->
@@ -178,7 +295,7 @@
                      <br><br>
                         <form id="qualificationsForm">
                         <div class="row">
-                           <i class="fa fa-plus" aria-hidden="true" id="addQualifications" title="Add Qualification" style="cursor: pointer;">Add Qualification</i>
+                           <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true" id="addQualifications" title="Add Qualification" style="cursor: pointer;">Add Qualification</i></button>
                         </div>
                            <div class="field_wrapperQualifications">
                               <div>
@@ -238,10 +355,14 @@
                         <div class="table-responsive" id="qualificationListContainer">
                            <table class="table">
                               <thead>
-                                 <td>Institution</td>          
-                                 <td>Certification</td>
-                                 <td>Description</td>
-                                 <td>Years Completed</td>
+                                 <tr>
+                                    <th>Institution</th>
+                                    <th>Certification</th>
+                                    <th>Description</th>
+                                    <th>Years Completed</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                 </tr>
                               </thead>
 
                               <tbody id="qualificationList">
@@ -450,6 +571,7 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+      $("#pdLabels").hide();
         //Save CV URLS
         $savePersonalDetailsURL = "<?php echo base_url('home/uploadResume/savePersonalDetails'); ?>";
         $editPersonalDetailsURL = "<?php echo base_url('home/uploadResume/editPersonalDetails'); ?>";
