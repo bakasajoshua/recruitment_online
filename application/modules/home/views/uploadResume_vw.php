@@ -353,6 +353,9 @@
                         </form>
 
                         <div class="table-responsive" id="qualificationListContainer">
+                           <div>
+                              <button id="addQauls" class="btn btn-primary">Add Qualifications</button>
+                           </div>
                            <table class="table">
                               <thead>
                                  <tr>
@@ -638,7 +641,7 @@
                     }else{
                         $response = "Valid Form";
                     }
-
+                    console.log($response);
                     //console.log("Response from validate Qualifications "+$response );
                     if($response == "Valid Form"){
                         $.post($getQualificationDetailsURL,{}, function(data, status){//check if user has provided these qualifications
@@ -677,7 +680,32 @@
                             //  //save Qualification Details
                             }else if($status == 0){//qualification details have been provided
                             //  //redirect to next form
-                                
+                                 $qualificationsFormValues = $('#qualificationsForm').serializeArray();
+                                $savePersonalDetailsResponse = '';
+                                $.post($saveQualificationDetailsURL,
+                                    {
+                                        'qualificationsFormValues':$qualificationsFormValues
+                                    },function(data, status){
+                                        if(data == "Inserted"){
+                                            $message = "<center>";
+                                                $message += "<strong>Success.</strong> <br/> Successfully added your qualification details.";
+                                             $message += "</center>";
+                                             showAlert('alert alert-success','alert alert-danger',$message);
+                                             location.reload();
+                                            // if(current < widget.length){ 
+                                            //     widget.show();
+                                            //     widget.not(':eq('+(current++)+')').hide();
+                                            //     setProgress(current);
+                                            // }
+                                            // hideButtons(current);
+                                        }else{
+                                            $message = "<center>";
+                                                $message += "<strong>Error.</strong> <br/> Error occurred while saving";
+                                            $message += "</center>";
+                                            showAlert('alert alert-danger','alert alert-success',$message);
+                                        }
+                                    }
+                                );
                                 // hideButtons(current);
                             }else{}         
                         });

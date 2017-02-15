@@ -1,5 +1,11 @@
 $(document).ready(function(){
 	$("#qualificationListContainer").hide();
+	$("#addQauls").click(function(e)
+		{
+			e.preventDefault();
+			$("#qualificationListContainer").hide();
+			$("#qualificationsForm").show();
+		});
 	var x = 1; //Initial field counter is 1
 	var maxField = 5; //Input fields increment limitation
     $newRow = "";
