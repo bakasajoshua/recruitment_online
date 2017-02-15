@@ -383,7 +383,7 @@
                      
                         <form id="employmentForm">
                         <div class="row">
-                           <i class="fa fa-plus" aria-hidden="true" id="addEmploymentHistory" title="Add Employment History" style="cursor:pointer;">Add Employment History</i>
+                           <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true" id="addEmploymentHistory" title="Add Employment History" style="cursor:pointer;">Add Employment History</i></button>
                         </div>
                            <div class="employmentHistoryfield_wrapper">
                               <div>
@@ -430,12 +430,19 @@
                             </div>
                         </form>
                         <div class="table-responsive" id="employmentListContainer">
+                           <div>
+                              <button id="addEmploy" class="btn btn-primary">Add Employment History</button>
+                           </div>
                            <table class="table">
                               <thead>
-                                 <td>Institution</td>          
-                                 <td>Certification</td>
-                                 <td>Description</td>
-                                 <td>Years Completed</td>
+                                 <tr>
+                                    <th>Institution</th>          
+                                    <th>Certification</th>
+                                    <th>Description</td>
+                                    <th>Years Completed</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                 </tr>
                               </thead>
                               <tbody id="employmentList">
                               </tbody>
@@ -452,7 +459,7 @@
                      
                         <form id="refereesForm">
                         <div class="row">
-                           <i class="fa fa-plus" aria-hidden="true" id="addReferee" title="Add Referee" style="cursor: pointer;color: blue;">Add Referee</i>
+                           <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true" id="addReferee" title="Add Referee" style="cursor: pointer;">Add Referee</i></button>
                         </div>
                            <div class="field_wrapperReferees" >
                               <div>
@@ -484,13 +491,20 @@
                         </form>
 
                         <div class="table-responsive" id="refereeListContainer">
+                           <div>
+                              <button id="addRefBtn" class="btn btn-primary">Add Referee</button>
+                           </div>
                            <table class="table">
                               <thead>
-                                 <td>Name</td>           
-                                 <td>Organization</td>
-                                 <td>Designation</td>
-                                 <td>Phone</td>
-                                 <td>Email</td>
+                                 <tr>
+                                    <th>Name</th>
+                                    <th>Organization</th>
+                                    <th>Designation</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                 </tr>
                               </thead>
                               <tbody id="refereeList">
                               </tbody>
@@ -764,6 +778,34 @@
                             }else if($status ==0){//some employment history has been saved therefore list it
                                 $message = $data['message'];
                                 $dataReturned = $data['data'];
+
+                                $employmentHistoryFormValues = $('#employmentForm').serializeArray();
+                                $.post($saveEmploymentHistoryDetailsURL,
+                                    {
+                                        'employmentHistoryFormValues':$employmentHistoryFormValues
+                                    },function(data, status){
+                                        console.log(data+" save employment history");
+                                        if(data == "Inserted"){
+                                            
+                                            $message = "<center>";
+                                                $message += "<strong>Success.</strong> <br/> Successfully saved your employment details.";
+                                            $message += "</center>";
+                                            showAlert('alert alert-success','alert alert-danger',$message);
+                                            location.reload();
+                                        // if(current < widget.length){
+                                        //     widget.show();
+                                        //     widget.not(':eq('+(current++)+')').hide();
+                                        //     setProgress(current);
+                                        // }
+                                        // hideButtons(current);
+                                        }else{
+                                            $message = "<center>";
+                                                $message += "<strong>Error.</strong> <br/> Error occurred while saving.";
+                                            $message += "</center>";
+                                            showAlert('alert alert-danger','alert alert-success',$message);
+                                        }
+                                    }
+                                );
                                 //redirect to next form
                                 // if(current < widget.length){ 
                                 //     widget.show();
@@ -822,6 +864,32 @@
                                     }
                                 );
                             }else if($status ==0){//some referee details have been save and have been listed
+                               $refereeFormValues = $('#refereesForm').serializeArray();
+                                $.post($saveRefereeDetailsURL,
+                                    {
+                                        'refereeFormValues':$refereeFormValues
+                                    },function(data, status){
+                                        console.log(data+" save referee history");
+                                        if(data == "Inserted"){
+                                            
+                                            $message = "<center>";
+                                                $message += "<strong>Success.</strong> <br/> Successfully saved your referee details.";
+                                            $message += "</center>";
+                                            showAlert('alert alert-success','alert alert-danger',$message);
+                                        // if(current < widget.length){
+                                        //     widget.show();
+                                        //     widget.not(':eq('+(current++)+')').hide();
+                                        //     setProgress(current);
+                                        // }
+                                        // hideButtons(current);
+                                        }else{
+                                            $message = "<center>";
+                                                $message += "<strong>Error.</strong> <br/> Error occurred while saving you referee details.";
+                                            $message += "</center>";
+                                            showAlert('alert alert-danger','alert alert-success',$message);
+                                        }
+                                    }
+                                );
                                 //redirect to next form
                                 // if(current < widget.length){
                                 //     widget.show();

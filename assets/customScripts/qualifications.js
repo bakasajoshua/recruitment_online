@@ -139,6 +139,8 @@ $(document).ready(function(){
 			$tableRow += '<td>'+$certificationType+'</td>';
 			$tableRow += '<td>'+$description+'</td>';
 			$tableRow += '<td>'+$yearsCompleted+'</td>';
+			$tableRow += '<td><i class="glyphicon glyphicon-pencil"></i></td>';
+			$tableRow += '<td><i class="glyphicon glyphicon-remove"></i></td>';
 			$tableRow += '</tr>';
 
 			$("#qualificationList").append($tableRow);

@@ -4,6 +4,12 @@ $(document).ready(function(){
     $newRow = "";
 
     $("#employmentListContainer").hide();
+    $("#addEmploy").click(function(e)
+		{
+			e.preventDefault();
+			$("#employmentListContainer").hide();
+			$("#employmentForm").show();
+		});
 
     var fieldHTML =  {row :function(f){
     	//Employment Institution
@@ -168,6 +174,8 @@ $(document).ready(function(){
 			$table += "<td>"+$position+"</td>";
 			$table += "<td>"+$responsibilities+"</td>";
 			$table += "<td>"+$yearsCompleted+"</td>";
+			$table += '<td><i class="glyphicon glyphicon-pencil"></i></td>';
+			$table += '<td><i class="glyphicon glyphicon-remove"></i></td>';
 			$table += "</tr>";
 			$("#employmentForm").hide();
 
