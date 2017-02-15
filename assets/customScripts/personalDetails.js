@@ -1,5 +1,11 @@
 $(document).ready(function(){
 	$("#editPersonalDetailsBtn").hide();
+	$("#addEditBtn").click(function(e)
+		{
+			e.preventDefault();
+			$("#pdForm").show();
+			$("#pdLabels").hide();
+		});
 
 	//get values from the input fields
 	window.getPersonalDetails = function(){
@@ -92,7 +98,7 @@ $(document).ready(function(){
 								$message += "<strong>Success.</strong> <br/> Personal Details have successfully Updated.";
 							$message += "</center>";
 			    			showAlert('alert alert-success','alert alert-danger',$message);
-
+			    			location.reload();
 			    // 			if(current < widget.length){ 
 							// 	widget.show();
 							// 	widget.not(':eq('+(current++)+')').hide();
@@ -130,7 +136,7 @@ $(document).ready(function(){
 								$message += "<strong>Success.</strong> <br/> Personal Details have successfully Updated.";
 							$message += "</center>";
 			    			showAlert('alert alert-success','alert alert-danger',$message);
-
+			    			location.reload();
 			    // 			if(current < widget.length){ 
 							// 	widget.show();
 							// 	widget.not(':eq('+(current++)+')').hide();
@@ -182,15 +188,20 @@ $(document).ready(function(){
 				$message = $data['message'];
 				$dataReturned = $data['data'];
 				$("#editPersonalDetailsBtn").show();
-				console.log("data was returned redirect to next page");
+				// console.log("data was returned redirect to next page");
 				//set values in the input fields for personal details
+				// $("#personalDetailsForm").hide();
 				setPersonalDetailsInInputFields($dataReturned);
 				
 			}else{}			
 		});		
 	}
 	//set values in the input fields for personal details
-	window.setPersonalDetailsInInputFields = function($dataReturned){		
+	window.setPersonalDetailsInInputFields = function($dataReturned){
+		
+		$("#pdForm").hide();
+		$("#pdLabels").show();
+		// personalDetailsForm
 		$fname = $dataReturned[0]['fname'];
 		$mname = $dataReturned[0]['mname'];
 		$lname = $dataReturned[0]['lname'];
@@ -212,10 +223,27 @@ $(document).ready(function(){
 		$("#country").val($country);
 		$("#nationalIDNO").val($nationalID);
 		$("#pinNo").val($pin);
-		// $("#passportNo").val($passportNo);
+		// $("#passportNo").val('A1772059');
 		$("#disabledStatus").val($disabledStatus);
 		$("#maritalStatus").val($maritalStatus);
 		$("#currentLocation").val($currentLocation);
+
+		$("#lbfname").html($fname);
+		$("#lbmname").html($mname);
+		$("#lblname").html($lname);
+		$("#lbmobileNo").html($mobileNo);
+		$("#lbaddress").html($address);
+		$("#lbcountry").html($country);
+		$("#lbnationalIDNO").html($nationalID);
+		$("#lbpinNo").html($pin);
+		// $("#lbpassportNo").html('A1772059');
+		$("#lbdisabledStatus").html($disabledStatus);
+		$("#lbmaritalStatus").html($maritalStatus);
+		$("#lbcurrentLocation").html($currentLocation);
+
+		$("#testing1").html($fname);
+		$("#mobileNo").css("font-weight","12px;");
+		$("#testing2").html($mname);
 	}
 
 	window.showAlert = function($classToShow,$classToHide,$message){

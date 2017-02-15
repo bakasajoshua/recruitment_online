@@ -1,5 +1,11 @@
 $(document).ready(function(){
 	$("#qualificationListContainer").hide();
+	$("#addQauls").click(function(e)
+		{
+			e.preventDefault();
+			$("#qualificationListContainer").hide();
+			$("#qualificationsForm").show();
+		});
 	var x = 1; //Initial field counter is 1
 	var maxField = 5; //Input fields increment limitation
     $newRow = "";
@@ -133,6 +139,8 @@ $(document).ready(function(){
 			$tableRow += '<td>'+$certificationType+'</td>';
 			$tableRow += '<td>'+$description+'</td>';
 			$tableRow += '<td>'+$yearsCompleted+'</td>';
+			$tableRow += '<td><i class="glyphicon glyphicon-pencil"></i></td>';
+			$tableRow += '<td><i class="glyphicon glyphicon-remove"></i></td>';
 			$tableRow += '</tr>';
 
 			$("#qualificationList").append($tableRow);

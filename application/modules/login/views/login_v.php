@@ -51,14 +51,22 @@
 									$("#getAlert").hide();
 								},10000);
 							</script>
-							<div class="form-group">
+							<div class="col-md-3">
 								<label for="user_login">Email</label>
-								<input class="form-control" type="text" name="the_user_login" id="user_login" placeholder="Email Address" required="required" />
+							</div>
+							<div class="col-md-9">
+								<div class="form-group">
+									<input class="form-control" type="text" name="the_user_login" id="user_login" placeholder="Email Address" required="required" />
+								</div>
 							</div><!-- /.form-group -->
-							<div class="form-group">
+							<div class="col-md-3">
 								<label for="user_password">Password</label>
-								<input class="form-control" type="password" name="the_user_password" id="user_password" placeholder="Password" />
-							</div><!-- /.form-group -->
+							</div>
+							<div class="col-md-9">
+								<div class="form-group">
+									<input class="form-control" type="password" name="the_user_password" id="user_password" placeholder="Password" />
+								</div><!-- /.form-group -->
+							</div>
 							<input type="hidden" name="action" value="jobboard_proccess_login_form" />
 							<div class="clearfix"></div>
 							<center><button type="submit" name="user_submit" id="user_submit" value="1" class="btn btn-login"  style="border-radius: 0px;">Log in</button></center>
@@ -106,6 +114,5 @@
 <script type="text/javascript" src="<?php echo base_url("assets/customScripts/loginUser.js"); ?>"></script>
 <script type="text/javascript">
 	$loginUserURL = "<?php echo base_url("login/loginUser");?>";
-	$redirectToHomePage = "<?php echo base_url("info/vacancies"); ?>";
-	$redirectFirstPage = "<?php echo base_url("home/uploadResume"); ?>";
+	$redirectToHomePage = "<?php echo base_url("info"); ?>";
 </script>

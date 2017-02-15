@@ -29,6 +29,12 @@ $(document).ready(function(){
     }};
 
     $("#refereeListContainer").hide();
+    $("#addRefBtn").click(function(e) 
+    	{
+    		e.preventDefault();
+    		$("#refereeListContainer").hide();
+    		$("#refereesForm").show();
+    	});
 
 	$('#addReferee').click(function(e){ //Once add button is clicked
     	e.preventDefault();
@@ -147,6 +153,8 @@ $(document).ready(function(){
 			$tableRow += '<td>'+$position+'</td>';
 			$tableRow += '<td>'+$mobile+'</td>';
 			$tableRow += '<td>'+$refereesEmail+'</td>';
+			$tableRow += '<td><i class="glyphicon glyphicon-pencil"></i></td>';
+			$tableRow += '<td><i class="glyphicon glyphicon-remove"></i></td>';
 			$tableRow += '</tr>';
 
 			$("#refereeList").append($tableRow);
