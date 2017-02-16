@@ -139,6 +139,8 @@ $(document).ready(function(){
 	}
 
 	window.displayRefereeDetailsTable = function($dataReturned){
+		console.log("From Referee data");
+		console.log($dataReturned);
 		for($i = 0; $i < $dataReturned.length; $i++){
 			$name = $dataReturned[$i]['fname']+" "+$dataReturned[$i]['lname'];
 			$email = $dataReturned[$i]['email'];
@@ -153,8 +155,8 @@ $(document).ready(function(){
 			$tableRow += '<td>'+$position+'</td>';
 			$tableRow += '<td>'+$mobile+'</td>';
 			$tableRow += '<td>'+$refereesEmail+'</td>';
-			$tableRow += '<td><i class="glyphicon glyphicon-pencil"></i></td>';
-			$tableRow += '<td><i class="glyphicon glyphicon-remove"></i></td>';
+			$tableRow += '<td style="color: blue;"><i class="fa fa-pencil-square-o" aria-hidden="true">Edit</i></td>';
+			$tableRow += '<td style="color: blue;"><i class="fa fa-times" aria-hidden="true">Delete</i></td>';
 			$tableRow += '</tr>';
 
 			$("#refereeList").append($tableRow);
