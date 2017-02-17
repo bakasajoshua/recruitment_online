@@ -140,7 +140,7 @@ $(document).ready(function(){
          $tableRow += '<td>'+$description+'</td>';
          $tableRow += '<td>'+$yearsCompleted+'</td>';
          // $tableRow += '<td><a href="'+updateQualificationsURL+'/'+$email+'/'+$institution+'/'+$certificationType+'"><button class="QualeditJsBtn btn btn-default" style="color: blue;"><i class="fa fa-pencil-square-o" aria-hidden="true">Edit</i></button></a></td>';
-         $tableRow += '<td><a href="'+deleteQualificationsURL+'/'+$email+'/'+$institution+'/'+$certificationType+'"><button class="QualdeleteJsBtn btn btn-default" style="color: blue;"><i class="fa fa-times" aria-hidden="true">Delete</i></button></a></td>';
+         $tableRow += '<td><a href="'+deleteQualificationsURL+'/'+$email+'/'+$institution+'/'+$certificationType+'"><button class="QualdeleteJsBtn btn btn-default" style="color: blue;"><i class="fa fa-times" aria-hidden="true">Remove</i></button></a></td>';
          $tableRow += '</tr>';
 
          $("#qualificationList").append($tableRow);
