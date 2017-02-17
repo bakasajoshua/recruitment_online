@@ -363,7 +363,7 @@
                                     <th>Certification</th>
                                     <th>Description</th>
                                     <th>Years Completed</th>
-                                    <th>Edit</th>
+                                    <!-- <th>Edit</th> -->
                                     <th>Delete</th>
                                  </tr>
                               </thead>
@@ -440,7 +440,7 @@
                                     <th>Certification</th>
                                     <th>Description</th>
                                     <th>Years Completed</th>
-                                    <th>Edit</th>
+                                    <!-- <th>Edit</th> -->
                                     <th>Delete</th>
                                  </tr>
                               </thead>
@@ -502,7 +502,7 @@
                                     <th>Designation</th>
                                     <th>Phone</th>
                                     <th>Email</th>
-                                    <th>Edit</th>
+                                    <!-- <th>Edit</th> -->
                                     <th>Delete</th>
                                  </tr>
                               </thead>
