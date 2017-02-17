@@ -345,7 +345,7 @@
                                 
                               </div>
                            </div>
-                            <div class="col-md-6 col-md-offset-8" style="padding-top: 1em;">
+                            <div class="col-md-6 col-md-offset-8" style="margin-top: 1em;">
                                <button class="btnBack btn btn-primary" value="1">Previous</button>
                                <button class="btnSave btn btn-primary" value="2">Save Details</button>
                                <button class="btnNext btn btn-primary" value="1">Next</button>
