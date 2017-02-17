@@ -158,7 +158,7 @@ $(document).ready(function(){
 			$tableRow += '<td>'+$mobile+'</td>';
 			$tableRow += '<td>'+$refereesEmail+'</td>';
 			// $tableRow += '<td><button class="editJsBtn btn btn-default" style="color: blue;" value="'+$refereesEmail+'">Edit</button></td>';
-			$tableRow += '<td><a href="'+updateRefereeURL+'/'+$refereesEmail+'"><button class="btn btn-default" style="color: blue;"><i class="fa fa-pencil-square-o" aria-hidden="true">Edit</i></button></a></td>';
+			// $tableRow += '<td><a href="'+updateRefereeURL+'/'+$refereesEmail+'"><button class="btn btn-default" style="color: blue;"><i class="fa fa-pencil-square-o" aria-hidden="true">Edit</i></button></a></td>';
 			$tableRow += '<td><a href="'+deleteRefereeURL+'/'+$refereesEmail+'"><button class="btn btn-default" style="color: blue;""><i class="fa fa-times" aria-hidden="true">Delete</i></button></a></td>';
 			$tableRow += '</tr>';
 
