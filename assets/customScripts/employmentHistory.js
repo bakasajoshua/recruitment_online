@@ -174,7 +174,7 @@ $(document).ready(function(){
 			$table += "<td>"+$position+"</td>";
 			$table += "<td>"+$responsibilities+"</td>";
 			$table += "<td>"+$yearsCompleted+"</td>";
-			$table += '<td><a href="'+updateEmploymentURL+'/'+$email+'/'+$institution+'/'+$position+'"><button class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true">Edit</i></button></a></td>';
+			// $table += '<td><a href="'+updateEmploymentURL+'/'+$email+'/'+$institution+'/'+$position+'"><button class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true">Edit</i></button></a></td>';
 			$table += '<td><a href="'+deleteEmploymentURL+'/'+$email+'/'+$institution+'/'+$position+'"><button class="btn btn-default"><i class="fa fa-times" aria-hidden="true">Delete</i></button></a></td>';
 			$table += "</tr>";
 			$("#employmentForm").hide();
