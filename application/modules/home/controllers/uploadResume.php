@@ -508,4 +508,96 @@ class UploadResume extends MX_Controller {
 		}
 		echo json_encode($response);
 	}
+
+	public function updateQualifications($email,$data2,$data3)
+	{
+		echo $email."<__>".$data2."<__>".$data3;
+	}
+
+	public function deleteQualifications($email,$institution,$certificationType)
+	{
+		echo $email."<__>".$institution."<__>".$certificationType;
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		    CURLOPT_RETURNTRANSFER => 1,
+		    CURLOPT_URL => sqlnterfaceURL,
+		    CURLOPT_USERAGENT => 'ESSDP',
+		    CURLOPT_POST => 1,
+		    CURLOPT_POSTFIELDS => array(
+		        'action' => 'DELQUALIFICATION',        
+		        'emailAddress'=>htmlspecialchars(str_replace('%20', ' ', $email)),
+		        'institution' => htmlspecialchars(str_replace('%20', ' ', $institution)),
+		       	'certtype'=> htmlspecialchars(str_replace('%20', ' ', $certificationType))
+		    )
+		));
+		$result = curl_exec($curl);
+		// Close request to clear up some resources
+		curl_close($curl);
+		// echo "<pre>";print_r($result);die();
+		redirect(base_url().'home/uploadResume');
+	}
+
+	function updateEmploymentHsitory($email,$institution,$position)
+	{
+		if ($email != NULL || $institution != NULL || $position != NULL) {
+			# code...
+		}
+		
+	}
+
+	function deleteEmploymentHsitory($email,$institution,$position)
+	{
+		if ($email != NULL || $institution != NULL || $position != NULL) {
+			$curl = curl_init();
+			curl_setopt_array($curl, array(
+			    CURLOPT_RETURNTRANSFER => 1,
+			    CURLOPT_URL => sqlnterfaceURL,
+			    CURLOPT_USERAGENT => 'ESSDP',
+			    CURLOPT_POST => 1,
+			    CURLOPT_POSTFIELDS => array(
+			        'action' => 'DELEMPLOYMENT',        
+			        'emailAddress'=>htmlspecialchars(str_replace('%20', ' ', $email)),
+			        'institution' => htmlspecialchars(str_replace('%20', ' ', $institution)),
+			       	'position'=> htmlspecialchars(str_replace('%20', ' ', $position))
+			    )
+			));
+			$result = curl_exec($curl);
+			// Close request to clear up some resources
+			curl_close($curl);
+			// echo "<pre>";print_r($result);die();
+			redirect(base_url().'home/uploadResume');
+		}
+		
+		echo "<pre>";print_r("403: Bad Request");
+	}
+
+	function updateReferee($refreee)
+	{
+
+	}
+
+	function deleteReferee($refreee=NULL)
+	{
+		if ($refreee != NULL) {
+			$curl = curl_init();
+			curl_setopt_array($curl, array(
+			    CURLOPT_RETURNTRANSFER => 1,
+			    CURLOPT_URL => sqlnterfaceURL,
+			    CURLOPT_USERAGENT => 'ESSDP',
+			    CURLOPT_POST => 1,
+			    CURLOPT_POSTFIELDS => array(
+			        'action' => 'DELREFEREE',        
+			        'emailAddress'=>$this->session->userdata('Email'),
+			        'refereeEmail' => htmlspecialchars(str_replace('%20', ' ', $refreee))
+			    )
+			));
+			$result = curl_exec($curl);
+			// Close request to clear up some resources
+			curl_close($curl);
+			// echo "<pre>";print_r($result);die();
+			redirect(base_url().'home/uploadResume');
+		}
+		
+		echo "<pre>";print_r("403: Bad Request");
+	}
 }

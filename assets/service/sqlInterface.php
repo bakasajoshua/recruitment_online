@@ -488,6 +488,74 @@
 			}
 			// echo "<pre>";print_r($res);die();
 			echo($res->confirmVerificationCodeResult);
+		}else if ($action == 'confirm_referee') {
+			$email = $_POST['email'];
+			$refemail = $_POST['refemail'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->confirm_referee(array(
+											"userEmail"=>$email,
+											"refereeEmail"=>$refemail
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}
+			// echo "<pre>";print_r($res);die();
+			echo($res->confirm_refereeResult);
+		}else if ($action == 'DELQUALIFICATION') {
+			$email = $_POST['emailAddress'];
+			$institution = $_POST['institution'];
+			$certtype = $_POST['certtype'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->delete_qualification(array(
+											"email"=>$email,
+											"institution"=>$institution,
+											"certtype"=>$certtype
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}
+			// echo "<pre>";print_r($res);die();
+			echo($res->delete_qualificationResult);
+		}else if ($action == 'DELEMPLOYMENT') {
+			$email = $_POST['emailAddress'];
+			$institution = $_POST['institution'];
+			$position = $_POST['position'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->delete_employment(array(
+											"email"=>$email,
+											"institution"=>$institution,
+											"position"=>$position
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}
+			// echo "<pre>";print_r($res);die();
+			echo($res->delete_employmentResult);
+		}else if ($action == 'DELREFEREE') {
+			$email = $_POST['emailAddress'];
+			$refereeEmail = $_POST['refereeEmail'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->delete_referee(array(
+											"email"=>$email,
+											"refereeEmail"=>$refereeEmail
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}
+			// echo "<pre>";print_r($res);die();
+			echo($res->delete_refereeResult);
 		}else{
 			echo "Invalid Action";
 		}
