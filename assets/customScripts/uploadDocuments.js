@@ -171,8 +171,10 @@ $(document).ready(function(){
 				$linkToApplicationLetter = $dataReturned[$i]['linkToApplicationLetter'];
 				
 				$tableRow = '<tr>';
-				$tableRow += '<td> <a href='+$linkToCV+'> View C.V</a></td>';
-				$tableRow += '<td><a href='+$linkToApplicationLetter+'> View Application Letter</a></td>';
+				$tableRow += '<td> <a href="'+$linkToCV+'"> View C.V</a></td>';
+				$tableRow += '<td> <a href="'+removeCVURL+'/'+$linkToApplicationLetter+'"><button class="btn btn-default">Remove</button></a></td>';
+				$tableRow += '<td> <a href="'+$linkToApplicationLetter+'"> View Application Letter</a></td>';
+				$tableRow += '<td> <a href="'+appletterCVURL+'/'+$linkToApplicationLetter+'"><button class="btn btn-default">Remove</button></a></td>';
 				$tableRow += '</tr>';
 
 				$("#userDocsList").append($tableRow);
