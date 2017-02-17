@@ -23,11 +23,9 @@
   <div id="content">
     <div class="container">
       <div class="row">
-         <form class="form-horizontal form">
+         <!-- <form> -->
             <div class="col-md-12">
-               <div  id="personalDetailsFormAlert">
-                     
-               </div>
+               <div  id="personalDetailsFormAlert"></div>
                <!-- Begining of tabs -->
                <div>
                   <!-- Nav tabs -->
@@ -43,135 +41,137 @@
                   <div class="tab-content">
                      <div role="tabpanel" class="tab-pane active" id="person_details">
                         <br><br>
-                        <div id="pdForm">
-                           <form id="personalDetailsForm" style="display: none;">
-                              <div class="col-md-6">
-                                 <div class="form-group">
-                                    <label for="name" class="col-sm-2 control-label" id="control-label">First Name</label>
-                                    <div class="col-sm-10">
-                                       <input type="text" name="fname" id="fname" class="form-control" placeholder="First Name">
+                        <form>
+                           <div id="pdForm">
+                              <form class="form-horizontal form" id="personalDetailsForm" style="display: none;">
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label for="name" class="col-sm-2 control-label" id="control-label">First Name</label>
+                                       <div class="col-sm-10">
+                                          <input type="text" name="fname" id="fname" class="form-control" placeholder="First Name">
+                                       </div>
                                     </div>
                                  </div>
-                              </div>
-                              
-                              <div class="col-md-6">
-                                 <div class="form-group">
-                                    <label for="email" class="col-sm-2 control-label" id="control-label">Middle Name</label>
-                                    <div class="col-sm-10">
-                                       <input type="text" name="mname" id="mname" class="form-control" id="email" placeholder="Middle Name">
-                                    </div>
-                                 </div>           
-                              </div>
+                                 
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label for="email" class="col-sm-2 control-label" id="control-label">Middle Name</label>
+                                       <div class="col-sm-10">
+                                          <input type="text" name="mname" id="mname" class="form-control" id="email" placeholder="Middle Name">
+                                       </div>
+                                    </div>           
+                                 </div>
 
-                              <div class="col-md-6">
-                                 <div class="form-group">
-                                    <label for="email" class="col-sm-2 control-label" id="control-label">Last Name</label>
-                                    <div class="col-sm-10">
-                                       <input type="text" name="lname" id="lname" class="form-control" id="email" placeholder="Last Name">
-                                    </div>
-                                 </div>           
-                              </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label for="email" class="col-sm-2 control-label" id="control-label">Last Name</label>
+                                       <div class="col-sm-10">
+                                          <input type="text" name="lname" id="lname" class="form-control" id="email" placeholder="Last Name">
+                                       </div>
+                                    </div>           
+                                 </div>
 
-                              <div class="col-md-6">
-                                 <div class="form-group">
-                                    <label for="email" class="col-sm-2 control-label" id="control-label">Mobile No.</label>
-                                    <div class="col-sm-10">
-                                       <input type="text" name="mobileNo" id="mobileNo" class="form-control" id="email" placeholder="Mobile No.">
-                                    </div>
-                                 </div>           
-                              </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label for="email" class="col-sm-2 control-label" id="control-label">Mobile No.</label>
+                                       <div class="col-sm-10">
+                                          <input type="text" name="mobileNo" id="mobileNo" class="form-control" id="email" placeholder="Mobile No.">
+                                       </div>
+                                    </div>           
+                                 </div>
 
-                              <div class="col-md-6">
-                                 <div class="form-group">
-                                    <label for="email" class="col-sm-2 control-label" id="control-label">Postal Address</label>
-                                    <div class="col-sm-10">
-                                       <input type="text" name="address" id="address" class="form-control" id="email" placeholder="Address">
-                                    </div>
-                                 </div>           
-                              </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label for="email" class="col-sm-2 control-label" id="control-label">Postal Address</label>
+                                       <div class="col-sm-10">
+                                          <input type="text" name="address" id="address" class="form-control" id="email" placeholder="Address">
+                                       </div>
+                                    </div>           
+                                 </div>
 
-                              <div class="col-md-6">
-                                 <div class="form-group">
-                                    <label for="email" class="col-sm-2 control-label">Current Location</label>
-                                    <div class="col-sm-10">
-                                       <input type="text" name="currentLocation" id="currentLocation" class="form-control" id="email" placeholder="Address">
-                                    </div>
-                                 </div>           
-                              </div>
-                              
-                              <div class="col-md-6">
-                                 <div class="form-group">
-                                    <label for="country" class="col-sm-2 control-label" id="control-label">Country</label>
-                                    <div class="col-sm-10">
-                                       <select class="form-control" name="country" id="country">
-                                          <?php $this->load->view('home/listOfCountries'); ?>
-                                       </select>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label for="email" class="col-sm-2 control-label">Current Location</label>
+                                       <div class="col-sm-10">
+                                          <input type="text" name="currentLocation" id="currentLocation" class="form-control" id="email" placeholder="Address">
+                                       </div>
+                                    </div>           
+                                 </div>
+                                 
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label for="country" class="col-sm-2 control-label" id="control-label">Country</label>
+                                       <div class="col-sm-10">
+                                          <select class="form-control" name="country" id="country">
+                                             <?php $this->load->view('home/listOfCountries'); ?>
+                                          </select>
+                                       </div>
                                     </div>
                                  </div>
-                              </div>
 
-                              <div class="col-md-6">
-                                 <div class="form-group">
-                                    <label for="email" class="col-sm-2 control-label" id="control-label">PIN No.</label>
-                                    <div class="col-sm-10">
-                                       <input type="text" name="pinNo" id="pinNo" class="form-control" placeholder="KRA PIN">
-                                    </div>
-                                 </div>           
-                              </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label for="email" class="col-sm-2 control-label" id="control-label">PIN No.</label>
+                                       <div class="col-sm-10">
+                                          <input type="text" name="pinNo" id="pinNo" class="form-control" placeholder="KRA PIN">
+                                       </div>
+                                    </div>           
+                                 </div>
 
-                              <div class="col-md-6">
-                                 <div class="form-group">
-                                    <label for="email" class="col-sm-2 control-label">National ID No.</label>
-                                    <div class="col-sm-10">
-                                       <input type="text" name="nationalIDNO" id="nationalIDNO" class="form-control" placeholder="National ID No.">
-                                    </div>
-                                 </div>           
-                              </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label for="email" class="col-sm-2 control-label">National ID No.</label>
+                                       <div class="col-sm-10">
+                                          <input type="text" name="nationalIDNO" id="nationalIDNO" class="form-control" placeholder="National ID No.">
+                                       </div>
+                                    </div>           
+                                 </div>
 
-                              <div class="col-md-6">
-                                 <div class="form-group">
-                                    <label for="email" class="col-sm-2 control-label">Passport No.</label>
-                                    <div class="col-sm-10">
-                                       <input type="text" name="passportNo" id="passportNo" class="form-control" id="passportNo" placeholder="(Optional)">
-                                    </div>
-                                 </div>           
-                              </div>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label for="email" class="col-sm-2 control-label">Passport No.</label>
+                                       <div class="col-sm-10">
+                                          <input type="text" name="passportNo" id="passportNo" class="form-control" id="passportNo" placeholder="(Optional)">
+                                       </div>
+                                    </div>           
+                                 </div>
 
-                              <div class="col-md-6">
-                                 <div class="form-group">
-                                    <label for="country" class="col-sm-2 control-label" id="control-label">Disabled?</label>
-                                    <div class="col-sm-10">
-                                       <select class="form-control" name="disabledStatus" id="disabledStatus">
-                                          <option value="">Select</option>
-                                             <option value="Yes">Yes</option>
-                                             <option value="No">No</option>
-                                       </select>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label for="country" class="col-sm-2 control-label" id="control-label">Disabled?</label>
+                                       <div class="col-sm-10">
+                                          <select class="form-control" name="disabledStatus" id="disabledStatus">
+                                             <option value="">Select</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                          </select>
+                                       </div>
                                     </div>
                                  </div>
-                              </div>
 
-                              <div class="col-md-6">
-                                 <div class="form-group">
-                                    <label for="country" class="col-sm-2 control-label" id="control-label">Marital Status?</label>
-                                    <div class="col-sm-10">
-                                       <select class="form-control" name="maritalStatus" id="maritalStatus">
-                                          <option value="">Select</option>
-                                             <option value="single">Single</option>
-                                             <option value="married">Married</option>
-                                             <option value="divorced">Divorced</option>
-                                             <option value="separated">Separated</option>
-                                             <option value="widow">Widow(er)</option>
-                                             <option value="otjer">Other</option>
-                                       </select>
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                       <label for="country" class="col-sm-2 control-label" id="control-label">Marital Status?</label>
+                                       <div class="col-sm-10">
+                                          <select class="form-control" name="maritalStatus" id="maritalStatus">
+                                             <option value="">Select</option>
+                                                <option value="single">Single</option>
+                                                <option value="married">Married</option>
+                                                <option value="divorced">Divorced</option>
+                                                <option value="separated">Separated</option>
+                                                <option value="widow">Widow(er)</option>
+                                                <option value="otjer">Other</option>
+                                          </select>
+                                       </div>
                                     </div>
                                  </div>
-                              </div>
 
-                              <div class="col-md-2 col-md-offset-10">
-                                  <button class="btnSave btn btn-primary" value="1" style="margin-bottom: 0.5em;">Save Details</button>
-                              </div>
-                           </form>
-                        </div>
+                                 <div class="col-md-2 col-md-offset-10">
+                                     <button class="btnSave btn btn-primary" value="1" style="margin-bottom: 0.5em;">Save Details</button>
+                                 </div>
+                              </form>
+                           </div>
+                        </form>
                         <div id="pdLabels">
                            <div>
                               <button class="btn btn-primary" id="addEditBtn">Add/Edit Details</button>
@@ -292,7 +292,7 @@
                         </a> -->
                      </div>
                      <div role="tabpanel" class="tab-pane" id="qualification">
-                     <br><br>
+                        <br><br>
                         <form id="qualificationsForm">
                         <div class="row">
                            <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true" id="addQualifications" title="Add Qualification" style="cursor: pointer;">Add Qualification</i></button>
@@ -379,12 +379,12 @@
                         </div>
                      </div>
                      <div role="tabpanel" class="tab-pane" id="employment">
-                     <br><br>
+                        <br><br>
                      
                         <form id="employmentForm">
-                        <div class="row">
-                           <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true" id="addEmploymentHistory" title="Add Employment History" style="cursor:pointer;">Add Employment History</i></button>
-                        </div>
+                           <div class="row">
+                              <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true" id="addEmploymentHistory" title="Add Employment History" style="cursor:pointer;">Add Employment History</i></button>
+                           </div>
                            <div class="employmentHistoryfield_wrapper">
                               <div>
                                  <div class="col-md-3">
@@ -438,7 +438,7 @@
                                  <tr>
                                     <th>Institution</th>          
                                     <th>Certification</th>
-                                    <th>Description</td>
+                                    <th>Description</th>
                                     <th>Years Completed</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
@@ -455,7 +455,7 @@
 
                      </div>
                      <div role="tabpanel" class="tab-pane" id="referee">
-                     <br><br>
+                        <br><br>
                      
                         <form id="refereesForm">
                         <div class="row">
@@ -516,8 +516,8 @@
                         </div>
                      </div>
                      <div role="tabpanel" class="tab-pane" id="documents">
-                     <br><br>
-                     <p style="color: red;"><strong>N/B</strong>&nbsp;Only pdf file format accepted for these documents.</p>
+                        <br><br>
+                        <p style="color: red;"><strong>N/B</strong>&nbsp;Only pdf file format accepted for these documents.</p>
                         <form id="documentsForm">
                            <div class="field_wrapper">
                               <div>
@@ -568,8 +568,7 @@
                </div>
                <!-- End of tabs -->
             </div>
-            
-         </form>
+         <!-- </form> -->
       </div>
     </div>
   </div>
@@ -615,6 +614,15 @@
         getEmploymentHistoryDetailsFromDb(9999,"onPageLoad");//pre-populate the qualities if the user has alread provided these details
         getRefereeDetails(9999,"onPageLoad");//pre-populate the Referee details if user has alread provided these details
         getUserDocuements(9999, "onPageLoad");//pre-populates the application letter and CV if provided
+
+        updateQualificationsURL = "<?php echo base_url('home/uploadResume/updateQualifications');?>";
+        deleteQualificationsURL = "<?php echo base_url('home/uploadResume/deleteQualifications');?>";
+
+        updateEmploymentURL = "<?php echo base_url('home/uploadResume/updateEmploymentHsitory');?>";
+        deleteEmploymentURL = "<?php echo base_url('home/uploadResume/deleteEmploymentHsitory');?>";
+
+        updateRefereeURL = "<?php echo base_url('home/uploadResume/updateReferee');?>";
+        deleteRefereeURL = "<?php echo base_url('home/uploadResume/deleteReferee');?>";
 
         $(".btnSave").click(function(e){
             e.preventDefault();
@@ -912,8 +920,8 @@
             }
             
         });
-
-$(".btnNext").click(function(e){
+      
+      $(".btnNext").click(function(e){
             e.preventDefault();
             current = $(this).val();
             if (current == 1){
@@ -929,7 +937,8 @@ $(".btnNext").click(function(e){
                // $respose = validateDocuments();
             }
             
-        });
+      });
+
+
     });
-    
 </script>

@@ -36,6 +36,8 @@ $(document).ready(function(){
     		$("#refereesForm").show();
     	});
 
+    
+
 	$('#addReferee').click(function(e){ //Once add button is clicked
     	e.preventDefault();
     	$numberOfEmptyFields = 0;
@@ -155,8 +157,9 @@ $(document).ready(function(){
 			$tableRow += '<td>'+$position+'</td>';
 			$tableRow += '<td>'+$mobile+'</td>';
 			$tableRow += '<td>'+$refereesEmail+'</td>';
-			$tableRow += '<td style="color: blue;"><i class="fa fa-pencil-square-o" aria-hidden="true">Edit</i></td>';
-			$tableRow += '<td style="color: blue;"><i class="fa fa-times" aria-hidden="true">Delete</i></td>';
+			// $tableRow += '<td><button class="editJsBtn btn btn-default" style="color: blue;" value="'+$refereesEmail+'">Edit</button></td>';
+			$tableRow += '<td><a href="'+updateRefereeURL+'/'+$refereesEmail+'"><button class="btn btn-default" style="color: blue;"><i class="fa fa-pencil-square-o" aria-hidden="true">Edit</i></button></a></td>';
+			$tableRow += '<td><a href="'+deleteRefereeURL+'/'+$refereesEmail+'"><button class="btn btn-default" style="color: blue;""><i class="fa fa-times" aria-hidden="true">Delete</i></button></a></td>';
 			$tableRow += '</tr>';
 
 			$("#refereeList").append($tableRow);
@@ -164,6 +167,19 @@ $(document).ready(function(){
 			$("#refereesForm").hide();
 		}
 	}
+
+	$(".editJsBtn").click(function(e) //Gets the referees email and pulls them for editing
+	    {
+	        ref = $(this).val();
+	        console.log(ref);
+	    });
+
+ //   	$(".deleteJsBtn").click(function(e)//Gets the referees email and deletes the record 
+ //      	{
+	//         e.preventDefault();
+	//         ref = $(this).val();
+	//         console.log(ref);
+ //      	});
 
 	window.showAlert = function($classToShow,$classToHide,$message){
 		$("#personalDetailsFormAlert").removeClass($classToHide);
@@ -176,3 +192,9 @@ $(document).ready(function(){
 		},6000);//give the registration function time to complete before hiding the overlay
 	}
 });
+
+function editFn(data)
+{
+	console.log(data);
+
+}

@@ -168,14 +168,14 @@ $(document).ready(function(){
 			$position = $dataReturned[$i]['position'];
 			$responsibilities = $dataReturned[$i]['responsibilities'];
 			$yearsCompleted = $dataReturned[$i]['yearsCompleted'];
-
+			$data = {'email':$email,'institution':$institution,'position':$position};
 			$table = "<tr>"
 			$table += "<td>"+$institution+"</td>";
 			$table += "<td>"+$position+"</td>";
 			$table += "<td>"+$responsibilities+"</td>";
 			$table += "<td>"+$yearsCompleted+"</td>";
-			$table += '<td><i class="glyphicon glyphicon-pencil"></i></td>';
-			$table += '<td><i class="glyphicon glyphicon-remove"></i></td>';
+			$table += '<td><a href="'+updateEmploymentURL+'/'+$email+'/'+$institution+'/'+$position+'"><button class="btn btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true">Edit</i></button></a></td>';
+			$table += '<td><a href="'+deleteEmploymentURL+'/'+$email+'/'+$institution+'/'+$position+'"><button class="btn btn-default"><i class="fa fa-times" aria-hidden="true">Delete</i></button></a></td>';
 			$table += "</tr>";
 			$("#employmentForm").hide();
 
