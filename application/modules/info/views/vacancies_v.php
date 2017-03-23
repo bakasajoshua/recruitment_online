@@ -19,17 +19,17 @@
 		<?php $this->load->view('template/menu_v'); ?>
 	</header><!-- /#header -->
 
-	<div id="jobs-listing" class="related-job-listing featured-job">
-		<div class="container">
-			<div class="jobs-listing-title">
+	<div id="jobs-listing" class="related-job-listing featured-job" style="border-radius: 0px;">
+		<div class="container" style="border-radius: 0px;">
+			<div class="jobs-listing-title" style="border-radius: 0px;">
 				<h3>
 					<i class="fa fa-briefcase"></i>
 					Jobs Search Result			
 				</h3>
 			</div>
-			<div class="jobs-search-wrapper">
-				<div id="all_jobs">
-					<table class="table table-striped" id="vacanciesTable">
+			<div class="jobs-search-wrapper" style="border-radius: 0px;">
+				<div id="all_jobs" style="border-radius: 0px;">
+					<table class="table table-striped" id="vacanciesTable" style="border-radius: 0px;">
 						<thead>
 							<tr>
 								<th>#</th>

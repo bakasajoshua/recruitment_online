@@ -372,6 +372,15 @@ class MX_Controller
 		return json_encode($resp);
 	}
 
+	function checkLogin()
+	{
+
+		if($this->session->userdata('logged_in')){
+			redirect(base_url().'info');
+		}
+
+	}
+
 	//Logout
 	public function logoutController(){
 		$this->session->sess_destroy();

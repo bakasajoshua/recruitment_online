@@ -6,9 +6,11 @@ class Login extends MX_Controller {
 	
 	function __construct() {
 		parent::__construct();
+
 	}
 
 	public function index() {
+		$this->checkLogin();
 		$data['content_view'] = 'login/login_v';
 		$this->load->view('template/template_v.php',$data);
 	}

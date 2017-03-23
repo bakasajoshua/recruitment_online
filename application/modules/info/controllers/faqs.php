@@ -13,22 +13,22 @@ class Faqs extends MX_Controller {
 		$data['content_view'] = 'info/faqs_v';
 		$this->load->view('template/template_v.php',$data);
 
-		$curl = curl_init();
-		curl_setopt_array($curl, array(
-		    CURLOPT_RETURNTRANSFER => 1,
-		    CURLOPT_URL => sqlnterfaceURL,
-		    CURLOPT_USERAGENT => 'ESSDP',
-		    CURLOPT_POST => 1,
-		    CURLOPT_POSTFIELDS => array(
-		        'action' => 'confirm_referee',
-		        "email"=>$this->session->userdata('Email'),
-		        "refemail"=>'joshua.bakasa@dataposit.co.ke'
-		    )
-		));
-		$result = curl_exec($curl);
-		// Close request to clear up some resources
-		curl_close($curl);
-		echo "<pre>";print_r($result);die();
+		// $curl = curl_init();
+		// curl_setopt_array($curl, array(
+		//     CURLOPT_RETURNTRANSFER => 1,
+		//     CURLOPT_URL => sqlnterfaceURL,
+		//     CURLOPT_USERAGENT => 'ESSDP',
+		//     CURLOPT_POST => 1,
+		//     CURLOPT_POSTFIELDS => array(
+		//         'action' => 'confirm_referee',
+		//         "email"=>$this->session->userdata('Email'),
+		//         "refemail"=>'joshua.bakasa@dataposit.co.ke'
+		//     )
+		// ));
+		// $result = curl_exec($curl);
+		// // Close request to clear up some resources
+		// curl_close($curl);
+		// echo "<pre>";print_r($result);die();
 
 		
 	}

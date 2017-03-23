@@ -28,7 +28,7 @@
 							<a href="<?php echo base_url('home/accountsettings'); ?>">Profile</a>
 						</li>
 						<li>
-							<a href="<?php echo base_url('login/logout');  ?>">Log Out</a>									
+							<a href="<?php echo base_url('info/logout');  ?>">Log Out</a>									
 						</li>
 					</ul>
 					<img alt='' src='http://2.gravatar.com/avatar/5c31bff251f7ae657d32f986bd65d240?s=70&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5c31bff251f7ae657d32f986bd65d240?s=140&amp;d=mm&amp;r=g 2x' class='avatar avatar-70 photo' height='70' width='70' />				
