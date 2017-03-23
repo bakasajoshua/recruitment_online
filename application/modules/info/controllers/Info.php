@@ -17,5 +17,10 @@ class Info extends MX_Controller
 		$data['content_view'] = 'info/info_v';
 		$this->load->view('template/template_v.php',$data);
 	}
+
+	public function logout(){
+		$this->logoutController();
+	}
+
 }
 ?>

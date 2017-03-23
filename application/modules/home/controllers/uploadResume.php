@@ -603,11 +603,11 @@ class UploadResume extends MX_Controller {
 
 	public function deleteCV($value=NULL)
 	{
-		echo "<pre>";print_r($value);
+		echo $value;
 	}
 
 	function deleteappLetter($value=NULL)
 	{
-		echo "<pre>";print_r($value);
+		echo $value;
 	}
 }
