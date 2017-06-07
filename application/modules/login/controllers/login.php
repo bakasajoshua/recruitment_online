@@ -37,7 +37,7 @@ class Login extends MX_Controller {
 		// echo $result;
 		curl_close($curl);
 		$result = json_decode($result);
-		// die();
+		// echo "<pre>";print_r($result);die();
 		
 		if(isset($result[0]->fname)){
 				$username = $result[0]->username;

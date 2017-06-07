@@ -601,12 +601,12 @@ class UploadResume extends MX_Controller {
 		echo "<pre>";print_r("403: Bad Request");
 	}
 
-	public function deleteCV($value=NULL)
+	public function deleteCV()
 	{
 		echo $value;
 	}
 
-	function deleteappLetter($value=NULL)
+	function deleteappLetter()
 	{
 		echo $value;
 	}

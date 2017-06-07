@@ -172,10 +172,10 @@ $(document).ready(function(){
 				
 				$tableRow = '<tr>';
 				$tableRow += '<td> <a href="'+$linkToCV+'"> View C.V</a></td>';
-				$tableRow += '<td> <a href="'+removeCVURL+'/'+$linkToCV+'"><button class="btn btn-default romove">Remove</button></a></td>';
+				$tableRow += '<td> <a href="'+removeCVURL+'"><button class="btn btn-default romove">Remove</button></a></td>';
 				// $tableRow += '<td> <button class="btn btn-default romove">Remove</button></td>';
 				$tableRow += '<td> <a href="'+$linkToApplicationLetter+'"> View Application Letter</a></td>';
-				$tableRow += '<td> <a href="'+appletterCVURL+'/'+$linkToApplicationLetter+'"><button class="btn btn-default romove">Remove</button></a></td>';
+				$tableRow += '<td> <a href="'+appletterCVURL+'"><button class="btn btn-default romove">Remove</button></a></td>';
 				// $tableRow += '<td> <button class="btn btn-default romove">Remove</button></td>';
 				$tableRow += '</tr>';
 

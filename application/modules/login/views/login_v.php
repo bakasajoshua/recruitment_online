@@ -10,7 +10,7 @@
 				</div> -->
 			<!-- </div>/.container -->
 		<!-- </div> --><!-- /#header-bar -->			
-		<?php $this->load->view('template/menu_v'); ?>
+		<?php //$this->load->view('template/menu_v'); ?> 
 	</header><!-- /#header -->
 
 	<div id="page-title-wrapper" class="login-page-wrapper">
@@ -35,7 +35,7 @@
 											</center>
 										</div>
 							<?php
-									}else if($_GET['m'] == 2){
+									// }else if($_GET['m'] == 2){
 							?>	
 									<div class="alert alert-danger" id="getAlert">
 										<center>

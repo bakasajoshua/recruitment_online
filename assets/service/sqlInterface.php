@@ -149,6 +149,7 @@
 			} catch (SoapFault $e) {				
 			    $res = "Error: {$e->faultstring}";
 			}
+			// echo "<pre>";print_r($res);die();
 			echo($res->loginUserResult);
 		}else if($action == "SAVEPERSONALDETAILS"){
 			$fname = $_POST['fname'];
@@ -556,6 +557,34 @@
 			}
 			// echo "<pre>";print_r($res);die();
 			echo($res->delete_refereeResult);
+		}else if ($action == 'REMOVECV') {
+			$email = $_POST['email'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->removeCV(array(
+											"email"=>$email
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}
+			// echo "<pre>";print_r($res);die();
+			echo($res->removeCVResult);
+		}else if ($action == 'REMOVEAPPLICATIONLETTER') {
+			$email = $_POST['email'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->removeApplicationLetter(array(
+											"email"=>$email
+											)
+										);
+			} catch (SoapFault $e) {				
+			    $res = "Error: {$e->faultstring}";
+			}
+			// echo "<pre>";print_r($res);die();
+			echo($res->removeApplicationLetterResult);
 		}else{
 			echo "Invalid Action";
 		}
