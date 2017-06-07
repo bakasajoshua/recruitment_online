@@ -603,11 +603,45 @@ class UploadResume extends MX_Controller {
 
 	public function deleteCV()
 	{
-		echo $value;
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		    CURLOPT_RETURNTRANSFER => 1,
+		    CURLOPT_URL => sqlnterfaceURL,
+		    CURLOPT_USERAGENT => 'ESSDP',
+		    CURLOPT_POST => 1,
+		    CURLOPT_POSTFIELDS => array(
+		        'action' => 'REMOVECV',        
+		        'email'=>$this->session->userdata('Email')
+		    )
+		));
+		$result = curl_exec($curl);
+		// Close request to clear up some resources
+		curl_close($curl);
+
+		$this->session->set_userdata('cvComplete', 1);
+		// }
+		redirect(base_url('home/uploadResume'));
 	}
 
 	function deleteappLetter()
 	{
-		echo $value;
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		    CURLOPT_RETURNTRANSFER => 1,
+		    CURLOPT_URL => sqlnterfaceURL,
+		    CURLOPT_USERAGENT => 'ESSDP',
+		    CURLOPT_POST => 1,
+		    CURLOPT_POSTFIELDS => array(
+		        'action' => 'REMOVEAPPLICATIONLETTER',        
+		        'email'=>$this->session->userdata('Email')
+		    )
+		));
+		$result = curl_exec($curl);
+		// Close request to clear up some resources
+		curl_close($curl);
+
+		$this->session->set_userdata('cvComplete', 1);
+		redirect(base_url('home/uploadResume'));
 	}
 }
+?>
