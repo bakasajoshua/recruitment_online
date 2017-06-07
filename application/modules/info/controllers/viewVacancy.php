@@ -109,17 +109,21 @@ class ViewVacancy extends MX_Controller {
 				//qualifications expected by the position	
 
 				$result = (array_intersect($expectedQualificationsArray, $userQualificationsArray));//if the resultant array is smaller than $expectedQualificationsArray, then the user falls short of the qualifications needed
+				// print_r(sizeof($checkReapplication));die();
 				if(sizeof($result) < sizeof($expectedQualificationsArray)){//the user doesn't meet 
 					$response['status'] = 1;
 					$response['message'] = "You do not satisfy the minimum academic qualifications needed for this position.";
+					echo json_encode($response);
 				}else{//user meets minimum academic qualifications for this position
 					if($cvComplete === "No"){
 						$response['status'] = 1;
 						$response['message'] = "Kindly complete your C.V. to apply for this position. <a href='".base_url('home/uploadResume')."'>Click Here</a>  ";
+						echo json_encode($response);
 					}else{
 						if(sizeof($checkReapplication) == 1){//user has already applied for this job position
 							$response['status'] = 1;
 							$response['message'] = "You have already applied for this position.";
+							echo json_encode($response);
 						}else if(sizeof($checkReapplication) == 0){//the user has not yet applied 
 							$curl = curl_init();
 							curl_setopt_array($curl, array(
