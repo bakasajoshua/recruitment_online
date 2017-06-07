@@ -12,7 +12,7 @@ class ViewVacancy extends MX_Controller {
 		
 	}
 
-	public function vacancydetails($adID){		
+	public function vacancydetails($adID,$applied=NULL){		
 		$vacancydetails = $this->getSpecificVacancy($adID);
 		$vacancyCompetencyDetails = $this->getVacancyCompetencyDetails($adID);
 		$vacancySkillsDescription = $this->getVacancySkillsDescription($adID);
@@ -24,6 +24,7 @@ class ViewVacancy extends MX_Controller {
 		$data['vacancySkillsDescription'] = $vacancySkillsDescription;
 		$data['vacancyPerformanceDetails'] = $vacancyPerformanceDetails;
 		$data['vacancyQualificationDetails'] = $vacancyQualificationDetails;
+		$data['applied'] = $applied;
 		$this->validateCompetionOfCV($this->session->userdata('Email'),$this->session->userdata('cvComplete'));//checks if C.V is complete to as to allow user to apply for position
 		$data['content_view'] = 'info/ViewVacancy_v';
 		$this->load->view('template/template_v.php',$data);
@@ -110,6 +111,7 @@ class ViewVacancy extends MX_Controller {
 				//qualifications expected by the position	
 
 				$result = (array_intersect($expectedQualificationsArray, $userQualificationsArray));//if the resultant array is smaller than $expectedQualificationsArray, then the user falls short of the qualifications needed
+				// print_r(sizeof($checkReapplication));die();
 				if(sizeof($result) < sizeof($expectedQualificationsArray)){//the user doesn't meet 
 					$response['status'] = 1;
 					$response['message'] = "You do not satisfy the minimum academic qualifications needed for this position.";

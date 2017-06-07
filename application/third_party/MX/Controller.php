@@ -90,6 +90,23 @@ class MX_Controller
 		return $result;
 	}
 
+	public function getApplications($email){
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_URL => sqlnterfaceURL,
+			CURLOPT_USERAGENT => 'ESSDP',
+			CURLOPT_POST => 1,
+			CURLOPT_POSTFIELDS => array(
+				'action' => 'GETAPPLICATIONS',
+				'emailAddress' => $email
+			)
+		));
+		$result = curl_exec($curl);
+		curl_close($curl);
+		return $result;
+	}
+
 	public function getSpecificVacancy($adID){
 		$curl = curl_init();
 		curl_setopt_array($curl, array(

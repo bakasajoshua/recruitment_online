@@ -19,6 +19,18 @@
 			$resp = (array)$res;
 			$response = $resp["getAllVacanciesResult"];
 			echo $response;
+		}else if($action == "GETAPPLICATIONS"){
+			$emailAddress = $_POST['emailAddress'];
+
+			$client = new SoapClient($webServiceUrl);
+			try {
+				$res = $client->getApplications(array("email" => $emailAddress));
+			} catch (SoapFault $e){
+				$res = "Error: {$e->faultstring}";
+			}
+			$resp = (array)$res;
+			$response = $resp["getApplicationsResult"];
+			echo $response;
 		}else if($action == "getVacancySkillsDescription"){
 			$adID = $_POST['adID'];
 

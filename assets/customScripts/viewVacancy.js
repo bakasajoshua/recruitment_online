@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 
 			$.post($makeApplicationURL,{"jobADID":$jobADID, "yearsOfExperience":$yearsOfExperience}, function(data, status){
-				console.log(data);
+				// console.log(data);
 
 				$data = JSON.parse(data);
 				$status = $data['status'];

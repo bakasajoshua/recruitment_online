@@ -3,7 +3,7 @@
 		<div class="col-md-3">
 			<div class="logo-wrapper ">
 				<a href="<?php echo base_url('home/myAccount'); ?>" class="header-logo" title="Kippra Recruitment Portal">
-					<img src="<?php echo base_url('assets/images/kippralogo.png'); ?>" alt="Kippra Recruitment Portal" />
+					<img src="<?php echo base_url('assets/images/kippralogo.png'); ?>" alt="Kippra Recruitment Portal" style="width: 500px;"/>
 				</a>							
 			</div><!-- /.logo-wrapper -->
 		</div><!-- /.col-md-3 -->
@@ -47,6 +47,9 @@
 						?>
 						<li id="menu-item-232" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-232">
 							<a href="<?php echo base_url('info/vacancies'); ?>">Vacancies</a>
+						</li>
+						<li id="menu-item-232" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-232">
+							<a href="<?php echo base_url('info/applications'); ?>">My Applications</a>
 						</li>
 						<?php
 							}
