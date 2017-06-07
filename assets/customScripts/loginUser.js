@@ -43,4 +43,4 @@ $(document).ready(function(){
 			$("#alertTag").hide();
 		},6000);//give the registration function time to complete before hiding the overlay
 	}
-})
+});

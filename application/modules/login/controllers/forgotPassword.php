@@ -89,8 +89,9 @@ class ForgotPassword extends MX_Controller {
 		$result = curl_exec($curl);
 		// Close request to clear up some resources
 		curl_close($curl);
-		$result = json_decode($result);
+		// $result = json_decode($result);
 		if (isset($result)) {
+			// echo "User is logged in";
 			$curl = curl_init();
 			curl_setopt_array($curl, array(
 			    CURLOPT_RETURNTRANSFER => 1,
@@ -107,7 +108,6 @@ class ForgotPassword extends MX_Controller {
 			// Close request to clear up some resources
 			curl_close($curl);
 			$result = json_decode($result);
-			
 			
 			if(isset($result[0]->fname)){
 					$username = $result[0]->username;

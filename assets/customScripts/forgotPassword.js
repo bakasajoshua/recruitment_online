@@ -1,7 +1,8 @@
 $(document).ready(function(){
 	$("#alertTag").hide();
 
-	$("#email_forgot").focusout(function(){
+	/*$("#email_forgot").keyup(function(){
+		console.log('Something is happening');
 		$forgot_email = $(this).val();
 		$("#user_submit").prop('disabled', true);
 
@@ -65,7 +66,7 @@ $(document).ready(function(){
 				});
 			}
 		}
-	});
+	});*/
 
 	$("#user_submit").click(function(e){
 		e.preventDefault();
@@ -73,23 +74,69 @@ $(document).ready(function(){
 
 		$email_forgot = $("#email_forgot").val();
 		
-		
-		$.post($forgotURL,{"forgot_email":$email_forgot}, function(data, status){
-			// console.log(data);
-			if(data == "Updated"){
-				$message = "<center>";
-					$message += "<strong>Congratulations!</strong> <br/>Password change initiated. Check your email for password change code.";
-				$message += "</center>";
+		if($email_forgot == "" || $email_forgot == null || $email_forgot == undefined){
+			$message = "<center>";
+				$message += "<strong>Error.</strong> <br/> Please provide an email address";
+			$message += "</center>";
+			showAlert('alert alert-danger','alert alert-success',$message);
 
-				showAlert('alert alert-success','alert alert-danger',$message);
-				window.location.assign($redirectToResetPage);//redirect to login page			
-			}else{
+			// $("#user_submit").prop('disabled', true);
+		}else{
+			if( !isValidEmailAddress( $email_forgot ) ) { 
 				$message = "<center>";
-					$message += "<strong>Error!</strong> <br/>Problem while updating your details.";
+					$message += "<strong>Info.</strong> <br/>The email provided is invalid";
 				$message += "</center>";
 				showAlert('alert alert-danger','alert alert-success',$message);
+			}else{
+				$.post($validateEmailURL,{"forgot_email":$email_forgot}, function(data, status){
+					// console.log(data);
+					$data = JSON.parse(data);
+
+					$status = $data[0]['status'];
+					if($status == 1){// Email exists
+						$.post($preventDuplicate,{"email":$email_forgot}, function(data, status){
+							// console.log(data);
+							$data = JSON.parse(data);
+							$status = $data[0]['status'];
+							if($status == 0){//doesn't exists
+								$.post($forgotURL,{"forgot_email":$email_forgot}, function(data, status){
+									// console.log(data);
+									if(data == "Updated"){
+										$message = "<center>";
+											$message += "<strong>Congratulations!</strong> <br/>Password change initiated. Check your email for password change code.";
+										$message += "</center>";
+
+										showAlert('alert alert-success','alert alert-danger',$message);
+										window.location.assign($redirectToResetPage);//redirect to login page			
+									}else{
+										$message = "<center>";
+											$message += "<strong>Error!</strong> <br/>Problem while updating your details.";
+										$message += "</center>";
+										showAlert('alert alert-danger','alert alert-success',$message);
+									}
+								});
+							}else {
+								$resp = $data[0]['message'];
+								$message = "<center>";
+									$message += "<strong>Info.</strong> <br/>"+$resp;
+								$message += "</center>";
+								showAlert('alert alert-danger','alert alert-success',$message);
+							}
+						});	
+					}else{//it exists
+						$resp = $data[0]['message'];
+
+						$message = "<center>";
+							$message += "<strong>Error.</strong> <br/> Email provided does not exist";
+						$message += "</center>";
+						showAlert('alert alert-danger','alert alert-success',$message);
+
+						// $("#user_submit").prop('disabled', true);
+					}
+				});
 			}
-		});
+		}
+		
 		
 	});
 });
