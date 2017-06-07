@@ -49,9 +49,15 @@
 						echo($vacancyDetails[0]->workSchedule);
 					?>				
 				</div><!-- /.the-job-type -->
+				<?php
+					if ($applied==NULL) {
+				?>
 				<div class="the-job-button">
 					<button class="btn btn-apply-job " type="submit" value="1" data-toggle="modal" id="ApplyForPosition">Apply</button>
 				</div><!-- /.the-job-button -->
+				<?php
+					}
+				?>
 			</div><!-- /.the-job-details -->
 
 		

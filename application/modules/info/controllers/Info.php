@@ -18,6 +18,15 @@ class Info extends MX_Controller
 		$this->load->view('template/template_v.php',$data);
 	}
 
+	function applications()
+	{
+		$this->isLoggedIN();
+		$data['content_view'] = 'info/applicaions_v';
+		$data['vacancies'] = $this->getApplications($this->session->userdata('Email'));
+	
+		$this->load->view('template/template_v.php',$data);
+	}
+
 	public function logout(){
 		$this->logoutController();
 	}
