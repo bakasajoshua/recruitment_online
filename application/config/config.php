@@ -43,7 +43,7 @@ $config['index_page'] = 'index.php';
 | 'QUERY_STRING'	Uses the QUERY_STRING
 | 'REQUEST_URI'		Uses the REQUEST_URI
 | 'ORIG_PATH_INFO'	Uses the ORIG_PATH_INFO
-|
+|//string connStr = "Data Source=192.168.40.5,1433;Initial Catalog=recruitment;User ID=sa;Password=Akmakm123.;MultipleActiveResultSets=true;";//Live at KIPPRA
 */
 $config['uri_protocol']	= 'AUTO';
 
