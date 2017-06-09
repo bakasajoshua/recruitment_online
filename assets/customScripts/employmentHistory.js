@@ -40,7 +40,7 @@ $(document).ready(function(){
 			$newRow += '<div class="form-group">';
 				$newRow += '<p>Responsibilities</p>';
 					$newRow += '<div class="col-sm-10" >';
-						$newRow += '<input type="text" name="employmentResponsibilities[]" value="" class="form-control" id="employmentResponsibilities" placeholder="Responsibilities">';
+						$newRow += '<textarea name="employmentResponsibilities[]" value="" class="form-control" id="employmentResponsibilities" placeholder="Responsibilities"></textarea>';
 					$newRow += '</div>';
 				$newRow += '</div>';
 		$newRow += '</div>';

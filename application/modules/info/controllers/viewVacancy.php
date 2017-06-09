@@ -38,7 +38,7 @@ class ViewVacancy extends MX_Controller {
 		$dateOfApplication = date("Ymd");//use this format to insert into sql server, display format to user is data(dmY)
 		$checkReapplication = $this->checkForReapplication($emailAddress,$adID);
 		$checkReapplication = json_decode($checkReapplication);
-
+		// echo "<pre>";print_r($checkReapplication);die();
 		if(sizeof($checkReapplication) > 0){//the user has applied for this position 
 			$cvComplete = $checkReapplication[0]->cvComplete;
 			if($cvComplete == 1){//user has not completed CV
@@ -61,65 +61,67 @@ class ViewVacancy extends MX_Controller {
 			$checkForCompletedCVResponse = curl_exec($curl);
 			// Close request to clear up some resources
 			curl_close($curl);
+			// print_r($checkForCompletedCVResponse);die();
 			$cvComplete = $checkForCompletedCVResponse;
 			if($cvComplete == "No"){
 				$cvComplete = 1;
 			}
-		}		
+		}
+		// Checks if all the details have been submitted	
 		$validateCompetionOfCVResponse = $this->validateCompetionOfCV($emailAddress,$cvComplete);
 		$validateCompetionOfCVResponse = json_decode($validateCompetionOfCVResponse);
-		
+		//
 		$status = $validateCompetionOfCVResponse->status;
 		$msg = $validateCompetionOfCVResponse->message;
 
 		if($status == 0){//CV is complete
 			//check if user meets minimum qualifications for this position, based on working experince and academic qualifications
-			$employmentHistory = $this->getemploymentHistoryDetails($emailAddress);
-			$employmentHistory = json_decode($employmentHistory);
-			$sizeofEmploymentHistory = sizeof($employmentHistory);
-			$yearsOfExperiencePossessed = 0;
-			for($i = 0; $i < $sizeofEmploymentHistory; $i++){			
-				$yearsOfExperiencePossessed += $employmentHistory[$i]->yearsCompleted;//compute the number of working experience accoring to employment history
-			}
+			// $employmentHistory = $this->getemploymentHistoryDetails($emailAddress);
+			// $employmentHistory = json_decode($employmentHistory);
+			// echo "<pre>";print_r($employmentHistory);die();
+			// $sizeofEmploymentHistory = sizeof($employmentHistory);
+			// $yearsOfExperiencePossessed = 0;
+			// for($i = 0; $i < $sizeofEmploymentHistory; $i++){			
+			// 	$yearsOfExperiencePossessed += $employmentHistory[$i]->yearsCompleted;//compute the number of working experience accoring to employment history
+			// }
 			
-			if($yearsOfExperienceNeeded <= $yearsOfExperiencePossessed){//meets yeras qualification
+			// if($yearsOfExperienceNeeded <= $yearsOfExperiencePossessed){//meets yeras qualification
 				//qualification possessed by the user
-				$academicQualifications = $this->getQualificationDetails($emailAddress);
-				$academicQualifications = json_decode($academicQualifications);
-				$sizeofacademicQualifications = sizeof($academicQualifications);
-				$userQualificationsArray = array();
-				for($i = 0; $i < $sizeofacademicQualifications; $i++){
-					//create an array of the qualification needed
-					//compare this array with an array of qualifications possessed by the user
-					$certificationType = $academicQualifications[$i]->certificationType;
-					array_push($userQualificationsArray,$certificationType);
-				}
+				// $academicQualifications = $this->getQualificationDetails($emailAddress);
+				// $academicQualifications = json_decode($academicQualifications);
+				// echo "<pre>";print_r($academicQualifications);die();
+				// $sizeofacademicQualifications = sizeof($academicQualifications);
+				// $userQualificationsArray = array();
+				// for($i = 0; $i < $sizeofacademicQualifications; $i++){
+				// 	//create an array of the qualification needed
+				// 	//compare this array with an array of qualifications possessed by the user
+				// 	$certificationType = $academicQualifications[$i]->certificationType;
+				// 	array_push($userQualificationsArray,$certificationType);
+				// }
 				//qualification possessed by the user
 
 				//qualifications expected by the position
-				$expectedQualificationsArray = array();
-				$vacancyQualificationDetails = $this->getVacancyQualificationDetails($adID);
-				$vacancyQualificationDetails = json_decode($vacancyQualificationDetails);
-				$sizeofvacancyQualificationDetails = sizeof($vacancyQualificationDetails);
-				// sizeof($vacancyQualificationDetails)
-				for($i = 0; $i < $sizeofvacancyQualificationDetails; $i++){
-					$qualification = $vacancyQualificationDetails[$i]->description;
-					array_push($expectedQualificationsArray,$qualification);
-				}
+				// $expectedQualificationsArray = array();
+				// $vacancyQualificationDetails = $this->getVacancyQualificationDetails($adID);
+				// $vacancyQualificationDetails = json_decode($vacancyQualificationDetails);
+				// $sizeofvacancyQualificationDetails = sizeof($vacancyQualificationDetails);
+				// // sizeof($vacancyQualificationDetails)
+				// for($i = 0; $i < $sizeofvacancyQualificationDetails; $i++){
+				// 	$qualification = $vacancyQualificationDetails[$i]->description;
+				// 	array_push($expectedQualificationsArray,$qualification);
+				// }
 
 				//qualifications expected by the position	
 
-				$result = (array_intersect($expectedQualificationsArray, $userQualificationsArray));//if the resultant array is smaller than $expectedQualificationsArray, then the user falls short of the qualifications needed
+				// $result = (array_intersect($expectedQualificationsArray, $userQualificationsArray));//if the resultant array is smaller than $expectedQualificationsArray, then the user falls short of the qualifications needed
 				// print_r(sizeof($checkReapplication));die();
-				if(sizeof($result) < sizeof($expectedQualificationsArray)){//the user doesn't meet 
-					$response['status'] = 1;
-					$response['message'] = "You do not satisfy the minimum academic qualifications needed for this position.";
-					echo json_encode($response);
-				}else{//user meets minimum academic qualifications for this position
+				// if(sizeof($result) < sizeof($expectedQualificationsArray)){//the user doesn't meet 
+				// 	$response['status'] = 1;
+				// 	$response['message'] = "You do not satisfy the minimum academic qualifications needed for this position.";
+				// }else{//user meets minimum academic qualifications for this position
 					if($cvComplete === "No"){
 						$response['status'] = 1;
 						$response['message'] = "Kindly complete your C.V. to apply for this position. <a href='".base_url('home/uploadResume')."'>Click Here</a>  ";
-						echo json_encode($response);
 					}else{
 						if(sizeof($checkReapplication) == 1){//user has already applied for this job position
 							$response['status'] = 1;
@@ -166,14 +168,14 @@ class ViewVacancy extends MX_Controller {
 							echo($response);
 						}
 					}				
-				}
-			}else{//doesn't meet years qualification
-				$response['status'] = 1;
-				$response['message'] = "You do not qualify for this position on account of insufficient experience";
+				// }
+			// }else{//doesn't meet years qualification
+			// 	$response['status'] = 1;
+			// 	$response['message'] = "You do not qualify for this position on account of insufficient experience";
 				
-				$response = json_encode($response);
-				echo($response);
-			}
+			// 	$response = json_encode($response);
+			// 	echo($response);
+			// }
 		}else if($status == 1){//logout and login to complete CV
 
 		}else if($status == 2){	
@@ -280,4 +282,27 @@ class ViewVacancy extends MX_Controller {
 		curl_close($curl);
 		return $vacancyCompetencyDetails;
 	}
+
+	public function sendRegistrationemail($name,$email,$job_title,$job_description)
+	{
+		//person sending email
+		$FName = "KIPPRA";
+		$LName = "ESS";
+		//person sending email
+
+		//Subject of the Email
+		$subject = "RECIEPT OF JOB APPLICATION";
+
+		$Message = "<br/><p>Your job application for the position of ".$job_title." has been received.</p><br/>";
+		$Message .= "<br /><strong><p>Job details</p></strong>";
+		$Message .= "<br /><br />".$job_description."<br/>";
+
+		// $From = "kipprahr@kippra.or.ke";
+		$From = "kippraess@gmail.com";
+		$to = $email;
+
+		$resp = $this->phpMailerSendMail($FName, $LName, $subject, $Message, $From, $to);
+		return $resp;
+	}
 }
+?>

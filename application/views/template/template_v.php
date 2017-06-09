@@ -48,6 +48,7 @@
 		<!--Datatables -->
 		<link href="<?php echo base_url('assets/datatables/media/css/dataTables.jqueryui.css'); ?>" rel="stylesheet" type="text/css">
 		<link href="<?php echo base_url('assets/datatables/media/css/jquery-ui.css'); ?>" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/basics/jquery-ui/jquery-ui.min.css'); ?>">
 		<!-- <link href="<?php echo base_url('assets/datatables/media/css/jquery-ui-2.css'); ?>" rel="stylesheet" type="text/css"> -->
 		<!-- <link href="<?php echo base_url('assets/datatables/media/css/jquery-ui-3.css'); ?>" rel="stylesheet" type="text/css"> -->
 		<!-- <link href="<?php echo base_url('assets/datatables/media/css/jquery-ui-4.css'); ?>" rel="stylesheet" type="text/css"> -->
@@ -55,6 +56,7 @@
 
 		<!-- jQUery v1.11.2-->
 		<script src="<?php echo base_url('assets/basics/jquery.min.js'); ?>"></script>
+		<script src="<?php echo base_url('assets/basics/jquery-ui/jquery-ui.min.js'); ?>" type="text/javascript"></script>
 		<!-- jQUery -->
 
 		<!-- Custom Scripts -->
