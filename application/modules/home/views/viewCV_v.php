@@ -88,16 +88,16 @@
 							<?php echo $myCVPersonalDetails[0]->fname." ".$myCVPersonalDetails[0]->mname." ".$myCVPersonalDetails[0]->lname  ?> 
 						</h3>
 						<div class="the-skills">
-							<span class="skill-item">Email: <?php echo $myCVPersonalDetails[0]->email; ?></span>
-							<span class="skill-item">Mobile: <?php echo $myCVPersonalDetails[0]->mobileNo ?></span>
-							<span class="skill-item">Address: <?php echo $myCVPersonalDetails[0]->address ?></span>
-							<span class="skill-item">Current Location: <?php echo $myCVPersonalDetails[0]->currentLocation ?></span>
-							<span class="skill-item">Country: <?php echo $myCVPersonalDetails[0]->country ?></span>
-							<span class="skill-item">ID: <?php echo $myCVPersonalDetails[0]->nationalID ?></span>
-							<span class="skill-item">PIN(KRA): <?php echo $myCVPersonalDetails[0]->PIN ?></span>
-							<span class="skill-item">Marital Status: <?php echo $myCVPersonalDetails[0]->maritalStatus ?> </span>
+							<span class="skill-item" style="background-color: #1abc9c;">Email: <?php echo $myCVPersonalDetails[0]->email; ?></span>
+							<span class="skill-item" style="background-color: #1abc9c;">Mobile: <?php echo $myCVPersonalDetails[0]->mobileNo ?></span>
+							<span class="skill-item" style="background-color: #1abc9c;">Address: <?php echo $myCVPersonalDetails[0]->address ?></span>
+							<span class="skill-item" style="background-color: #1abc9c;">Current Location: <?php echo $myCVPersonalDetails[0]->currentLocation ?></span>
+							<span class="skill-item" style="background-color: #1abc9c;">Country: <?php echo $myCVPersonalDetails[0]->country ?></span>
+							<span class="skill-item" style="background-color: #1abc9c;">ID: <?php echo $myCVPersonalDetails[0]->nationalID ?></span>
+							<span class="skill-item" style="background-color: #1abc9c;">PIN(KRA): <?php echo $myCVPersonalDetails[0]->PIN ?></span>
+							<span class="skill-item" style="background-color: #1abc9c;">Marital Status: <?php echo $myCVPersonalDetails[0]->maritalStatus ?> </span>
 						</div><!-- /.the-skills -->
-						<a href="#" class="btn btn-contact" data-toggle="modal" data-target="#contact-resume-modal" style="color:#ffffff;">Edit</a>
+						<!-- <a href="#" class="btn btn-contact" data-toggle="modal" data-target="#contact-resume-modal" style="color:#ffffff;">Edit</a> -->
 					<?php
 						}
 					?>
@@ -136,7 +136,7 @@
 							echo $educationList;
 						}
 					?>
-					<a href="#" class="btn btn-contact" data-toggle="modal" data-target="#contact-resume-modal" style="color:#ffffff;">Edit</a>
+					<!-- <a href="#" class="btn btn-contact" data-toggle="modal" data-target="#contact-resume-modal" style="color:#ffffff;">Edit</a> -->
 					<hr/>
 					<div class="experience-container">
 						<h3 class="educations-title">Documents</h3>
@@ -191,7 +191,7 @@
 							</li>					
 						</ul> -->
 					</div>
-					<a href="#" class="btn btn-contact" data-toggle="modal" data-target="#contact-resume-modal" style="color:#ffffff;">Edit</a>
+					<!-- <a href="#" class="btn btn-contact" data-toggle="modal" data-target="#contact-resume-modal" style="color:#ffffff;">Edit</a> -->
 
 				</div><!-- /.education-container -->
 			</div><!-- /.col-md-6 -->
@@ -233,7 +233,7 @@
 								echo $referenceList;
 							}
 						?>
-						<a href="#" class="btn btn-contact" data-toggle="modal" data-target="#contact-resume-modal" style="color:#ffffff;">Edit</a>
+						<!-- <a href="#" class="btn btn-contact" data-toggle="modal" data-target="#contact-resume-modal" style="color:#ffffff;">Edit</a> -->
 				</div><!-- /.education-container -->
 				<hr/>
 				<!-- <div class="experience-container">

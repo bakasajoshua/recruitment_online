@@ -643,5 +643,10 @@ class UploadResume extends MX_Controller {
 		$this->session->set_userdata('cvComplete', 1);
 		redirect(base_url('home/uploadResume'));
 	}
+
+	function test()
+	{
+		echo "<pre>";print_r($this->session->all_userdata());
+	}
 }
 ?>

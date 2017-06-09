@@ -167,16 +167,72 @@
                                  </div>
 
                                  <div class="col-md-2 col-md-offset-10">
-                                     <button class="btnSave btn btn-primary" value="1" style="margin-bottom: 0.5em;">Save Details</button>
+                                     <button class="btnSave btn btn-primary" value="1" style="margin-bottom: 0.5em;background-color: #1abc9c; border-radius: 0px;">Save Details</button>
                                  </div>
                               </form>
                            </div>
                         </form>
                         <div id="pdLabels">
                            <div>
-                              <button class="btn btn-primary" id="addEditBtn">Add/Edit Details</button>
+                              <button class="btn btn-primary" id="addEditBtn" style="background-color: #1abc9c; border-radius: 0px;">Add/Edit Details</button>
                            </div>
                            <div class="col-md-6">
+                              <div class="education-container">
+                                 <ul class="resume-lists">
+                                    <li>
+                                       <div class="education-name"><strong>Names</strong></div>
+                                       <i class="fa fa-fw fa-calendar"></i><strong>First Name:</strong>&nbsp;<span class="education-period" id="lbfname"></span>
+                                       <br/>
+                                       <i class="fa fa-fw fa-calendar"></i><strong>Middle Name:</strong>&nbsp;<span class="education-period" id="lbmname"></span>
+                                       <br/>
+                                       <i class="fa fa-fw fa-calendar"></i><strong>Last Name:</strong>&nbsp;<span class="education-period" id="lblname"></span>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="education-container">
+                                 <ul class="resume-lists">
+                                    <li>
+                                       <div class="education-name"><strong>Contacts</strong></div>
+                                       <i class="fa fa-fw fa-calendar"></i><strong>Mobile No.:</strong>&nbsp;<span class="education-period" id="lbmobileNo"></span>
+                                       <br/>
+                                       <i class="fa fa-fw fa-calendar"></i><strong>Postal Address:</strong>&nbsp;<span class="education-period" id="lbaddress"></span>
+                                       <br/>
+                                       <i class="fa fa-fw fa-location"></i><strong>Current Location:</strong>&nbsp;<span class="education-period" id="lbcurrentLocation"></span>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                            <div class="col-md-6">
+                              <div class="education-container">
+                                 <ul class="resume-lists">
+                                    <li>
+                                       <div class="education-name"><strong>Identification</strong></div>
+                                       <i class="fa fa-fw fa-calendar"></i><strong>National ID No.:</strong>&nbsp;<span class="education-period" id="lbnationalIDNO"></span>
+                                       <br/>
+                                       <i class="fa fa-fw fa-calendar"></i><strong>Passport No:</strong>&nbsp;<span class="education-period" id="lbpassportNo"></span>
+                                       <br/>
+                                       <i class="fa fa-fw fa-location"></i><strong>PIN No.:</strong>&nbsp;<span class="education-period" id="lbpinNo"></span>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="education-container">
+                                 <ul class="resume-lists">
+                                    <li>
+                                       <div class="education-name"><strong>Others</strong></div>
+                                       <i class="fa fa-fw fa-calendar"></i><strong>Country:</strong>&nbsp;<span class="education-period" id="lbcountry"></span>
+                                       <br/>
+                                       <i class="fa fa-fw fa-calendar"></i><strong>Disabled:</strong>&nbsp;<span class="education-period" id="lbdisabledStatus"></span>
+                                       <br/>
+                                       <i class="fa fa-fw fa-location"></i><strong>Marital Status:</strong>&nbsp;<span class="education-period" id="lbmaritalStatus"></span>
+                                    </li>
+                                 </ul>
+                              </div>
+                           </div>
+                           <!-- <div class="col-md-6">
                                  <div class="form-group">
                                     <label for="lbfname" class="col-sm-4 control-label">First Name</label>
                                     <div class="col-sm-8">
@@ -184,26 +240,26 @@
                                     </div>
                                  </div>
                               </div>
-                              
-                              <div class="col-md-6">
+                               -->
+                              <!-- <div class="col-md-6">
                                  <div class="form-group">
                                     <label for="lbmname" class="col-sm-4 control-label"">Middle Name</label>
                                     <div class="col-sm-8">
                                        <label id="lbmname" class="col-sm-10"></label>
                                     </div>
                                  </div>           
-                              </div>
+                              </div> -->
 
-                              <div class="col-md-6">
+                              <!-- <div class="col-md-6">
                                  <div class="form-group">
                                     <label for="lblname" class="col-sm-4 control-label">Last Name</label>
                                     <div class="col-sm-8">
                                        <label id="lblname" class="col-sm-10"></label>
                                     </div>
                                  </div>           
-                              </div>
+                              </div> -->
 
-                              <div class="col-md-6">
+                              <!-- <div class="col-md-6">
                                  <div class="form-group">
                                     <label for="lbmobileNo" class="col-sm-4 control-label">Mobile No.</label>
                                     <div class="col-sm-8">
@@ -228,18 +284,18 @@
                                        <label id="lbcurrentLocation" class="col-sm-10"></label>
                                     </div>
                                  </div>           
-                              </div>
+                              </div> -->
                               
-                              <div class="col-md-6">
+                              <!-- <div class="col-md-6">
                                  <div class="form-group">
                                     <label for="lbcountry" class="col-sm-4 control-label">Country</label>
                                     <div class="col-sm-8">
                                        <label id="lbcountry" class="col-sm-10"></label>
                                     </div>
                                  </div>
-                              </div>
+                              </div> -->
 
-                              <div class="col-md-6">
+                              <!-- <div class="col-md-6">
                                  <div class="form-group">
                                     <label for="lbpinNo" class="col-sm-4 control-label">PIN No.</label>
                                     <div class="col-sm-8">
@@ -264,9 +320,9 @@
                                        <label id="lbpassportNo" class="col-sm-8"></label>
                                     </div>
                                  </div>           
-                              </div>
+                              </div> -->
 
-                              <div class="col-md-6">
+                              <!-- <div class="col-md-6">
                                  <div class="form-group">
                                     <label for="lbdisabledStatus" class="col-sm-4 control-label">Disabled?</label>
                                     <div class="col-sm-8">
@@ -282,7 +338,7 @@
                                        <label id="lbmaritalStatus" class="col-sm-8"></label>
                                     </div>
                                  </div>
-                              </div>
+                              </div> -->
                         </div>
                         <div class="col-md-2 col-md-offset-10">
                            <button class="btnNext btn btn-primary" value="1">Next</button>
@@ -295,7 +351,7 @@
                         <br><br>
                         <form id="qualificationsForm">
                         <div class="row">
-                           <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true" id="addQualifications" title="Add Qualification" style="cursor: pointer;">Add Qualification</i></button>
+                           <button class="btn btn-primary" style="background-color: #1abc9c; border-radius: 0px;"><i class="fa fa-plus" aria-hidden="true" id="addQualifications" title="Add Qualification" style="cursor: pointer;">Add Qualification</i></button>
                         </div>
                            <div class="field_wrapperQualifications">
                               <div>
@@ -329,7 +385,9 @@
                                        <!-- <label for="school" class="col-sm-2 control-label">Description</label> -->
                                        <p>Description</p>
                                        <div class="col-sm-10">
-                                          <input type="text" name="description" value="" class="form-control" id="description" placeholder="Description">
+                                          <textarea name="description" value="" class="form-control" id="description" placeholder="Description"></textarea>
+                                          <!-- <input type="text" name="description" value="" class="form-control" id="description" placeholder="Description"> -->
+                                          <!-- <input name="startDate" id="startDate" class="date-picker" placeholder="From:" /> -->
                                        </div>
                                     </div>
                                  </div>
@@ -338,7 +396,9 @@
                                        <p>Years Completed</p>
                                        <div class="col-sm-10">
                                           <input type="number" name="years" min="1" value="" class="form-control" id="years" placeholder="Years"  style="width: 50%; display: inline-block;">
-                                          
+                                          <!-- <input name="startDate" id="startDate" class="date-picker" placeholder="From:" style="margin-bottom: 1em;" />
+                                          <br />
+                                          <input name="endDate" id="endDate" class="date-picker" placeholder="To:" /> -->
                                        </div>
                                     </div>
                                  </div>
@@ -346,15 +406,15 @@
                               </div>
                            </div>
                             <div class="col-md-6 col-md-offset-8" style="margin-top: 1em;">
-                               <button class="btnBack btn btn-primary" value="1">Previous</button>
-                               <button class="btnSave btn btn-primary" value="2">Save Details</button>
-                               <button class="btnNext btn btn-primary" value="1">Next</button>
+                               <!-- <button class="btnBack btn btn-primary" value="1" style="background-color: #1abc9c; border-radius: 0px;">Previous</button> -->
+                               <button class="btnSave btn btn-primary" value="2" style="background-color: #1abc9c; border-radius: 0px;">Save Details</button>
+                               <!-- <button class="btnNext btn btn-primary" value="1" style="background-color: #1abc9c; border-radius: 0px;">Next</button> -->
                             </div>
                         </form>
 
                         <div class="table-responsive" id="qualificationListContainer">
                            <div>
-                              <button id="addQauls" class="btn btn-primary">Add Qualifications</button>
+                              <button id="addQauls" class="btn btn-primary" style="background-color: #1abc9c; border-radius: 0px;">Add Qualifications</button>
                            </div>
                            <table class="table">
                               <thead>
@@ -383,7 +443,7 @@
                      
                         <form id="employmentForm">
                            <div class="row">
-                              <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true" id="addEmploymentHistory" title="Add Employment History" style="cursor:pointer;">Add Employment History</i></button>
+                              <button class="btn btn-primary" style="background-color: #1abc9c; border-radius: 0px;"><i class="fa fa-plus" aria-hidden="true" id="addEmploymentHistory" title="Add Employment History" style="cursor:pointer; ">Add Employment History</i></button>
                            </div>
                            <div class="employmentHistoryfield_wrapper">
                               <div>
@@ -407,7 +467,8 @@
                                     <div class="form-group">
                                        <p>Responsibilities</p>
                                        <div class="col-sm-10">
-                                          <input type="text" name="employmentResponsibilities[]" value="" class="form-control" id="employmentResponsibilities" placeholder="Responsibilities">
+                                          <textarea name="employmentResponsibilities[]" value="" class="form-control" id="employmentResponsibilities" placeholder="Responsibilities"></textarea>
+                                          <!-- <input type="text" name="employmentResponsibilities[]" value="" class="form-control" id="employmentResponsibilities" placeholder="Responsibilities"> -->
                                        </div>
                                     </div>
                                  </div>
@@ -424,14 +485,14 @@
                               </div>        
                            </div>
                            <div class="col-md-6 col-md-offset-6" style="margin-top: 1em;">
-                               <button class="btnBack btn btn-primary" value="1">Previous</button>
-                               <button class="btnSave btn btn-primary" value="3">Save Details</button>
-                               <button class="btnNext btn btn-primary" value="1">Next</button>
+                               <!-- <button class="btnBack btn btn-primary" value="1">Previous</button> -->
+                               <button class="btnSave btn btn-primary" value="3" style="background-color: #1abc9c; border-radius: 0px;">Save Details</button>
+                               <!-- <button class="btnNext btn btn-primary" value="1">Next</button> -->
                             </div>
                         </form>
                         <div class="table-responsive" id="employmentListContainer">
                            <div>
-                              <button id="addEmploy" class="btn btn-primary">Add Employment History</button>
+                              <button id="addEmploy" class="btn btn-primary" style="background-color: #1abc9c; border-radius: 0px;">Add Employment History</button>
                            </div>
                            <table class="table">
                               <thead>
@@ -459,7 +520,7 @@
                      
                         <form id="refereesForm">
                         <div class="row">
-                           <button class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true" id="addReferee" title="Add Referee" style="cursor: pointer;">Add Referee</i></button>
+                           <button class="btn btn-primary" style="background-color: #1abc9c; border-radius: 0px;"><i class="fa fa-plus" aria-hidden="true" id="addReferee" title="Add Referee" style="cursor: pointer;">Add Referee</i></button>
                         </div>
                            <div class="field_wrapperReferees" >
                               <div>
@@ -484,15 +545,15 @@
                               </div>
                            </div>
                            <div class="col-md-6 col-md-offset-6">
-                               <button class="btnBack btn btn-primary" value="1">Previous</button>
-                               <button class="btnSave btn btn-primary" value="4">Save Details</button>
-                               <button class="btnNext btn btn-primary" value="1">Next</button>
+                               <!-- <button class="btnBack btn btn-primary" value="1">Previous</button> -->
+                               <button class="btnSave btn btn-primary" value="4" style="background-color: #1abc9c; border-radius: 0px;">Save Details</button>
+                               <!-- <button class="btnNext btn btn-primary" value="1">Next</button> -->
                             </div>
                         </form>
 
                         <div class="table-responsive" id="refereeListContainer">
                            <div>
-                              <button id="addRefBtn" class="btn btn-primary">Add Referee</button>
+                              <button id="addRefBtn" class="btn btn-primary" style="background-color: #1abc9c; border-radius: 0px;">Add Referee</button>
                            </div>
                            <table class="table">
                               <thead>
@@ -543,8 +604,8 @@
                               </div>                        
                            </div>
                            <div class="col-md-6 col-md-offset-6">
-                                   <button class="btnBack btn btn-primary" value="1">Previous</button>
-                                   <button class="btnSave btn btn-primary" value="5" id="submitCV">Save Details</button>
+                                   <!-- <button class="btnBack btn btn-primary" value="1">Previous</button> -->
+                                   <button class="btnSave btn btn-primary" value="5" id="submitCV" style="background-color: #1abc9c; border-radius: 0px;">Save Details</button>
                                 </div>
                         </form>
 
@@ -588,7 +649,10 @@
 <script type="text/javascript" src="<?php echo base_url('assets/customScripts/uploadDocuments.js'); ?>"></script>
 
 <script type="text/javascript">
-    $(document).ready(function(){
+   $( function() {
+      // $( ".date-picker" ).datepicker();
+   });
+   $(document).ready(function(){
       $("#pdLabels").hide();
         //Save CV URLS
         $savePersonalDetailsURL = "<?php echo base_url('home/uploadResume/savePersonalDetails'); ?>";

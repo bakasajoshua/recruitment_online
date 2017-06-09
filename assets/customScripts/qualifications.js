@@ -5,6 +5,7 @@ $(document).ready(function(){
          e.preventDefault();
          $("#qualificationListContainer").hide();
          $("#qualificationsForm").show();
+         // $(".date-picker").datepicker();
       });
    var x = 1; //Initial field counter is 1
    var maxField = 5; //Input fields increment limitation
@@ -51,7 +52,7 @@ $(document).ready(function(){
          $newRow += '<div class="form-group">';
             $newRow += '<p>Description</p>';
             $newRow += '<div class="col-sm-10">';
-               $newRow += '<input type="text" name="description" value="" class="form-control" id="description" placeholder="Description">';
+               $newRow += '<textarea name="description" value="" class="form-control" id="description" placeholder="Description"></textarea>';
             $newRow += '</div>';
          $newRow += '</div>';
       $newRow += '</div>';
@@ -62,7 +63,7 @@ $(document).ready(function(){
             $newRow += '<div class="form-group">';
                $newRow += '<p>Years Completed</p>';
                $newRow += '<div class="col-sm-10">';
-                  $newRow += '<input type="number" min="1" name="years" value="" class="form-control" id="years" placeholder="Years"  >';
+                  $newRow += '<input name="startDate" id="startDate" class="date-picker" placeholder="From:" style="margin-bottom: 1em;" /><br /><input name="endDate" id="endDate" class="date-picker" placeholder="To:" />';
                $newRow += '</div>';
             $newRow += '</div>';
          $newRow += '</div>';
